@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Mewa - Smart Stock Recommendations</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+   
+    <!-- Navbar -->
+    <nav class="navbar-custom">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <!-- Logo -->
+                <a href="index.html" class="navbar-brand">
+                    <img src="images/WhiteLogo.png" alt="Logo">
+                    The Mewa
+                </a>
+    
+                <!-- Navigation Links -->
+                <div class="d-none d-md-flex align-items-center gap-4">
+                    <!-- About MEWA Dropdown -->
+                    <div class="nav-dropdown">
+                        <a href="about-mewa.html" class="nav-link-custom">
+                            About MEWA
+                            <i class="bi bi-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu-custom">
+                            <a href="#who-we-are" class="dropdown-item-custom">Who We Are</a>
+                            <a href="#how-we-work" class="dropdown-item-custom">How We Work</a>
+                            <a href="#what-we-provide" class="dropdown-item-custom">What We Provide</a>
+                            <a href="#testimonials" class="dropdown-item-custom">Testimonials</a>
+                            <a href="#faq" class="dropdown-item-custom">FAQs</a>
+                        </div>
+                    </div>
+    
+                    <!-- Our App Dropdown -->
+                    <div class="nav-dropdown">
+                        <a href="#" class="nav-link-custom">
+                            Our App
+                            <i class="bi bi-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu-custom">
+                            <a href="#active" class="dropdown-item-custom">Active</a>
+                            <a href="#revised" class="dropdown-item-custom">Revised</a>
+                            <a href="#demo" class="dropdown-item-custom">Short Demo</a>
+                        </div>
+                    </div>
+    
+                    <!-- Price -->
+                    <a href="pricing.html" class="nav-link-custom">Price</a>
+    
+                    <!-- Refer & Earn -->
+                    <a href="refer&earn.html" class="nav-link-custom">Refer & Earn</a>
+
+                    <!-- Social Responsibility -->
+                    <a href="social-responsibility.html" class="nav-link-custom">Social Responsibility</a>
+                </div>
+
+                <!-- Right Side Actions -->
+                <div class="d-flex align-items-center gap-3">
+                    <button class="theme-toggle" id="themeToggle" style="display: none;">
+                        <i class="bi bi-sun-fill"></i>
+                    </button>
+                    <!-- Login Button -->
+                    <a href="#login" class="btn-gradient d-none d-sm-inline-block">Login</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Who We Are Section -->
+    <section class="who-we-are-section" id="who-we-are">
+        <div class=""></div>
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge"><i class="bi bi-stars"></i> Who We Are</div>
+                <h2 class="section-title">We serve you as your <span class="gradient-text">Research Analytical Partner</span></h2>
+            </div>
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 mb-4 mb-lg-0">
+                        <div class="about-content">
+                            <p class="section-text">We are a SEBI-registered Research Analyst firm with deep-rooted expertise.</p>
+                            <p class="section-text">Our team brings years of experience in Indian Securities Market, along with market trends and our data-driven analysis.</p>
+                            <p class="section-text">At the core of our work lies a commitment to transparency, integrity, and accuracy — ensuring that every recommendation we provide is backed by thorough research and real market insights.</p>
+                            <p class="section-text">With regulatory compliance and client-centricity at our core, we strive to build long-term value and trust.</p>
+                            <p class="section-text">Our goal is simple — to empower investors with clarity, bridge the gap between data and decisions, and help them achieve consistent long-term growth in their financial journey.</p>
+
+                            <div class="about-features">
+                                <div class="feature-item">
+                                    <i class="bi bi-shield-check"></i>
+                                    <span>SEBI Registered</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="bi bi-award"></i>
+                                    <span>Award Winning</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="bi bi-people"></i>
+                                    <span>Expert Team</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="service-phone-wrapper">
+                            <div class="service-phone">
+                                <div class="service-phone-screen">
+                                    <div class="service-phone-notch"></div>
+                                    <div class="service-phone-header">
+                                        <span class="service-phone-time">12:30</span>
+                                        <div class="service-phone-icons">
+                                            <i class="bi bi-reception-4"></i>
+                                            <i class="bi bi-wifi"></i>
+                                            <i class="bi bi-battery-full"></i>
+                                        </div>
+                                    </div>
+                                    <div class="service-phone-app-bar">
+                                        <i class="bi bi-chevron-left"></i>
+                                        <span class="service-phone-title">The Mewa</span>
+                                        <i class="bi bi-telephone"></i>
+                                    </div>
+                                    <div class="service-phone-content">
+                                        <!-- Stock Card 1 -->
+                                        <div class="service-stock-card">
+                                            <div class="service-stock-header">
+                                                <span class="service-stock-name">RELIANCE</span>
+                                                <span class="service-stock-badge green">BUY</span>
+                                            </div>
+                                            <div class="service-stock-label">BUYING ZONE</div>
+                                            <div class="service-stock-price">Profit per lot = ₹320</div>
+                                            <div class="service-stock-action">Show More</div>
+                                        </div>
+                                        <!-- Stock Card 2 -->
+                                        <div class="service-stock-card">
+                                            <div class="service-stock-header">
+                                                <span class="service-stock-name">TCS</span>
+                                                <span class="service-stock-badge green">BUY</span>
+                                            </div>
+                                            <div class="service-stock-label">BUYING ZONE</div>
+                                            <div class="service-stock-price">₹3,600 - ₹3,650</div>
+                                            <div class="service-stock-details">
+                                                <div class="service-stock-row">
+                                                    <span>🎯 TARGET</span>
+                                                    <span>₹3,900</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <img src="images/active-options-dark.png" alt="about us image" class="img-fluid about-image"> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- How We Work Section -->
+    <section class="how-we-work-section" id="how-we-work">
+        <div class="container">
+            
+            <div class="section-header">
+                <div class="section-badge"><i class="bi bi-stars"></i> HOW WE WORK</div>
+                <h2 class="section-title">Our Research-Driven <span class="gradient-text">Process</span></h2>
+                <p class="section-subtitle">Systematic approach to deliver accurate recommendations</p>
+            </div>
+
+            <div class="row g-4 mt-5">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="process-card fade-up">
+                        <div class="process-number">01</div>
+                        <div class="process-icon-wrapper">
+                            <i class="bi bi-bar-chart-line"></i>
+                        </div>
+                        <h3 class="process-title">Market Analysis</h3>
+                        <p class="process-description">Our experts analyze market trends, technical indicators, and fundamental data using advanced algorithms.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="process-card fade-up" style="animation-delay: 0.1s;">
+                        <div class="process-number">02</div>
+                        <div class="process-icon-wrapper">
+                            <i class="bi bi-cpu"></i>
+                        </div>
+                        <h3 class="process-title">AI Screening</h3>
+                        <p class="process-description">AI-powered systems screen thousands of stocks to identify high-probability trading opportunities.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="process-card fade-up" style="animation-delay: 0.2s;">
+                        <div class="process-number">03</div>
+                        <div class="process-icon-wrapper">
+                            <i class="bi bi-check-circle"></i>
+                        </div>
+                        <h3 class="process-title">Expert Validation</h3>
+                        <p class="process-description">Each recommendation is validated by our team of SEBI-registered market analysts.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="process-card fade-up" style="animation-delay: 0.3s;">
+                        <div class="process-number">04</div>
+                        <div class="process-icon-wrapper">
+                            <i class="bi bi-send"></i>
+                        </div>
+                        <h3 class="process-title">Instant Delivery</h3>
+                        <p class="process-description">Recommendations are delivered instantly to your devices with clear entry, target, and stop-loss levels.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What We Provide Section -->    
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge"><i class="bi bi-chat-quote-fill"></i> Testimonials</div>
+                <h2 class="section-title">What Our <span class="gradient-text">Traders Say</span></h2>
+                <p class="section-subtitle">Real feedback from real traders who trust The Mewa</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-up">
+                    <div class="testimonial-profit">+₹1.2L</div>
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">The revision tracking feature is a game-changer. I always know exactly when targets are updated and can adjust my positions accordingly.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">RK</div>
+                        <div class="testimonial-info">
+                            <h5>Rajesh Kumar</h5>
+                            <p>Trading since 2022</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-up">
+                    <div class="testimonial-profit">+₹85K</div>
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">Finally, a service that's transparent about their track record. The past performance section gives me confidence in every trade I take.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">PS</div>
+                        <div class="testimonial-info">
+                            <h5>Priya Sharma</h5>
+                            <p>Trading since 2023</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-up">
+                    <div class="testimonial-profit">+₹2.1L</div>
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">The real-time alerts and live price updates help me execute trades at the perfect moment. Best advisory service I've used.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">AM</div>
+                        <div class="testimonial-info">
+                            <h5>Amit Mehta</h5>
+                            <p>Trading since 2021</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge"><i class="bi bi-question-circle"></i> FAQ</div>
+                <h2 class="section-title">Frequently Asked <span class="gradient-text">Questions</span></h2>
+                <p class="section-subtitle">Got questions? We've got answers</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What is The Mewa?
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The Mewa is a SEBI-registered stock recommendation platform that provides expert-curated buy/sell calls with real-time tracking, revision history, and detailed research reports to help you make informed trading decisions.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I receive recommendations?
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You'll receive instant notifications via our mobile app and web platform whenever a new recommendation is published. Each alert includes the stock name, action (buy/sell), entry price range, target, and stop loss.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What is your success rate?
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our historical success rate is approximately 87% over the last 6 months. You can view our complete track record in the Past Performance section, which is updated in real-time with every trade outcome.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Is The Mewa SEBI registered?
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, The Mewa is fully SEBI registered as a Research Analyst. We comply with all regulatory requirements and maintain complete transparency in our operations and recommendations.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I track revision history?
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Every recommendation card shows complete revision history. You can see when targets or stop losses were updated, the previous values, and timestamps for each change - ensuring full transparency.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-bg"></div>
+        <div class="container">
+            <div class="cta-content fade-up">
+                <h2 class="cta-title">Ready to Start <span class="gradient-text">Trading Smarter</span>?</h2>
+                <p class="cta-subtitle">Join 500+ traders who trust The Mewa for expert stock recommendations</p>
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    <a href="index.html" class="btn-gradient">
+                        Get Started Now
+                        <i class="bi bi-arrow-right ms-2"></i>
+                    </a>
+                    <a href="#features" class="btn-outline-custom">
+                        <i class="bi bi-info-circle"></i>
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-market">
+        <div class="footer-grid-bg"></div>
+        
+        <!-- Market Status Banner -->
+        <!-- <div class="market-status-banner">
+            <div class="container-custom">
+                <div class="market-status-content">
+                    <div class="status-indicator">
+                        <span class="status-dot pulse-green"></span>
+                        <span class="status-text">Market Open</span>
+                    </div>
+                    <div class="market-indices-footer">
+                        <div class="index-item-footer">
+                            <span class="index-name">NIFTY 50</span>
+                            <span class="index-value up">21,845 ↑</span>
+                        </div>
+                        <div class="index-item-footer">
+                            <span class="index-name">SENSEX</span>
+                            <span class="index-value up">72,410 ↑</span>
+                        </div>
+                        <div class="index-item-footer">
+                            <span class="index-name">BANK NIFTY</span>
+                            <span class="index-value up">46,320 ↑</span>
+                        </div>
+                    </div>
+                    <div class="market-hours">
+                        <i class="far fa-clock"></i>
+                        <span>Trading Hours: 9:15 AM - 3:30 PM IST</span>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="container-custom">
+            <div class="footer-main">
+                <!-- Brand Column -->
+                <div class="footer-column brand-column">
+                    <div class="footer-logo">
+                        <img src="images/whitelogo.png" alt="The Mewa Logo" class="footer-brand-logo">
+                        <span class="footer-brand-name">The Mewa</span>
+                    </div>
+                    <p class="footer-tagline">Elite stock market intelligence with 87% accuracy. SEBI-registered advisory for professional traders.</p>
+                    
+                    <div class="sebi-footer-badge">
+                        <div class="sebi-seal">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="sebi-info">
+                            <span class="sebi-label">SEBI Registered</span>
+                            <span class="sebi-reg">INB231234567</span>
+                        </div>
+                    </div>
+
+                    <div class="social-links-footer">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Telegram">
+                            <i class="fab fa-telegram-plane"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-column">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#intelligence">Intelligence</a></li>
+                        <li><a href="#understanding">How It Works</a></li>
+                        <li><a href="#why-choose">Why Choose Us</a></li>
+                        <li><a href="#pricing">Pricing Plans</a></li>
+                        <li><a href="#performance">Performance</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div class="footer-column">
+                    <h3 class="footer-heading">Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Intraday Calls</a></li>
+                        <li><a href="#">Swing Trading</a></li>
+                        <li><a href="#">Positional Trading</a></li>
+                        <li><a href="#">Options Trading</a></li>
+                        <li><a href="#">Futures Trading</a></li>
+                        <li><a href="#">Portfolio Advisory</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div class="footer-column">
+                    <h3 class="footer-heading">Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Market Analysis</a></li>
+                        <li><a href="#">Trading Guides</a></li>
+                        <li><a href="#">Research Reports</a></li>
+                        <li><a href="#">Market News</a></li>
+                        <li><a href="#">Trading Calculator</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact & Subscribe -->
+                <div class="footer-column subscribe-column">
+                    <h3 class="footer-heading">Stay Updated</h3>
+                    <p class="subscribe-text">Get daily market insights and exclusive trading tips delivered to your inbox.</p>
+                    
+                    <form class="newsletter-form">
+                        <div class="input-group-footer">
+                            <input type="email" placeholder="Enter your email" class="newsletter-input" required>
+                            <button type="submit" class="newsletter-btn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="contact-info-footer">
+                        <div class="contact-item-footer">
+                            <i class="fas fa-envelope"></i>
+                            <span>support@themewa.com</span>
+                        </div>
+                        <div class="contact-item-footer">
+                            <i class="fas fa-phone"></i>
+                            <span>+91 98765 43210</span>
+                        </div>
+                        <div class="contact-item-footer">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Mumbai, Maharashtra, India</span>
+                        </div>
+                    </div>
+
+                    <div class="app-downloads-footer">
+                        <h4 class="download-heading">Download App</h4>
+                        <div class="store-badges">
+                            <a href="#" class="store-badge-small">
+                                <i class="fab fa-google-play"></i>
+                                <span>Play Store</span>
+                            </a>
+                            <a href="#" class="store-badge-small">
+                                <i class="fab fa-app-store-ios"></i>
+                                <span>App Store</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disclaimer Section -->
+            <div class="footer-disclaimer">
+                <div class="disclaimer-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="disclaimer-content">
+                    <h4 class="disclaimer-title">Risk Disclosure & Investment Disclaimer</h4>
+                    <p class="disclaimer-text">
+                        Trading in stocks, derivatives, and commodities involves substantial risk of loss and is not suitable for all investors. 
+                        Past performance is not indicative of future results. All recommendations are provided for educational purposes only. 
+                        The Mewa is a SEBI registered Research Analyst (Registration No: INB231234567) and fully compliant with regulatory standards. 
+                        Investors should consult their financial advisors before making any investment decisions. We do not guarantee profits or returns.
+                        All disputes are subject to Mumbai jurisdiction only.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="footer-bottom-left">
+                    <p>&copy; 2025 The Mewa. All rights reserved.</p>
+                    <p>Developed & Designed by <strong><a href="https://www.dynamiclabz.net/" target="_blank">Dynamic Labz</a></strong>.</p>
+                </div>
+                <div class="footer-bottom-right">
+                    <a href="#">Privacy Policy</a>
+                    <span class="separator">•</span>
+                    <a href="#">Terms of Service</a>
+                    <span class="separator">•</span>
+                    <a href="#">Refund Policy</a>
+                    <span class="separator">•</span>
+                    <a href="#">Risk Disclosure</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Chart Decoration -->
+        <div class="footer-chart-decoration">
+            <svg viewBox="0 0 800 200" preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="footerGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:rgba(0,200,83,0.1);stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:rgba(41,121,255,0.1);stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:rgba(124,77,255,0.1);stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <path d="M0,100 Q200,50 400,80 T800,60" stroke="rgba(0,200,83,0.3)" stroke-width="2" fill="none"/>
+                <path d="M0,120 Q200,70 400,100 T800,80" stroke="rgba(41,121,255,0.3)" stroke-width="2" fill="none"/>
+            </svg>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

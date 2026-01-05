@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Mewa - Smart Stock Recommendations</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar-custom">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <!-- Logo -->
+                <a href="index.html" class="navbar-brand">
+                    <img src="images/WhiteLogo.png" alt="Logo">
+                    The Mewa
+                </a>
+    
+                <!-- Navigation Links -->
+                <div class="d-none d-md-flex align-items-center gap-4">
+                    <!-- About MEWA Dropdown -->
+                    <div class="nav-dropdown">
+                        <a href="about-mewa.html" class="nav-link-custom">
+                            About MEWA
+                            <i class="bi bi-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu-custom">
+                            <a href="about-mewa.html#who-we-are" class="dropdown-item-custom">Who We Are</a>
+                            <a href="about-mewa.html#how-we-work" class="dropdown-item-custom">How We Work</a>
+                            <a href="about-mewa.html#what-we-provide" class="dropdown-item-custom">What We Provide</a>
+                            <a href="about-mewa.html#testimonials" class="dropdown-item-custom">Testimonials</a>
+                            <a href="about-mewa.html#faq" class="dropdown-item-custom">FAQs</a>
+                        </div>
+                    </div>
+    
+                    <!-- Our App Dropdown -->
+                    <div class="nav-dropdown">
+                        <a href="our-app.html" class="nav-link-custom">
+                            Our App
+                            <i class="bi bi-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu-custom">
+                            <a href="#active" class="dropdown-item-custom">Active</a>
+                            <a href="#revised" class="dropdown-item-custom">Revised</a>
+                            <a href="#demo" class="dropdown-item-custom">Short Demo</a>
+                        </div>
+                    </div>
+    
+                    <!-- Price -->
+                    <a href="pricing.html" class="nav-link-custom">Price</a>
+    
+                    <!-- Refer & Earn -->
+                    <a href="refer&earn.html" class="nav-link-custom">Refer & Earn</a>
+
+                    <!-- Social Responsibility -->
+                    <a href="social-responsibility.html" class="nav-link-custom">Social Responsibility</a>
+                </div>
+
+                <!-- Right Side Actions -->
+                <div class="d-flex align-items-center gap-3">
+                    <button class="theme-toggle" id="themeToggle" style="display: none;">
+                        <i class="bi bi-sun-fill"></i>
+                    </button>
+                    <!-- Login Button -->
+                    <a href="#login" class="btn-gradient d-none d-sm-inline-block">Login</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    
+    <!-- Card Explainer Section -->
+    <section class="explainer-section">
+        <div class="explainer-bg"></div>
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge"><i class="bi bi-info-circle"></i> Understanding the Card</div>
+                <h2 class="section-title">Anatomy of a <span class="gradient-text">Recommendation</span></h2>
+                <p class="section-subtitle">Every element is designed to give you actionable insights at a glance</p>
+            </div>
+            
+            <div class="explainer-container">
+                <!-- Left Annotations -->
+                <div class="explainer-annotations-left">
+                    <div class="annotation-item">
+                        <div class="annotation-number orange">1</div>
+                        <div class="annotation-content">
+                            <h4>Script Name</h4>
+                            <p>The stock symbol you should trade, clearly displayed</p>
+                        </div>
+                    </div>
+                    <div class="annotation-item">
+                        <div class="annotation-number blue">3</div>
+                        <div class="annotation-content">
+                            <h4>Buying Zone</h4>
+                            <p>The ideal price range to enter the trade</p>
+                        </div>
+                    </div>
+                    <div class="annotation-item">
+                        <div class="annotation-number red">5</div>
+                        <div class="annotation-content">
+                            <h4>Stop Loss</h4>
+                            <p>Exit price to limit losses if trade goes against you</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Center Card -->
+                <div class="explainer-card-wrapper">
+                    <div class="explainer-card">
+                        <div class="highlight-zone" data-num="1">
+                            <div class="exp-header">
+                                <div>
+                                    <div class="exp-script-name">RELIANCE</div>
+                                    <div class="exp-live-price">
+                                        <span>₹2,847.50</span>
+                                        <span class="exp-live-tag">
+                                            <span class="exp-live-dot"></span>
+                                            Live
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="highlight-zone" data-num="2">
+                                    <span class="exp-action-badge">BUY</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="highlight-zone" data-num="3">
+                            <div class="exp-buying-zone">
+                                <div class="exp-zone-label">Buying Zone</div>
+                                <div class="exp-zone-value">₹2,800 - ₹2,850</div>
+                            </div>
+                        </div>
+                        <div class="highlight-zone" data-num="4">
+                            <div class="exp-detail">
+                                <span class="exp-detail-label"><i class="bi bi-bullseye text-success"></i> Target Price</span>
+                                <span class="exp-detail-value green">₹3,100</span>
+                            </div>
+                        </div>
+                        <div class="highlight-zone" data-num="5">
+                            <div class="exp-detail">
+                                <span class="exp-detail-label"><i class="bi bi-shield-x text-danger"></i> Stop Loss</span>
+                                <span class="exp-detail-value red">₹2,700</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Annotations -->
+                <div class="explainer-annotations-right">
+                    <div class="annotation-item">
+                        <div class="annotation-number pink">2</div>
+                        <div class="annotation-content">
+                            <h4>Action Type</h4>
+                            <p>BUY or SELL - what action you should take</p>
+                        </div>
+                    </div>
+                    <div class="annotation-item">
+                        <div class="annotation-number green">4</div>
+                        <div class="annotation-content">
+                            <h4>Target Price</h4>
+                            <p>Your profit booking level when the trade succeeds</p>
+                        </div>
+                    </div>
+                    <div class="annotation-item">
+                        <div class="annotation-number purple">6</div>
+                        <div class="annotation-content">
+                            <h4>Live Price</h4>
+                            <p>Real-time stock price with live indicator</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Legend Grid for Mobile -->
+            <!-- <div class="anatomy-legend fade-up">
+                <div class="legend-item">
+                    <div class="legend-number orange">1</div>
+                    <div class="legend-content">
+                        <h5>Script Name</h5>
+                        <p>Stock symbol to trade</p>
+                    </div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-number pink">2</div>
+                    <div class="legend-content">
+                        <h5>Action Type</h5>
+                        <p>BUY or SELL action</p>
+                    </div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-number blue">3</div>
+                    <div class="legend-content">
+                        <h5>Buying Zone</h5>
+                        <p>Ideal entry price range</p>
+                    </div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-number green">4</div>
+                    <div class="legend-content">
+                        <h5>Target Price</h5>
+                        <p>Profit booking level</p>
+                    </div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-number red">5</div>
+                    <div class="legend-content">
+                        <h5>Stop Loss</h5>
+                        <p>Risk management exit</p>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </section>
+    
+    
+    <!-- Past Performance Section -->
+    <!-- <section class="performance-section" id="performance">
+        <div class="performance-bg"></div>
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge"><i class="bi bi-trophy-fill"></i> Track Record</div>
+                <h2 class="section-title">Proven <span class="gradient-text">Performance</span></h2>
+                <p class="section-subtitle">Our results speak for themselves - consistent profits month after month</p>
+            </div>
+
+            Performance Stats
+            <div class="performance-stats-row fade-up">
+                <div class="perf-stat-card">
+                    <div class="perf-stat-icon green"><i class="bi bi-check-circle-fill"></i></div>
+                    <div class="perf-stat-number green" data-count="87" data-suffix="%">0%</div>
+                    <div class="perf-stat-label">Success Rate</div>
+                    <div class="perf-stat-sublabel">Last 6 months</div>
+                </div>
+                <div class="perf-stat-card">
+                    <div class="perf-stat-icon pink"><i class="bi bi-currency-rupee"></i></div>
+                    <div class="perf-stat-number gradient" data-count="2.5" data-suffix=" Cr">0 Cr</div>
+                    <div class="perf-stat-label">Total Profits</div>
+                    <div class="perf-stat-sublabel">Generated for clients</div>
+                </div>
+                <div class="perf-stat-card">
+                    <div class="perf-stat-icon blue"><i class="bi bi-bar-chart-fill"></i></div>
+                    <div class="perf-stat-number gradient" data-count="156" data-suffix="+">0+</div>
+                    <div class="perf-stat-label">Profitable Trades</div>
+                    <div class="perf-stat-sublabel">This year</div>
+                </div>
+                <div class="perf-stat-card">
+                    <div class="perf-stat-icon purple"><i class="bi bi-arrow-up-right"></i></div>
+                    <div class="perf-stat-number gradient" data-count="32" data-suffix="%">0%</div>
+                    <div class="perf-stat-label">Avg. Return</div>
+                    <div class="perf-stat-sublabel">Per trade</div>
+                </div>
+            </div>
+
+            Chart Container
+            <div class="chart-container fade-up">
+                <div class="chart-header">
+                    <h3 class="chart-title">Monthly Success Rate</h3>
+                    <div class="chart-legend">
+                        <div class="legend-dot"><span class="green"></span> Profitable</div>
+                        <div class="legend-dot"><span class="red"></span> Loss</div>
+                    </div>
+                </div>
+                <svg class="chart-svg" viewBox="0 0 800 300">
+                    <defs>
+                        <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#10b981;stop-opacity:0.3"/>
+                            <stop offset="100%" style="stop-color:#10b981;stop-opacity:0"/>
+                        </linearGradient>
+                    </defs>
+                    Grid Lines
+                    <g class="chart-grid">
+                        <line x1="50" y1="50" x2="750" y2="50" />
+                        <line x1="50" y1="100" x2="750" y2="100" />
+                        <line x1="50" y1="150" x2="750" y2="150" />
+                        <line x1="50" y1="200" x2="750" y2="200" />
+                        <line x1="50" y1="250" x2="750" y2="250" />
+                        <text x="30" y="55">100%</text>
+                        <text x="30" y="105">80%</text>
+                        <text x="30" y="155">60%</text>
+                        <text x="30" y="205">40%</text>
+                        <text x="30" y="255">20%</text>
+                    </g>
+                    Chart Area
+                    <path class="chart-area" d="M100,120 L200,100 L300,90 L400,110 L500,80 L600,95 L700,70 L700,250 L100,250 Z" />
+                    Chart Line
+                    <path class="chart-line profit animated" d="M100,120 L200,100 L300,90 L400,110 L500,80 L600,95 L700,70" />
+                    Data Points
+                    <circle class="chart-dot" cx="100" cy="120" r="6" />
+                    <circle class="chart-dot" cx="200" cy="100" r="6" />
+                    <circle class="chart-dot" cx="300" cy="90" r="6" />
+                    <circle class="chart-dot" cx="400" cy="110" r="6" />
+                    <circle class="chart-dot" cx="500" cy="80" r="6" />
+                    <circle class="chart-dot" cx="600" cy="95" r="6" />
+                    <circle class="chart-dot" cx="700" cy="70" r="6" />
+                </svg>
+
+                Monthly Grid
+                <div class="monthly-grid">
+                    <div class="month-card">
+                        <div class="month-name">Jan 2025</div>
+                        <div class="month-return positive">+18.5%</div>
+                        <div class="month-trades">24 trades</div>
+                    </div>
+                    <div class="month-card">
+                        <div class="month-name">Feb 2025</div>
+                        <div class="month-return positive">+22.3%</div>
+                        <div class="month-trades">28 trades</div>
+                    </div>
+                    <div class="month-card">
+                        <div class="month-name">Mar 2025</div>
+                        <div class="month-return positive">+15.8%</div>
+                        <div class="month-trades">22 trades</div>
+                    </div>
+                    <div class="month-card">
+                        <div class="month-name">Apr 2025</div>
+                        <div class="month-return positive">+28.2%</div>
+                        <div class="month-trades">30 trades</div>
+                    </div>
+                    <div class="month-card">
+                        <div class="month-name">May 2025</div>
+                        <div class="month-return positive">+19.7%</div>
+                        <div class="month-trades">26 trades</div>
+                    </div>
+                    <div class="month-card">
+                        <div class="month-name">Jun 2025</div>
+                        <div class="month-return positive">+24.1%</div>
+                        <div class="month-trades">25 trades</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    
+    <!-- Features Section -->
+    <!-- <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge"><i class="bi bi-stars"></i> Features</div>
+                <h2 class="section-title">Everything You Need to <span class="gradient-text">Trade Smarter</span></h2>
+                <p class="section-subtitle">Powerful tools designed to give you an edge in the market</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card fade-up">
+                        <div class="feature-icon-large gradient-1"><i class="bi bi-lightning-charge-fill"></i></div>
+                        <h4>Real-Time Alerts</h4>
+                        <p>Get instant notifications on your phone the moment a new recommendation is published.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card fade-up">
+                        <div class="feature-icon-large gradient-2"><i class="bi bi-clock-history"></i></div>
+                        <h4>Revision History</h4>
+                        <p>Track every change to target prices and stop losses with complete transparency.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card fade-up">
+                        <div class="feature-icon-large gradient-3"><i class="bi bi-graph-up-arrow"></i></div>
+                        <h4>Live Price Updates</h4>
+                        <p>See real-time stock prices directly on your recommendation cards as markets move.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card fade-up">
+                        <div class="feature-icon-large gradient-4"><i class="bi bi-file-earmark-text-fill"></i></div>
+                        <h4>Research Reports</h4>
+                        <p>Download detailed research reports with entry rationale and technical analysis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge"><i class="bi bi-stars"></i> BENEFITS</div>
+                <h2 class="section-title">Made to make your experience <span class="gradient-text">smoother & hassle-free</span></h2>
+                <p class="section-subtitle">Comprehensive solutions designed to enhance your trading journey</p>
+            </div>
+            <!-- Replaced 4 feature cards with new 5 benefits layout -->
+            <div class="benefits-grid">
+                <!-- Benefit 1 -->
+                <div class="benefit-item fade-up">
+                    <div class="benefit-number">1</div>
+                    <div class="benefit-image">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=300&fit=crop" alt="Mobile App">
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Easy-to-Use<br>Mobile App</h3>
+                        <p>Access all recommendations, market events conveniently on-the-go with our user-friendly app.</p>
+                    </div>
+                </div>
+
+                <!-- Benefit 2 -->
+                <div class="benefit-item fade-up">
+                    <div class="benefit-number">2</div>
+                    <div class="benefit-image">
+                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&h=300&fit=crop" alt="Real-Time Alerts">
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Real-Time Alerts</h3>
+                        <p>Get timely Buy/Sell recommendations with Target / Stop Loss directly to your phone, so you never miss a market opportunity.</p>
+                    </div>
+                </div>
+
+                <!-- Benefit 3 -->
+                <div class="benefit-item fade-up">
+                    <div class="benefit-number">3</div>
+                    <div class="benefit-image">
+                        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400&h=300&fit=crop" alt="Revised Recommendations">
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Revised<br>Recommendations</h3>
+                        <p>Strategic change to safeguard and grow your investment according to the current market trend.</p>
+                    </div>
+                </div>
+
+                <!-- Benefit 4 -->
+                <div class="benefit-item fade-up">
+                    <div class="benefit-number">4</div>
+                    <div class="benefit-image">
+                        <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=400&h=300&fit=crop" alt="Cost Effective">
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Cost Effective</h3>
+                        <p>Maximize your profits with our affordable plans that deliver high-quality trading insights without breaking the bank.</p>
+                    </div>
+                </div>
+
+                <!-- Benefit 5 -->
+                <div class="benefit-item fade-up">
+                    <div class="benefit-number">5</div>
+                    <div class="benefit-image">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=300&fit=crop" alt="Dedicated Client Support">
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Dedicated<br>Client Support</h3>
+                        <p>Need help? Our Customer support team is available via calls & email to answer all your queries quickly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-section" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge"><i class="bi bi-question-circle"></i> Get Started</div>
+                <h2 class="section-title">Start Trading in <span class="gradient-text">3 Simple Steps</span></h2>
+                <p class="section-subtitle">Getting started is easy - no complex setup required</p>
+            </div>
+            <div class="how-steps">
+                <div class="how-step fade-up">
+                    <div class="step-number-large">01</div>
+                    <div class="step-content">
+                        <h3>Subscribe to Our Service</h3>
+                        <p>Choose a plan that fits your trading style. Get instant access to all recommendations, research reports, and real-time alerts.</p>
+                    </div>
+                </div>
+                <div class="how-step fade-up">
+                    <div class="step-number-large">02</div>
+                    <div class="step-content">
+                        <h3>Receive Expert Recommendations</h3>
+                        <p>Get notified instantly when our research team publishes a new stock pick. Each recommendation includes entry price, target, and stop loss.</p>
+                    </div>
+                </div>
+                <div class="how-step fade-up">
+                    <div class="step-number-large">03</div>
+                    <div class="step-content">
+                        <h3>Execute & Track Your Trades</h3>
+                        <p>Place your trades through your broker and track performance in real-time. We'll notify you of any revisions or when targets are hit.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-bg"></div>
+        <div class="container">
+            <div class="cta-content fade-up">
+                <h2 class="cta-title">Ready to Start <span class="gradient-text">Trading Smarter</span>?</h2>
+                <p class="cta-subtitle">Join 500+ traders who trust The Mewa for expert stock recommendations</p>
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    <a href="index.html" class="btn-gradient">
+                        Get Started Now
+                        <i class="bi bi-arrow-right ms-2"></i>
+                    </a>
+                    <a href="#features" class="btn-outline-custom">
+                        <i class="bi bi-info-circle"></i>
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-market">
+        <div class="footer-grid-bg"></div>
+        
+        <!-- Market Status Banner -->
+        <!-- <div class="market-status-banner">
+            <div class="container-custom">
+                <div class="market-status-content">
+                    <div class="status-indicator">
+                        <span class="status-dot pulse-green"></span>
+                        <span class="status-text">Market Open</span>
+                    </div>
+                    <div class="market-indices-footer">
+                        <div class="index-item-footer">
+                            <span class="index-name">NIFTY 50</span>
+                            <span class="index-value up">21,845 ↑</span>
+                        </div>
+                        <div class="index-item-footer">
+                            <span class="index-name">SENSEX</span>
+                            <span class="index-value up">72,410 ↑</span>
+                        </div>
+                        <div class="index-item-footer">
+                            <span class="index-name">BANK NIFTY</span>
+                            <span class="index-value up">46,320 ↑</span>
+                        </div>
+                    </div>
+                    <div class="market-hours">
+                        <i class="far fa-clock"></i>
+                        <span>Trading Hours: 9:15 AM - 3:30 PM IST</span>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="container-custom">
+            <div class="footer-main">
+                <!-- Brand Column -->
+                <div class="footer-column brand-column">
+                    <div class="footer-logo">
+                        <img src="images/whitelogo.png" alt="The Mewa Logo" class="footer-brand-logo">
+                        <span class="footer-brand-name">The Mewa</span>
+                    </div>
+                    <p class="footer-tagline">Elite stock market intelligence with 87% accuracy. SEBI-registered advisory for professional traders.</p>
+                    
+                    <div class="sebi-footer-badge">
+                        <div class="sebi-seal">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="sebi-info">
+                            <span class="sebi-label">SEBI Registered</span>
+                            <span class="sebi-reg">INB231234567</span>
+                        </div>
+                    </div>
+
+                    <div class="social-links-footer">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Telegram">
+                            <i class="fab fa-telegram-plane"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-column">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#intelligence">Intelligence</a></li>
+                        <li><a href="#understanding">How It Works</a></li>
+                        <li><a href="#why-choose">Why Choose Us</a></li>
+                        <li><a href="#pricing">Pricing Plans</a></li>
+                        <li><a href="#performance">Performance</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div class="footer-column">
+                    <h3 class="footer-heading">Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Intraday Calls</a></li>
+                        <li><a href="#">Swing Trading</a></li>
+                        <li><a href="#">Positional Trading</a></li>
+                        <li><a href="#">Options Trading</a></li>
+                        <li><a href="#">Futures Trading</a></li>
+                        <li><a href="#">Portfolio Advisory</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div class="footer-column">
+                    <h3 class="footer-heading">Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Market Analysis</a></li>
+                        <li><a href="#">Trading Guides</a></li>
+                        <li><a href="#">Research Reports</a></li>
+                        <li><a href="#">Market News</a></li>
+                        <li><a href="#">Trading Calculator</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact & Subscribe -->
+                <div class="footer-column subscribe-column">
+                    <h3 class="footer-heading">Stay Updated</h3>
+                    <p class="subscribe-text">Get daily market insights and exclusive trading tips delivered to your inbox.</p>
+                    
+                    <form class="newsletter-form">
+                        <div class="input-group-footer">
+                            <input type="email" placeholder="Enter your email" class="newsletter-input" required>
+                            <button type="submit" class="newsletter-btn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="contact-info-footer">
+                        <div class="contact-item-footer">
+                            <i class="fas fa-envelope"></i>
+                            <span>support@themewa.com</span>
+                        </div>
+                        <div class="contact-item-footer">
+                            <i class="fas fa-phone"></i>
+                            <span>+91 98765 43210</span>
+                        </div>
+                        <div class="contact-item-footer">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Mumbai, Maharashtra, India</span>
+                        </div>
+                    </div>
+
+                    <div class="app-downloads-footer">
+                        <h4 class="download-heading">Download App</h4>
+                        <div class="store-badges">
+                            <a href="#" class="store-badge-small">
+                                <i class="fab fa-google-play"></i>
+                                <span>Play Store</span>
+                            </a>
+                            <a href="#" class="store-badge-small">
+                                <i class="fab fa-app-store-ios"></i>
+                                <span>App Store</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disclaimer Section -->
+            <div class="footer-disclaimer">
+                <div class="disclaimer-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="disclaimer-content">
+                    <h4 class="disclaimer-title">Risk Disclosure & Investment Disclaimer</h4>
+                    <p class="disclaimer-text">
+                        Trading in stocks, derivatives, and commodities involves substantial risk of loss and is not suitable for all investors. 
+                        Past performance is not indicative of future results. All recommendations are provided for educational purposes only. 
+                        The Mewa is a SEBI registered Research Analyst (Registration No: INB231234567) and fully compliant with regulatory standards. 
+                        Investors should consult their financial advisors before making any investment decisions. We do not guarantee profits or returns.
+                        All disputes are subject to Mumbai jurisdiction only.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="footer-bottom-left">
+                    <p>&copy; 2025 The Mewa. All rights reserved.</p>
+                    <p>Developed & Designed by <strong><a href="https://www.dynamiclabz.net/" target="_blank">Dynamic Labz</a></strong>.</p>
+                </div>
+                <div class="footer-bottom-right">
+                    <a href="#">Privacy Policy</a>
+                    <span class="separator">•</span>
+                    <a href="#">Terms of Service</a>
+                    <span class="separator">•</span>
+                    <a href="#">Refund Policy</a>
+                    <span class="separator">•</span>
+                    <a href="#">Risk Disclosure</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Chart Decoration -->
+        <div class="footer-chart-decoration">
+            <svg viewBox="0 0 800 200" preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="footerGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:rgba(0,200,83,0.1);stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:rgba(41,121,255,0.1);stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:rgba(124,77,255,0.1);stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <path d="M0,100 Q200,50 400,80 T800,60" stroke="rgba(0,200,83,0.3)" stroke-width="2" fill="none"/>
+                <path d="M0,120 Q200,70 400,100 T800,80" stroke="rgba(41,121,255,0.3)" stroke-width="2" fill="none"/>
+            </svg>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Responsibility - The Mewa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+   
+    <!-- Navbar -->
+    <nav class="navbar-custom">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <!-- Logo -->
+                <a href="index.html" class="navbar-brand">
+                    <img src="images/WhiteLogo.png" alt="Logo">
+                    The Mewa
+                </a>
+    
+                <!-- Navigation Links -->
+                <div class="d-none d-md-flex align-items-center gap-4">
+                    <!-- About MEWA Dropdown -->
+                    <div class="nav-dropdown">
+                        <a href="about-mewa.html" class="nav-link-custom">
+                            About MEWA
+                            <i class="bi bi-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu-custom">
+                            <a href="about-mewa.html#who-we-are" class="dropdown-item-custom">Who We Are</a>
+                            <a href="about-mewa.html#how-we-work" class="dropdown-item-custom">How We Work</a>
+                            <a href="about-mewa.html#what-we-provide" class="dropdown-item-custom">What We Provide</a>
+                            <a href="about-mewa.html#testimonials" class="dropdown-item-custom">Testimonials</a>
+                            <a href="about-mewa.html#faq" class="dropdown-item-custom">FAQs</a>
+                        </div>
+                    </div>
+    
+                    <!-- Our App Dropdown -->
+                    <div class="nav-dropdown">
+                        <a href="#" class="nav-link-custom">
+                            Our App
+                            <i class="bi bi-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu-custom">
+                            <a href="#active" class="dropdown-item-custom">Active</a>
+                            <a href="#revised" class="dropdown-item-custom">Revised</a>
+                            <a href="#demo" class="dropdown-item-custom">Short Demo</a>
+                        </div>
+                    </div>
+    
+                    <!-- Price -->
+                    <a href="pricing.html" class="nav-link-custom">Price</a>
+    
+                    <!-- Refer & Earn -->
+                    <a href="refer&earn.html" class="nav-link-custom">Refer & Earn</a>
+
+                    <!-- Social Responsibility -->
+                    <a href="social-responsibility.html" class="nav-link-custom">Social Responsibility</a>
+                </div>
+
+                <!-- Right Side Actions -->
+                <div class="d-flex align-items-center gap-3">
+                    <button class="theme-toggle" id="themeToggle" style="display: none;">
+                        <i class="bi bi-sun-fill"></i>
+                    </button>
+                    <!-- Login Button -->
+                    <a href="#login" class="btn-gradient d-none d-sm-inline-block">Login</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Social Responsibility Hero Section -->
+    <section class="hero-section" style="min-height: auto; padding: 120px 0 60px;">
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12 text-center">
+                    <div class="hero-content">
+                        <div class="hero-badge" style="justify-content: center;">
+                            <span class="hero-badge-dot"></span>
+                            Social Responsibilities
+                        </div>
+                        <h1 class="hero-title" style="text-align: center;">Together, We Create <span class="gradient-text">Change</span></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="social-responsibility-content" style="padding: 60px 0;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <!-- Mission Statement -->
+                    <div class="glass-card" style="padding: 2.5rem; margin-bottom: 3rem;">
+                        <p class="section-text" style="font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                            At <strong style="color: var(--text-primary);">THE MEWA</strong>, we believe that true growth isn't just measured in profits — it's measured in impact.
+                        </p>
+                        <p class="section-text" style="font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                            Every subscription you make helps us contribute to causes that truly matter.
+                        </p>
+                        <div class="glass-card" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.15)); border: 1px solid rgba(139, 92, 246, 0.3); padding: 2rem; margin-bottom: 1.5rem;">
+                            <p class="section-text" style="font-size: 1.125rem; line-height: 1.8; margin-bottom: 0;">
+                                <strong style="color: var(--text-primary);">5% of your subscription amount</strong> goes towards the charitable initiatives like <strong style="color: var(--text-primary);">supporting special children, education, healthcare, child welfare, environmental care, and community development.</strong>
+                            </p>
+                        </div>
+                        <p class="section-text" style="font-size: 1.125rem; line-height: 1.8; margin-bottom: 0;">
+                            Each step you take with THE MEWA will not only strengthen your financial future but it also brings hope to those in need and creating <strong style="color: var(--text-primary);">real, positive change</strong> in the lives of others.
+                        </p>
+                    </div>
+
+                    <!-- NGO Partners Section -->
+                    <div class="section-header" style="margin-bottom: 3rem;">
+                        <h2 class="section-title" style="text-align: center; font-size: 2rem; margin-bottom: 1rem;">
+                            Our <span class="gradient-text">NGO Partners</span>
+                        </h2>
+                        <p class="section-text" style="text-align: center; font-size: 1.125rem; color: var(--text-secondary);">
+                            We are walking with the following NGOs on our journey to make a difference.
+                        </p>
+                    </div>
+
+                    <!-- NGO Cards Grid -->
+                    <div class="row g-4">
+                        <!-- NGO Card 1 -->
+                        <div class="col-md-6 col-lg-3">
+                            <div class="glass-card fade-up" style="padding: 2rem; height: 100%; display: flex; flex-direction: column; background: rgba(22, 62, 65, 0.3); border: 1px solid rgba(22, 62, 65, 0.5);">
+                                <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 1rem; text-align: center;">
+                                    Manav Kartavya
+                                </h3>
+                                <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; text-align: center; margin-bottom: 0;">
+                                    Child education, women empowerment, old age home, helping needy people
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- NGO Card 2 -->
+                        <div class="col-md-6 col-lg-3">
+                            <div class="glass-card fade-up" style="padding: 2rem; height: 100%; display: flex; flex-direction: column; background: rgba(22, 62, 65, 0.3); border: 1px solid rgba(22, 62, 65, 0.5);">
+                                <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 1rem; text-align: center;">
+                                    Paryavaran Mitra
+                                </h3>
+                                <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; text-align: center; margin-bottom: 0;">
+                                    Environment / public awareness, ensuring transparent environmental impact assessments, helping communities speak out.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- NGO Card 3 -->
+                        <div class="col-md-6 col-lg-3">
+                            <div class="glass-card fade-up" style="padding: 2rem; height: 100%; display: flex; flex-direction: column; background: rgba(22, 62, 65, 0.3); border: 1px solid rgba(22, 62, 65, 0.5);">
+                                <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 1rem; text-align: center;">
+                                    Blind People's Association, Ahmedabad
+                                </h3>
+                                <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; text-align: center; margin-bottom: 0;">
+                                    Supporting visually impaired people; services, education, rehabilitation
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- NGO Card 4 -->
+                        <div class="col-md-6 col-lg-3">
+                            <div class="glass-card fade-up" style="padding: 2rem; height: 100%; display: flex; flex-direction: column; background: rgba(22, 62, 65, 0.3); border: 1px solid rgba(22, 62, 65, 0.5);">
+                                <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 1rem; text-align: center;">
+                                    Jivdaya Charitable Trust
+                                </h3>
+                                <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; text-align: center; margin-bottom: 0;">
+                                    Animal welfare; medical care for unowned animals, birds & small mammals; wildlife rescue.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Image Section -->
+                    <div class="row justify-content-center mt-5">
+                        <div class="col-lg-12">
+                            <div class="glass-card" style="padding: 1.5rem;">
+                                <img src="/images/social-responsibilities.png" 
+                                     alt="Social Responsibility Infographic" 
+                                     class="img-fluid" 
+                                     style="border-radius: 16px; width: 100%; height: auto;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-bg"></div>
+        <div class="container">
+            <div class="cta-content fade-up">
+                <h2 class="cta-title">Be Part of the <span class="gradient-text">Change</span></h2>
+                <p class="cta-subtitle">Join us in making a difference while building your financial future</p>
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    <a href="pricing.html" class="btn-gradient">
+                        Subscribe Now
+                        <i class="bi bi-arrow-right ms-2"></i>
+                    </a>
+                    <a href="about-mewa.html" class="btn-outline-custom">
+                        <i class="bi bi-info-circle"></i>
+                        Learn More About Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-market">
+        <div class="footer-grid-bg"></div>
+
+        <div class="container-custom">
+            <div class="footer-main">
+                <!-- Brand Column -->
+                <div class="footer-column brand-column">
+                    <div class="footer-logo">
+                        <img src="images/whitelogo.png" alt="The Mewa Logo" class="footer-brand-logo">
+                        <span class="footer-brand-name">The Mewa</span>
+                    </div>
+                    <p class="footer-tagline">Elite stock market intelligence with 87% accuracy. SEBI-registered advisory for professional traders.</p>
+                    
+                    <div class="sebi-footer-badge">
+                        <div class="sebi-seal">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="sebi-info">
+                            <span class="sebi-label">SEBI Registered</span>
+                            <span class="sebi-reg">INB231234567</span>
+                        </div>
+                    </div>
+
+                    <div class="social-links-footer">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Telegram">
+                            <i class="fab fa-telegram-plane"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-column">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about-mewa.html">About MEWA</a></li>
+                        <li><a href="pricing.html">Pricing Plans</a></li>
+                        <li><a href="refer&earn.html">Refer & Earn</a></li>
+                        <li><a href="social-responsibility.html">Social Responsibility</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div class="footer-column">
+                    <h3 class="footer-heading">Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Intraday Calls</a></li>
+                        <li><a href="#">Swing Trading</a></li>
+                        <li><a href="#">Positional Trading</a></li>
+                        <li><a href="#">Options Trading</a></li>
+                        <li><a href="#">Futures Trading</a></li>
+                        <li><a href="#">Portfolio Advisory</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div class="footer-column">
+                    <h3 class="footer-heading">Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Market Analysis</a></li>
+                        <li><a href="#">Trading Guides</a></li>
+                        <li><a href="#">Research Reports</a></li>
+                        <li><a href="#">Market News</a></li>
+                        <li><a href="#">Trading Calculator</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact & Subscribe -->
+                <div class="footer-column subscribe-column">
+                    <h3 class="footer-heading">Stay Updated</h3>
+                    <p class="subscribe-text">Get daily market insights and exclusive trading tips delivered to your inbox.</p>
+                    
+                    <form class="newsletter-form">
+                        <div class="input-group-footer">
+                            <input type="email" placeholder="Enter your email" class="newsletter-input" required>
+                            <button type="submit" class="newsletter-btn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="contact-info-footer">
+                        <div class="contact-item-footer">
+                            <i class="fas fa-envelope"></i>
+                            <span>support@themewa.com</span>
+                        </div>
+                        <div class="contact-item-footer">
+                            <i class="fas fa-phone"></i>
+                            <span>+91 98765 43210</span>
+                        </div>
+                        <div class="contact-item-footer">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Mumbai, Maharashtra, India</span>
+                        </div>
+                    </div>
+
+                    <div class="app-downloads-footer">
+                        <h4 class="download-heading">Download App</h4>
+                        <div class="store-badges">
+                            <a href="#" class="store-badge-small">
+                                <i class="fab fa-google-play"></i>
+                                <span>Play Store</span>
+                            </a>
+                            <a href="#" class="store-badge-small">
+                                <i class="fab fa-app-store-ios"></i>
+                                <span>App Store</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disclaimer Section -->
+            <div class="footer-disclaimer">
+                <div class="disclaimer-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="disclaimer-content">
+                    <h4 class="disclaimer-title">Risk Disclosure & Investment Disclaimer</h4>
+                    <p class="disclaimer-text">
+                        Trading in stocks, derivatives, and commodities involves substantial risk of loss and is not suitable for all investors. 
+                        Past performance is not indicative of future results. All recommendations are provided for educational purposes only. 
+                        The Mewa is a SEBI registered Research Analyst (Registration No: INB231234567) and fully compliant with regulatory standards. 
+                        Investors should consult their financial advisors before making any investment decisions. We do not guarantee profits or returns.
+                        All disputes are subject to Mumbai jurisdiction only.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="footer-bottom-left">
+                    <p>&copy; 2025 The Mewa. All rights reserved.</p>
+                    <p>Developed & Designed by <strong><a href="https://www.dynamiclabz.net/" target="_blank">Dynamic Labz</a></strong>.</p>
+                </div>
+                <div class="footer-bottom-right">
+                    <a href="#">Privacy Policy</a>
+                    <span class="separator">•</span>
+                    <a href="#">Terms of Service</a>
+                    <span class="separator">•</span>
+                    <a href="#">Refund Policy</a>
+                    <span class="separator">•</span>
+                    <a href="#">Risk Disclosure</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Chart Decoration -->
+        <div class="footer-chart-decoration">
+            <svg viewBox="0 0 800 200" preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="footerGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:rgba(0,200,83,0.1);stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:rgba(41,121,255,0.1);stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:rgba(124,77,255,0.1);stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <path d="M0,100 Q200,50 400,80 T800,60" stroke="rgba(0,200,83,0.3)" stroke-width="2" fill="none"/>
+                <path d="M0,120 Q200,70 400,100 T800,80" stroke="rgba(41,121,255,0.3)" stroke-width="2" fill="none"/>
+            </svg>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
