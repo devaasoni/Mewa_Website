@@ -12,32 +12,7 @@
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Navbar -->
-    <!-- <nav class="navbar-custom">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center">
-                <a href="index.html" class="navbar-brand">
-                    <img src="images/WhiteLogo.png" alt="Logo">
-                    The Mewa
-                </a>
-                <div class="d-none d-md-flex align-items-center gap-4">
-                    <a href="#features" class="nav-link-custom">Features</a>
-                    <a href="#performance" class="nav-link-custom">Performance</a>
-                    <a href="#how-it-works" class="nav-link-custom">How It Works</a>
-                    <a href="#faq" class="nav-link-custom">FAQ</a>
-                    <a href="pricing.html" class="nav-link-custom">Pricing</a>
-                    <a href="refer&earn.html" class="nav-link-custom">Refer & Earn</a>
-                </div>
-                <div class="d-flex align-items-center gap-3">
-                    <button class="theme-toggle" id="themeToggle" style="display: none;">
-                        <i class="bi bi-sun-fill"></i>
-                    </button>
-                    <a href="index.html" class="btn-gradient d-none d-sm-inline-block">Get App</a>
-                </div>
-            </div>
-        </div>
-    </nav> -->
-
+    
     <!-- Navbar -->
     <nav class="navbar-custom">
         <div class="container">
@@ -100,16 +75,49 @@
         </div>
     </nav>
 
+    <!-- Hero Section for Pricing Page -->
+    <section class="hero-section" style="min-height: 60vh; padding: 100px 0 60px;">
+        <!-- Background Elements -->
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div>
+        <div class="hero-grid"></div>
+    
+        <div class="container">
+            <div class="hero-content" style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <div class="hero-badge" style="margin: 0 auto 1.5rem;">
+                    <span class="hero-badge-dot"></span>
+                    Transparent Pricing
+                </div>
+                <h1 class="hero-title" style="text-align: center;">
+                    Choose Your
+                    <span class="gradient-text">Trading Plan</span>
+                </h1>
+                <p class="hero-subtitle" style="max-width: 600px; margin: 0 auto 2rem; text-align: center;">
+                    Flexible plans designed for every trader. Get expert recommendations and real-time alerts at unbeatable
+                    prices.
+                </p>
+            </div>
+        </div>
+    </section>
+
     <!-- Pricing Section -->
     <section id="pricing" class="pricing-section">
+        <!-- <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div> -->
         <div class="container">
             <div class="pricing-header fade-up">
                 <span class="section-badge">Our Flexible Pricing Plans</span>
                 <h2 class="pricing-title">Every subscription contributes to a cause</h2>
+                <p class="section-subtitle">Choose the perfect plan for your trading style</p>
             </div>
             <div class="pricing-cards-container">
                 <!-- Futures Plan -->
                 <div class="pricing-card fade-up">
+                    <div class="pricing-icon">
+                        <i class="bi bi-lightning-charge-fill"></i>
+                    </div>
                     <div class="pricing-plan-name">Futures</div>
                     <div class="pricing-divider"></div>
                     <div class="pricing-original">
@@ -166,24 +174,27 @@
                         </div>
                         <div class="pricing-feature-row">
                             <span class="pricing-feature-name">Recommendations</span>
-                            <span class="pricing-feature-check"><i class="bi bi-x-lg"></i></span>
+                            <span class="pricing-feature-check disabled"><i class="bi bi-dash"></i></span>
                             <span class="pricing-feature-check"><i class="bi bi-check-lg"></i></span>
                         </div>
                         <div class="pricing-feature-row">
                             <span class="pricing-feature-name">Short Trades</span>
-                            <span class="pricing-feature-check"><i class="bi bi-x-lg"></i></span>
+                            <span class="pricing-feature-check disabled"><i class="bi bi-dash"></i></span>
                             <span class="pricing-feature-check"><i class="bi bi-check-lg"></i></span>
                         </div>
                         <div class="pricing-feature-row">
                             <span class="pricing-feature-name">Research Report</span>
-                            <span class="pricing-feature-check"><i class="bi bi-x-lg"></i></span>
+                            <span class="pricing-feature-check disabled"><i class="bi bi-dash"></i></span>
                             <span class="pricing-feature-check"><i class="bi bi-check-lg"></i></span>
                         </div>
                     </div>
                 </div>
-
+    
                 <!-- Options Plan (Popular) -->
                 <div class="pricing-card popular fade-up">
+                    <div class="pricing-icon">
+                        <i class="bi bi-graph-up-arrow"></i>
+                    </div>
                     <div class="popular-badge">Most Popular</div>
                     <div class="pricing-plan-name">Options</div>
                     <div class="pricing-divider"></div>
@@ -256,9 +267,12 @@
                         </div>
                     </div>
                 </div>
-
+    
                 <!-- Cash/Equity Plan -->
                 <div class="pricing-card fade-up">
+                    <div class="pricing-icon">
+                        <i class="bi bi-cash-stack"></i>
+                    </div>
                     <div class="pricing-plan-name">Cash / Equity</div>
                     <div class="pricing-divider"></div>
                     <div class="pricing-original">
@@ -332,8 +346,99 @@
                 </div>
             </div>
         </div>
+        <div class="pricing-footer fade-up">
+            <div class="pricing-footer-note">
+                <i class="bi bi-info-circle"></i>
+                <p>* Per day calculation is based on a 30-day month. Prices exclude GST.</p>
+            </div>
+            <div class="pricing-guarantee">
+                <div class="guarantee-badge">
+                    <i class="bi bi-shield-check"></i>
+                    <span>100% Satisfaction Guarantee</span>
+                </div>
+            </div>
+        </div>
     </section>
 
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="section-badge">
+                    <i class="bi bi-envelope"></i>
+                    Get In Touch
+                </span>
+                <h2 class="section-title">Have Questions? <span class="gradient-text">Contact Us</span></h2>
+                <p class="section-subtitle">We're here to help you with your trading journey. Send us a message and we'll
+                    get back to you within 24 hours.</p>
+            </div>
+    
+            <div class="contact-form-wrapper fade-up">
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="contactName" class="form-label">
+                            <i class="bi bi-person"></i>
+                            Your Name
+                        </label>
+                        <input type="text" id="contactName" class="form-input" placeholder="Enter your full name" required>
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="contactEmail" class="form-label">
+                            <i class="bi bi-envelope"></i>
+                            Email Address
+                        </label>
+                        <input type="email" id="contactEmail" class="form-input" placeholder="your.email@example.com"
+                            required>
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="contactMessage" class="form-label">
+                            <i class="bi bi-chat-dots"></i>
+                            Your Message
+                        </label>
+                        <textarea id="contactMessage" class="form-textarea" rows="6"
+                            placeholder="Tell us how we can help you..." required></textarea>
+                    </div>
+    
+                    <button type="submit" class="btn-gradient btn-submit">
+                        <i class="bi bi-send"></i>
+                        Send Message
+                    </button>
+                </form>
+    
+                <div class="contact-info-cards">
+                    <div class="contact-card fade-up">
+                        <div class="contact-card-icon">
+                            <i class="bi bi-headset"></i>
+                        </div>
+                        <h3 class="contact-card-title">Live Support</h3>
+                        <p class="contact-card-text">Mon-Fri: 9:00 AM - 6:00 PM IST</p>
+                        <a href="#" class="contact-card-link">Start Chat <i class="bi bi-arrow-right"></i></a>
+                    </div>
+    
+                    <div class="contact-card fade-up" style="--delay: 0.1s">
+                        <div class="contact-card-icon">
+                            <i class="bi bi-telephone"></i>
+                        </div>
+                        <h3 class="contact-card-title">Call Us</h3>
+                        <p class="contact-card-text">+91 98765 43210</p>
+                        <a href="tel:+919876543210" class="contact-card-link">Make a Call <i
+                                class="bi bi-arrow-right"></i></a>
+                    </div>
+    
+                    <div class="contact-card fade-up" style="--delay: 0.2s">
+                        <div class="contact-card-icon">
+                            <i class="bi bi-geo-alt"></i>
+                        </div>
+                        <h3 class="contact-card-title">Visit Office</h3>
+                        <p class="contact-card-text">Mumbai, Maharashtra</p>
+                        <a href="#" class="contact-card-link">Get Directions <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     
     <!-- CTA Section -->
     <section class="cta-section">
@@ -359,37 +464,7 @@
     <!-- Footer -->
     <footer class="footer-market">
         <div class="footer-grid-bg"></div>
-        
-        <!-- Market Status Banner -->
-        <!-- <div class="market-status-banner">
-            <div class="container-custom">
-                <div class="market-status-content">
-                    <div class="status-indicator">
-                        <span class="status-dot pulse-green"></span>
-                        <span class="status-text">Market Open</span>
-                    </div>
-                    <div class="market-indices-footer">
-                        <div class="index-item-footer">
-                            <span class="index-name">NIFTY 50</span>
-                            <span class="index-value up">21,845 ↑</span>
-                        </div>
-                        <div class="index-item-footer">
-                            <span class="index-name">SENSEX</span>
-                            <span class="index-value up">72,410 ↑</span>
-                        </div>
-                        <div class="index-item-footer">
-                            <span class="index-name">BANK NIFTY</span>
-                            <span class="index-value up">46,320 ↑</span>
-                        </div>
-                    </div>
-                    <div class="market-hours">
-                        <i class="far fa-clock"></i>
-                        <span>Trading Hours: 9:15 AM - 3:30 PM IST</span>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
+    
         <div class="container-custom">
             <div class="footer-main">
                 <!-- Brand Column -->
@@ -398,18 +473,19 @@
                         <img src="images/whitelogo.png" alt="The Mewa Logo" class="footer-brand-logo">
                         <span class="footer-brand-name">The Mewa</span>
                     </div>
-                    <p class="footer-tagline">Elite stock market intelligence with 87% accuracy. SEBI-registered advisory for professional traders.</p>
-                    
+                    <p class="footer-tagline">SEBI-registered advisory for professional traders.</p>
+    
+                    <!-- SEBI Badge with actual image -->
                     <div class="sebi-footer-badge">
                         <div class="sebi-seal">
-                            <i class="fas fa-shield-alt"></i>
+                            <img src="images/sebi.png" alt="SEBI" style="width: 48px; height: 48px; object-fit: contain;">
                         </div>
                         <div class="sebi-info">
                             <span class="sebi-label">SEBI Registered</span>
                             <span class="sebi-reg">INB231234567</span>
                         </div>
                     </div>
-
+    
                     <div class="social-links-footer">
                         <a href="#" class="social-link" aria-label="Facebook">
                             <i class="fab fa-facebook-f"></i>
@@ -428,60 +504,43 @@
                         </a>
                     </div>
                 </div>
-
+    
+                <!-- About MEWA -->
+                <div class="footer-column">
+                    <h3 class="footer-heading">About MEWA</h3>
+                    <ul class="footer-links">
+                        <li><a href="#who-we-are">Who We Are</a></li>
+                        <li><a href="#how-we-work">How We Work</a></li>
+                        <li><a href="#what-we-provide">What We Provide</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#faqs">FAQs</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Our App -->
+                <div class="footer-column">
+                    <h3 class="footer-heading">Our App</h3>
+                    <ul class="footer-links">
+                        <li><a href="#active">Active</a></li>
+                        <li><a href="#revised">Revised</a></li>
+                        <li><a href="#short-demo">Short Demo</a></li>
+                    </ul>
+                </div>
+    
                 <!-- Quick Links -->
                 <div class="footer-column">
                     <h3 class="footer-heading">Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#intelligence">Intelligence</a></li>
-                        <li><a href="#understanding">How It Works</a></li>
-                        <li><a href="#why-choose">Why Choose Us</a></li>
-                        <li><a href="#pricing">Pricing Plans</a></li>
-                        <li><a href="#performance">Performance</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#refer-earn">Refer & Earn</a></li>
+                        <li><a href="#social-responsibility">Social Responsibility</a></li>
                     </ul>
                 </div>
-
-                <!-- Services -->
-                <div class="footer-column">
-                    <h3 class="footer-heading">Our Services</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Intraday Calls</a></li>
-                        <li><a href="#">Swing Trading</a></li>
-                        <li><a href="#">Positional Trading</a></li>
-                        <li><a href="#">Options Trading</a></li>
-                        <li><a href="#">Futures Trading</a></li>
-                        <li><a href="#">Portfolio Advisory</a></li>
-                    </ul>
-                </div>
-
-                <!-- Resources -->
-                <div class="footer-column">
-                    <h3 class="footer-heading">Resources</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Market Analysis</a></li>
-                        <li><a href="#">Trading Guides</a></li>
-                        <li><a href="#">Research Reports</a></li>
-                        <li><a href="#">Market News</a></li>
-                        <li><a href="#">Trading Calculator</a></li>
-                        <li><a href="#">FAQs</a></li>
-                    </ul>
-                </div>
-
-                <!-- Contact & Subscribe -->
+    
+                <!-- Contact & App Downloads -->
                 <div class="footer-column subscribe-column">
-                    <h3 class="footer-heading">Stay Updated</h3>
-                    <p class="subscribe-text">Get daily market insights and exclusive trading tips delivered to your inbox.</p>
-                    
-                    <form class="newsletter-form">
-                        <div class="input-group-footer">
-                            <input type="email" placeholder="Enter your email" class="newsletter-input" required>
-                            <button type="submit" class="newsletter-btn">
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </div>
-                    </form>
-
+                    <h3 class="footer-heading">Contact Us</h3>
+    
                     <div class="contact-info-footer">
                         <div class="contact-item-footer">
                             <i class="fas fa-envelope"></i>
@@ -496,23 +555,23 @@
                             <span>Mumbai, Maharashtra, India</span>
                         </div>
                     </div>
-
+    
                     <div class="app-downloads-footer">
-                        <h4 class="download-heading">Download App</h4>
+                        <h4 class="download-heading">Download Our App</h4>
                         <div class="store-badges">
-                            <a href="#" class="store-badge-small">
-                                <i class="fab fa-google-play"></i>
-                                <span>Play Store</span>
+                            <a href="#" class="store-badge-link">
+                                <img src="images/google-play.png" alt="Get it on Google Play"
+                                    style="height: 45px; width: auto;">
                             </a>
-                            <a href="#" class="store-badge-small">
-                                <i class="fab fa-app-store-ios"></i>
-                                <span>App Store</span>
+                            <a href="#" class="store-badge-link">
+                                <img src="images/app-store.png" alt="Download on the App Store"
+                                    style="height: 45px; width: auto;">
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-
+    
             <!-- Disclaimer Section -->
             <div class="footer-disclaimer">
                 <div class="disclaimer-icon">
@@ -521,20 +580,25 @@
                 <div class="disclaimer-content">
                     <h4 class="disclaimer-title">Risk Disclosure & Investment Disclaimer</h4>
                     <p class="disclaimer-text">
-                        Trading in stocks, derivatives, and commodities involves substantial risk of loss and is not suitable for all investors. 
-                        Past performance is not indicative of future results. All recommendations are provided for educational purposes only. 
-                        The Mewa is a SEBI registered Research Analyst (Registration No: INB231234567) and fully compliant with regulatory standards. 
-                        Investors should consult their financial advisors before making any investment decisions. We do not guarantee profits or returns.
+                        Trading in stocks, derivatives, and commodities involves substantial risk of loss and is not
+                        suitable for all investors.
+                        Past performance is not indicative of future results. All recommendations are provided for
+                        educational purposes only.
+                        The Mewa is a SEBI registered Research Analyst (Registration No: INB231234567) and fully compliant
+                        with regulatory standards.
+                        Investors should consult their financial advisors before making any investment decisions. We do not
+                        guarantee profits or returns.
                         All disputes are subject to Mumbai jurisdiction only.
                     </p>
                 </div>
             </div>
-
+    
             <!-- Footer Bottom -->
             <div class="footer-bottom">
                 <div class="footer-bottom-left">
-                    <p>&copy; 2025 The Mewa. All rights reserved.</p>
-                    <p>Developed & Designed by <strong><a href="https://www.dynamiclabz.net/" target="_blank">Dynamic Labz</a></strong>.</p>
+                    <p>&copy; 2026 The Mewa. All rights reserved.</p>
+                    <p>Developed & Designed by <strong><a href="https://www.dynamiclabz.net/" target="_blank">Dynamic
+                                Labz</a></strong>.</p>
                 </div>
                 <div class="footer-bottom-right">
                     <a href="#">Privacy Policy</a>
@@ -547,7 +611,7 @@
                 </div>
             </div>
         </div>
-
+    
         <!-- Floating Chart Decoration -->
         <div class="footer-chart-decoration">
             <svg viewBox="0 0 800 200" preserveAspectRatio="none">
@@ -558,8 +622,8 @@
                         <stop offset="100%" style="stop-color:rgba(124,77,255,0.1);stop-opacity:1" />
                     </linearGradient>
                 </defs>
-                <path d="M0,100 Q200,50 400,80 T800,60" stroke="rgba(0,200,83,0.3)" stroke-width="2" fill="none"/>
-                <path d="M0,120 Q200,70 400,100 T800,80" stroke="rgba(41,121,255,0.3)" stroke-width="2" fill="none"/>
+                <path d="M0,100 Q200,50 400,80 T800,60" stroke="rgba(0,200,83,0.3)" stroke-width="2" fill="none" />
+                <path d="M0,120 Q200,70 400,100 T800,80" stroke="rgba(41,121,255,0.3)" stroke-width="2" fill="none" />
             </svg>
         </div>
     </footer>
