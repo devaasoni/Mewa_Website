@@ -76,7 +76,7 @@
 
     
     <!-- Card Explainer Section -->
-    <section class="explainer-section">
+    <!-- <section class="explainer-section">
         <div class="explainer-bg"></div>
         <div class="container">
             <div class="section-header">
@@ -86,7 +86,7 @@
             </div>
             
             <div class="explainer-container">
-                <!-- Left Annotations -->
+                Left Annotations
                 <div class="explainer-annotations-left">
                     <div class="annotation-item">
                         <div class="annotation-number orange">1</div>
@@ -111,7 +111,7 @@
                     </div>
                 </div>
 
-                <!-- Center Card -->
+                Center Card
                 <div class="explainer-card-wrapper">
                     <div class="explainer-card">
                         <div class="highlight-zone" data-num="1">
@@ -152,7 +152,7 @@
                     </div>
                 </div>
 
-                <!-- Right Annotations -->
+                Right Annotations
                 <div class="explainer-annotations-right">
                     <div class="annotation-item">
                         <div class="annotation-number pink">2</div>
@@ -178,8 +178,8 @@
                 </div>
             </div>
 
-            <!-- Legend Grid for Mobile -->
-            <!-- <div class="anatomy-legend fade-up">
+            Legend Grid for Mobile
+            <div class="anatomy-legend fade-up">
                 <div class="legend-item">
                     <div class="legend-number orange">1</div>
                     <div class="legend-content">
@@ -215,10 +215,148 @@
                         <p>Risk management exit</p>
                     </div>
                 </div>
-            </div> -->
+            </div>
         </div>
-    </section>
-    
+    </section> -->
+
+    <!-- Card Explainer Section -->
+<section class="explainer-section">
+    <div class="explainer-bg"></div>
+    <div class="container">
+        <div class="section-header">
+            <div class="section-badge"><i class="bi bi-info-circle"></i> Understanding the Card</div>
+            <h2 class="section-title">Anatomy of a <span class="gradient-text">Recommendation</span></h2>
+            <p class="section-subtitle">Every element is designed to give you actionable insights at a glance</p>
+        </div>
+        
+        <div class="explainer-container" id="explainerContainer">
+            <!-- SVG Connectors (Desktop Only) -->
+            <svg class="connector-svg" id="connectorSvg"></svg>
+            
+            <!-- Left Annotations -->
+            <div class="explainer-annotations-left">
+                <div class="annotation-item" data-target="1">
+                    <div class="annotation-number orange">1</div>
+                    <div class="annotation-content">
+                        <h4>Script Name & Price</h4>
+                        <p>The stock symbol you should trade & its price</p>
+                    </div>
+                </div>
+                <div class="annotation-item" data-target="2">
+                    <div class="annotation-number purple">2</div>
+                    <div class="annotation-content">
+                        <h4>Live Indicator</h4>
+                        <p>Real-time price updates with live market data</p>
+                    </div>
+                </div>
+                <div class="annotation-item" data-target="3">
+                    <div class="annotation-number blue">3</div>
+                    <div class="annotation-content">
+                        <h4>Buying Zone</h4>
+                        <p>The ideal price range to enter the trade</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Center Card -->
+            <div class="explainer-card-wrapper">
+                <div class="explainer-card">
+                    <!-- Header Row -->
+                    <div class="exp-header">
+                        <div>
+                            <!-- Script Name & Price (1) -->
+                            <div class="highlight-zone" data-num="1">
+                                <div class="exp-script-name">RELIANCE</div>
+                                <div class="mobile-explanation">
+                                    <p>The stock symbol you should trade & its price</p>
+                                </div>
+                            </div>
+                            <!-- Price with Live Indicator (2) beside it -->
+                            <div class="exp-live-price">
+                                <span>₹2,847.50</span>
+                                <span class="highlight-zone live-zone" data-num="2">
+                                    <span class="exp-live-tag">
+                                        <span class="exp-live-dot"></span>
+                                        Live
+                                    </span>
+                                    <div class="mobile-explanation">
+                                        <p>Real-time price updates with live market data</p>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- Action Type (4) -->
+                        <div class="highlight-zone" data-num="4">
+                            <span class="exp-action-badge">BUY</span>
+                            <div class="mobile-explanation">
+                                <p>BUY or SELL - what action you should take</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Buying Zone (3) -->
+                    <div class="highlight-zone" data-num="3">
+                        <div class="exp-buying-zone">
+                            <div class="exp-zone-label">Buying Zone</div>
+                            <div class="exp-zone-value">₹2,800 - ₹2,850</div>
+                        </div>
+                        <div class="mobile-explanation">
+                            <p>The ideal price range to enter the trade</p>
+                        </div>
+                    </div>
+
+                    <!-- Target Price (5) -->
+                    <div class="highlight-zone" data-num="5">
+                        <div class="exp-detail">
+                            <span class="exp-detail-label"><i class="bi bi-bullseye text-success"></i> Target Price</span>
+                            <span class="exp-detail-value green">₹3,100</span>
+                        </div>
+                        <div class="mobile-explanation">
+                            <p>Your profit booking level when the trade succeeds</p>
+                        </div>
+                    </div>
+
+                    <!-- Stop Loss (6) -->
+                    <div class="highlight-zone" data-num="6">
+                        <div class="exp-detail">
+                            <span class="exp-detail-label"><i class="bi bi-shield-x text-danger"></i> Stop Loss</span>
+                            <span class="exp-detail-value red">₹2,700</span>
+                        </div>
+                        <div class="mobile-explanation">
+                            <p>Exit price to limit losses if trade goes against you</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Annotations -->
+            <div class="explainer-annotations-right">
+                <div class="annotation-item" data-target="4">
+                    <div class="annotation-number pink">4</div>
+                    <div class="annotation-content">
+                        <h4>Action Type</h4>
+                        <p>BUY or SELL - what action you should take</p>
+                    </div>
+                </div>
+                <div class="annotation-item" data-target="5">
+                    <div class="annotation-number green">5</div>
+                    <div class="annotation-content">
+                        <h4>Target Price</h4>
+                        <p>Your profit booking level when the trade succeeds</p>
+                    </div>
+                </div>
+                <div class="annotation-item" data-target="6">
+                    <div class="annotation-number red">6</div>
+                    <div class="annotation-content">
+                        <h4>Stop Loss</h4>
+                        <p>Exit price to limit losses if trade goes against you</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
     
     <!-- Past Performance Section -->
     <!-- <section class="performance-section" id="performance">

@@ -881,3 +881,238 @@ function initContactForm() {
     contactForm.reset()
   })
 }
+
+
+/* =====================================================
+   EXPLAINER CARD - CONNECTOR LINES & INTERACTIONS
+===================================================== */
+
+(function() {
+    'use strict';
+    
+    const isDesktop = () => window.innerWidth > 991;
+    let activeZone = null;
+    
+    // Initialize on DOM ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initExplainerCard);
+    } else {
+        initExplainerCard();
+    }
+    
+    window.addEventListener('resize', debounce(handleResize, 150));
+    
+    function initExplainerCard() {
+        if (isDesktop()) {
+            drawConnectors();
+            setupDesktopHover();
+        } else {
+            setupMobileTap();
+        }
+    }
+    
+    function handleResize() {
+        const svg = document.getElementById('connectorSvg');
+        if (svg) svg.innerHTML = '';
+        
+        // Reset all states
+        document.querySelectorAll('.annotation-item, .highlight-zone, .connector-path').forEach(el => {
+            el.classList.remove('highlighted', 'faded', 'active');
+        });
+        document.querySelectorAll('.mobile-explanation').forEach(el => {
+            el.classList.remove('expanded');
+        });
+        activeZone = null;
+        
+        if (isDesktop()) {
+            drawConnectors();
+            setupDesktopHover();
+        } else {
+            setupMobileTap();
+        }
+    }
+    
+    // ==================== DESKTOP: SVG CONNECTORS ====================
+    function drawConnectors() {
+        const svg = document.getElementById('connectorSvg');
+        const container = document.getElementById('explainerContainer');
+        if (!svg || !container) return;
+        
+        svg.innerHTML = '';
+        const containerRect = container.getBoundingClientRect();
+        
+        // Connection mapping: number -> [side, color]
+        // Left: 1 (orange), 2 (purple), 3 (blue)
+        // Right: 4 (pink), 5 (green), 6 (red)
+        const connections = {
+            1: ['left', 'orange'],
+            2: ['left', 'purple'],
+            3: ['left', 'blue'],
+            4: ['right', 'pink'],
+            5: ['right', 'green'],
+            6: ['right', 'red']
+        };
+        
+        Object.entries(connections).forEach(([num, [side, color]]) => {
+            const annotation = document.querySelector(`.annotation-item[data-target="${num}"]`);
+            const zone = document.querySelector(`.highlight-zone[data-num="${num}"]`);
+            
+            if (!annotation || !zone) return;
+            
+            const annotationRect = annotation.getBoundingClientRect();
+            const zoneRect = zone.getBoundingClientRect();
+            
+            let startX, startY, endX, endY;
+            
+            if (side === 'left') {
+                // From annotation right edge to zone left edge
+                startX = annotationRect.right - containerRect.left;
+                startY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
+                endX = zoneRect.left - containerRect.left;
+                endY = zoneRect.top + zoneRect.height / 2 - containerRect.top;
+            } else {
+                // From annotation left edge to zone right edge
+                startX = annotationRect.left - containerRect.left;
+                startY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
+                endX = zoneRect.right - containerRect.left;
+                endY = zoneRect.top + zoneRect.height / 2 - containerRect.top;
+            }
+            
+            // Create curved path using cubic bezier
+            const midX = (startX + endX) / 2;
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', `M ${startX} ${startY} C ${midX} ${startY}, ${midX} ${endY}, ${endX} ${endY}`);
+            path.setAttribute('class', `connector-path ${color}`);
+            path.setAttribute('data-num', num);
+            
+            svg.appendChild(path);
+        });
+    }
+    
+    // ==================== DESKTOP: HOVER INTERACTIONS ====================
+    function setupDesktopHover() {
+        const annotations = document.querySelectorAll('.annotation-item[data-target]');
+        const zones = document.querySelectorAll('.highlight-zone[data-num]');
+        
+        annotations.forEach(annotation => {
+            annotation.removeEventListener('mouseenter', handleHoverStart);
+            annotation.removeEventListener('mouseleave', handleHoverEnd);
+            annotation.addEventListener('mouseenter', handleHoverStart);
+            annotation.addEventListener('mouseleave', handleHoverEnd);
+        });
+        
+        zones.forEach(zone => {
+            zone.removeEventListener('mouseenter', handleHoverStart);
+            zone.removeEventListener('mouseleave', handleHoverEnd);
+            zone.addEventListener('mouseenter', handleHoverStart);
+            zone.addEventListener('mouseleave', handleHoverEnd);
+        });
+    }
+    
+    function handleHoverStart(e) {
+        if (!isDesktop()) return;
+        
+        const num = e.currentTarget.dataset.target || e.currentTarget.dataset.num;
+        if (!num) return;
+        
+        const annotation = document.querySelector(`.annotation-item[data-target="${num}"]`);
+        const zone = document.querySelector(`.highlight-zone[data-num="${num}"]`);
+        const path = document.querySelector(`.connector-path[data-num="${num}"]`);
+        
+        // Fade all
+        document.querySelectorAll('.annotation-item').forEach(el => el.classList.add('faded'));
+        document.querySelectorAll('.highlight-zone[data-num]').forEach(el => el.classList.add('faded'));
+        document.querySelectorAll('.connector-path').forEach(el => el.classList.add('faded'));
+        
+        // Highlight active
+        if (annotation) {
+            annotation.classList.remove('faded');
+            annotation.classList.add('highlighted');
+        }
+        if (zone) {
+            zone.classList.remove('faded');
+            zone.classList.add('highlighted');
+        }
+        if (path) {
+            path.classList.remove('faded');
+            path.classList.add('highlighted');
+        }
+    }
+    
+    function handleHoverEnd() {
+        if (!isDesktop()) return;
+        
+        document.querySelectorAll('.annotation-item, .highlight-zone, .connector-path').forEach(el => {
+            el.classList.remove('highlighted', 'faded');
+        });
+    }
+    
+    // ==================== MOBILE: TAP INTERACTIONS ====================
+    function setupMobileTap() {
+        const zones = document.querySelectorAll('.highlight-zone[data-num]');
+        
+        zones.forEach(zone => {
+            zone.removeEventListener('click', handleTap);
+            zone.addEventListener('click', handleTap);
+        });
+        
+        document.removeEventListener('click', handleOutsideTap);
+        document.addEventListener('click', handleOutsideTap);
+    }
+    
+    function handleTap(e) {
+        if (isDesktop()) return;
+        
+        e.stopPropagation();
+        const zone = e.currentTarget;
+        const explanation = zone.querySelector('.mobile-explanation');
+        
+        if (!explanation) return;
+        
+        // If already active, close it
+        if (activeZone === zone) {
+            closeExplanation(zone, explanation);
+            activeZone = null;
+            return;
+        }
+        
+        // Close previous
+        if (activeZone) {
+            const prevExplanation = activeZone.querySelector('.mobile-explanation');
+            closeExplanation(activeZone, prevExplanation);
+        }
+        
+        // Open new
+        zone.classList.add('active');
+        explanation.classList.add('expanded');
+        activeZone = zone;
+    }
+    
+    function handleOutsideTap(e) {
+        if (isDesktop() || !activeZone) return;
+        
+        if (!e.target.closest('.highlight-zone')) {
+            const explanation = activeZone.querySelector('.mobile-explanation');
+            closeExplanation(activeZone, explanation);
+            activeZone = null;
+        }
+    }
+    
+    function closeExplanation(zone, explanation) {
+        if (zone) zone.classList.remove('active');
+        if (explanation) explanation.classList.remove('expanded');
+    }
+    
+    // ==================== UTILITY ====================
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+})();
