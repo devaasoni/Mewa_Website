@@ -1116,3 +1116,26 @@ function initContactForm() {
         };
     }
 })();
+
+
+// Toggle function for the demo history section
+function toggleDemoHistory() {
+    const section = document.getElementById('demo-history-section');
+    const text = document.getElementById('demo-history-text');
+    const icon = document.getElementById('demo-history-icon');
+    const btn = document.getElementById('demo-history-btn');
+    
+    if (section.classList.contains('expanded')) {
+        section.classList.remove('expanded');
+        text.textContent = 'View History';
+        icon.classList.remove('bi-chevron-up');
+        icon.classList.add('bi-chevron-down');
+        btn.classList.remove('expanded');
+    } else {
+        section.classList.add('expanded');
+        text.textContent = 'Hide History';
+        icon.classList.remove('bi-chevron-down');
+        icon.classList.add('bi-chevron-up');
+        btn.classList.add('expanded');
+    }
+}

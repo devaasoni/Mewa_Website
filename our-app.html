@@ -220,136 +220,606 @@
     </section> -->
 
     <!-- Card Explainer Section -->
-<section class="explainer-section">
-    <div class="explainer-bg"></div>
-    <div class="container">
-        <div class="section-header">
-            <div class="section-badge"><i class="bi bi-info-circle"></i> Understanding the Card</div>
-            <h2 class="section-title">Anatomy of a <span class="gradient-text">Recommendation</span></h2>
-            <p class="section-subtitle">Every element is designed to give you actionable insights at a glance</p>
-        </div>
-        
-        <div class="explainer-container" id="explainerContainer">
-            <!-- SVG Connectors (Desktop Only) -->
-            <svg class="connector-svg" id="connectorSvg"></svg>
-            
-            <!-- Left Annotations -->
-            <div class="explainer-annotations-left">
-                <div class="annotation-item" data-target="1">
-                    <div class="annotation-number orange">1</div>
-                    <div class="annotation-content">
-                        <h4>Script Name & Price</h4>
-                        <p>The stock symbol you should trade & its price</p>
-                    </div>
-                </div>
-                <div class="annotation-item" data-target="2">
-                    <div class="annotation-number purple">2</div>
-                    <div class="annotation-content">
-                        <h4>Live Indicator</h4>
-                        <p>Real-time price updates with live market data</p>
-                    </div>
-                </div>
-                <div class="annotation-item" data-target="3">
-                    <div class="annotation-number blue">3</div>
-                    <div class="annotation-content">
-                        <h4>Buying Zone</h4>
-                        <p>The ideal price range to enter the trade</p>
-                    </div>
-                </div>
+    <section class="explainer-section">
+        <div class="explainer-bg"></div>
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge"><i class="bi bi-info-circle"></i> Understanding the Card</div>
+                <h2 class="section-title">Anatomy of a <span class="gradient-text">Recommendation</span></h2>
+                <p class="section-subtitle">Every element is designed to give you actionable insights at a glance</p>
             </div>
-
-            <!-- Center Card -->
-            <div class="explainer-card-wrapper">
-                <div class="explainer-card">
-                    <!-- Header Row -->
-                    <div class="exp-header">
-                        <div>
-                            <!-- Script Name & Price (1) -->
-                            <div class="highlight-zone" data-num="1">
-                                <div class="exp-script-name">RELIANCE</div>
-                                <div class="mobile-explanation">
-                                    <p>The stock symbol you should trade & its price</p>
-                                </div>
-                            </div>
-                            <!-- Price with Live Indicator (2) beside it -->
-                            <div class="exp-live-price">
-                                <span>₹2,847.50</span>
-                                <span class="highlight-zone live-zone" data-num="2">
-                                    <span class="exp-live-tag">
-                                        <span class="exp-live-dot"></span>
-                                        Live
-                                    </span>
-                                    <div class="mobile-explanation">
-                                        <p>Real-time price updates with live market data</p>
-                                    </div>
-                                </span>
-                            </div>
-                        </div>
-                        <!-- Action Type (4) -->
-                        <div class="highlight-zone" data-num="4">
-                            <span class="exp-action-badge">BUY</span>
-                            <div class="mobile-explanation">
-                                <p>BUY or SELL - what action you should take</p>
-                            </div>
+    
+            <div class="explainer-container" id="explainerContainer">
+                <!-- SVG Connectors (Desktop Only) -->
+                <svg class="connector-svg" id="connectorSvg"></svg>
+    
+                <!-- Left Annotations -->
+                <div class="explainer-annotations-left">
+                    <div class="annotation-item" data-target="1">
+                        <div class="annotation-number orange">1</div>
+                        <div class="annotation-content">
+                            <h4>Script Name & Price</h4>
+                            <p>The stock symbol you should trade & its price</p>
                         </div>
                     </div>
-
-                    <!-- Buying Zone (3) -->
-                    <div class="highlight-zone" data-num="3">
-                        <div class="exp-buying-zone">
-                            <div class="exp-zone-label">Buying Zone</div>
-                            <div class="exp-zone-value">₹2,800 - ₹2,850</div>
+                    <div class="annotation-item" data-target="2">
+                        <div class="annotation-number purple">2</div>
+                        <div class="annotation-content">
+                            <h4>Live Indicator</h4>
+                            <p>Real-time price updates with live market data</p>
                         </div>
-                        <div class="mobile-explanation">
+                    </div>
+                    <div class="annotation-item" data-target="3">
+                        <div class="annotation-number blue">3</div>
+                        <div class="annotation-content">
+                            <h4>Buying Zone</h4>
                             <p>The ideal price range to enter the trade</p>
                         </div>
                     </div>
-
-                    <!-- Target Price (5) -->
-                    <div class="highlight-zone" data-num="5">
-                        <div class="exp-detail">
-                            <span class="exp-detail-label"><i class="bi bi-bullseye text-success"></i> Target Price</span>
-                            <span class="exp-detail-value green">₹3,100</span>
+                </div>
+    
+                <!-- Center Card -->
+                <div class="explainer-card-wrapper">
+                    <div class="explainer-card">
+                        <!-- Header Row -->
+                        <div class="exp-header">
+                            <div>
+                                <!-- Script Name & Price (1) -->
+                                <div class="highlight-zone" data-num="1">
+                                    <div class="exp-script-name">RELIANCE</div>
+                                    <div class="mobile-explanation">
+                                        <p>The stock symbol you should trade & its price</p>
+                                    </div>
+                                </div>
+                                <!-- Price with Live Indicator (2) beside it -->
+                                <div class="exp-live-price">
+                                    <span>₹2,847.50</span>
+                                    <span class="highlight-zone live-zone" data-num="2">
+                                        <span class="exp-live-tag">
+                                            <span class="exp-live-dot"></span>
+                                            Live
+                                        </span>
+                                        <div class="mobile-explanation">
+                                            <p>Real-time price updates with live market data</p>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- Action Type (4) -->
+                            <div class="highlight-zone" data-num="4">
+                                <span class="exp-action-badge">BUY</span>
+                                <div class="mobile-explanation">
+                                    <p>BUY or SELL - what action you should take</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="mobile-explanation">
+    
+                        <!-- Buying Zone (3) -->
+                        <div class="highlight-zone" data-num="3">
+                            <div class="exp-buying-zone">
+                                <div class="exp-zone-label">Buying Zone</div>
+                                <div class="exp-zone-value">₹2,800 - ₹2,850</div>
+                            </div>
+                            <div class="mobile-explanation">
+                                <p>The ideal price range to enter the trade</p>
+                            </div>
+                        </div>
+    
+                        <!-- Target Price (5) -->
+                        <div class="highlight-zone" data-num="5">
+                            <div class="exp-detail">
+                                <span class="exp-detail-label"><i class="bi bi-bullseye text-success"></i> Target
+                                    Price</span>
+                                <span class="exp-detail-value green">₹3,100</span>
+                            </div>
+                            <div class="mobile-explanation">
+                                <p>Your profit booking level when the trade succeeds</p>
+                            </div>
+                        </div>
+    
+                        <!-- Stop Loss (6) -->
+                        <div class="highlight-zone" data-num="6">
+                            <div class="exp-detail">
+                                <span class="exp-detail-label"><i class="bi bi-shield-x text-danger"></i> Stop Loss</span>
+                                <span class="exp-detail-value red">₹2,700</span>
+                            </div>
+                            <div class="mobile-explanation">
+                                <p>Exit price to limit losses if trade goes against you</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Right Annotations -->
+                <div class="explainer-annotations-right">
+                    <div class="annotation-item" data-target="4">
+                        <div class="annotation-number pink">4</div>
+                        <div class="annotation-content">
+                            <h4>Action Type</h4>
+                            <p>BUY or SELL - what action you should take</p>
+                        </div>
+                    </div>
+                    <div class="annotation-item" data-target="5">
+                        <div class="annotation-number green">5</div>
+                        <div class="annotation-content">
+                            <h4>Target Price</h4>
                             <p>Your profit booking level when the trade succeeds</p>
                         </div>
                     </div>
-
-                    <!-- Stop Loss (6) -->
-                    <div class="highlight-zone" data-num="6">
-                        <div class="exp-detail">
-                            <span class="exp-detail-label"><i class="bi bi-shield-x text-danger"></i> Stop Loss</span>
-                            <span class="exp-detail-value red">₹2,700</span>
-                        </div>
-                        <div class="mobile-explanation">
+                    <div class="annotation-item" data-target="6">
+                        <div class="annotation-number red">6</div>
+                        <div class="annotation-content">
+                            <h4>Stop Loss</h4>
                             <p>Exit price to limit losses if trade goes against you</p>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Right Annotations -->
-            <div class="explainer-annotations-right">
-                <div class="annotation-item" data-target="4">
-                    <div class="annotation-number pink">4</div>
-                    <div class="annotation-content">
-                        <h4>Action Type</h4>
-                        <p>BUY or SELL - what action you should take</p>
+    <!-- Revised Recommendation Card Explainer Section -->
+    <!-- <section class="revised-explainer-section">
+        <div class="revised-explainer-container" id="revisedExplainerContainer">
+            SVG Connectors (Desktop Only)
+            <svg class="revised-connector-svg" id="revisedConnectorSvg"></svg>
+    
+            Left Annotations - "WHAT IS THIS?" (Identity & Context)
+            <div class="revised-annotations-left">
+                <div class="revised-annotation-group-title">What is this?</div>
+                <div class="revised-annotation-item" data-target="1">
+                    <div class="revised-annotation-number orange">1</div>
+                    <div class="revised-annotation-content">
+                        <h4>Script Name</h4>
+                        <p>The trading instrument for which the recommendation is issued</p>
                     </div>
                 </div>
-                <div class="annotation-item" data-target="5">
-                    <div class="annotation-number green">5</div>
-                    <div class="annotation-content">
+                <div class="revised-annotation-item" data-target="2">
+                    <div class="revised-annotation-number purple">2</div>
+                    <div class="revised-annotation-content">
+                        <h4>Live / LTP</h4>
+                        <p>The latest traded price of the instrument in the market</p>
+                    </div>
+                </div>
+                <div class="revised-annotation-item" data-target="3">
+                    <div class="revised-annotation-number blue">3</div>
+                    <div class="revised-annotation-content">
+                        <h4>Reco Time & Date</h4>
+                        <p>The exact date and time when the recommendation was issued</p>
+                    </div>
+                </div>
+                <div class="revised-annotation-item" data-target="4">
+                    <div class="revised-annotation-number cyan">4</div>
+                    <div class="revised-annotation-content">
+                        <h4>Research Report</h4>
+                        <p>Detailed analysis document explaining the reasoning</p>
+                    </div>
+                </div>
+            </div>
+    
+            Center - Revised Recommendation Card
+            <div class="revised-card-wrapper">
+                <div class="revised-demo-card">
+                    Header Row
+                    <div class="revised-card-header">
+                        <div>
+                            Script Name (1)
+                            <div class="revised-highlight-zone" data-num="1">
+                                <div class="revised-script-name">NIFTY 24 JUL 25000 CE</div>
+                                <div class="revised-mobile-tooltip">
+                                    <span class="revised-tooltip-title">Script Name</span>
+                                    <p>The trading instrument for which the recommendation is issued</p>
+                                </div>
+                            </div>
+                            Live Price (2)
+                            <div class="revised-price-row">
+                                <span class="revised-live-price">₹285.50</span>
+                                <span class="revised-highlight-zone revised-live-zone" data-num="2">
+                                    <span class="revised-live-tag">
+                                        <span class="revised-live-dot"></span>
+                                        Live
+                                    </span>
+                                    <div class="revised-mobile-tooltip">
+                                        <span class="revised-tooltip-title">Live / LTP</span>
+                                        <p>The latest traded price of the instrument in the market</p>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                        Action Badge (5)
+                        <div class="revised-highlight-zone" data-num="5">
+                            <span class="revised-action-badge buy">BUY</span>
+                            <div class="revised-mobile-tooltip">
+                                <span class="revised-tooltip-title">BUY / SELL</span>
+                                <p>Indicates whether the trade expects the price to rise (BUY) or fall (SELL)</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    Reco Time & Research Report Row (3 & 4)
+                    <div class="revised-meta-row">
+                        <div class="revised-highlight-zone" data-num="3">
+                            <span class="revised-reco-time">
+                                <i class="bi bi-clock"></i> 15 Jul 2025, 10:30 AM
+                            </span>
+                            <div class="revised-mobile-tooltip">
+                                <span class="revised-tooltip-title">Reco Time & Date</span>
+                                <p>The exact date and time when the recommendation was issued</p>
+                            </div>
+                        </div>
+                        <div class="revised-highlight-zone" data-num="4">
+                            <a href="#" class="revised-research-link">
+                                <i class="bi bi-file-earmark-text"></i> Research Report
+                            </a>
+                            <div class="revised-mobile-tooltip">
+                                <span class="revised-tooltip-title">Research Report</span>
+                                <p>Detailed analysis document explaining the reasoning</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    Buying Zone (6)
+                    <div class="revised-highlight-zone" data-num="6">
+                        <div class="revised-buying-zone">
+                            <div class="revised-zone-label">Buying Zone</div>
+                            <div class="revised-zone-value">₹280 - ₹290</div>
+                        </div>
+                        <div class="revised-mobile-tooltip">
+                            <span class="revised-tooltip-title">Buying Zone</span>
+                            <p>The recommended price range within which the trade should be executed</p>
+                        </div>
+                    </div>
+    
+                    Target Price Row (7 & 8)
+                    <div class="revised-highlight-zone" data-num="7">
+                        <div class="revised-detail-row">
+                            <span class="revised-detail-label"><i class="bi bi-bullseye"></i> Target Price</span>
+                            <span class="revised-detail-value">
+                                <span class="revised-strikethrough">₹320</span>
+                                <span class="revised-highlight-zone revised-inline-zone" data-num="8">
+                                    <span class="revised-new-value green">₹350</span>
+                                    <span class="revised-badge">2nd Revised</span>
+                                    <div class="revised-mobile-tooltip">
+                                        <span class="revised-tooltip-title">Revised Target</span>
+                                        <p>An updated profit target based on market movement or strategy adjustment</p>
+                                    </div>
+                                </span>
+                            </span>
+                        </div>
+                        <div class="revised-mobile-tooltip">
+                            <span class="revised-tooltip-title">Target Price</span>
+                            <p>The price level at which profits are expected and can be booked</p>
+                        </div>
+                    </div>
+    
+                    Stop Loss Row (9 & 10)
+                    <div class="revised-highlight-zone" data-num="9">
+                        <div class="revised-detail-row">
+                            <span class="revised-detail-label"><i class="bi bi-shield-x"></i> Stop Loss</span>
+                            <span class="revised-detail-value">
+                                <span class="revised-strikethrough">₹250</span>
+                                <span class="revised-highlight-zone revised-inline-zone" data-num="10">
+                                    <span class="revised-new-value red">₹260</span>
+                                    <span class="revised-badge red">1st Revised</span>
+                                    <div class="revised-mobile-tooltip">
+                                        <span class="revised-tooltip-title">Revised Stop Loss</span>
+                                        <p>An updated stop loss to reduce risk or protect profits</p>
+                                    </div>
+                                </span>
+                            </span>
+                        </div>
+                        <div class="revised-mobile-tooltip">
+                            <span class="revised-tooltip-title">Stop Loss</span>
+                            <p>The price level where the trade should be exited to limit losses</p>
+                        </div>
+                    </div>
+    
+                    History Toggle Button
+                    <button class="revised-history-toggle" id="revisedHistoryToggle">
+                        <i class="bi bi-clock-history"></i>
+                        <span>View Revision History</span>
+                        <i class="bi bi-chevron-down revised-toggle-icon"></i>
+                    </button>
+    
+                    Revision History Section
+                    <div class="revised-history-section" id="revisedHistorySection">
+                        <div class="revised-timeline">
+                            Original
+                            <div class="revised-timeline-item">
+                                <div class="revised-timeline-dot blue"></div>
+                                <div class="revised-timeline-content">
+                                    <div class="revised-timeline-header">
+                                        <span class="revised-timeline-label">Original</span>
+                                        <span class="revised-timeline-time">15 Jul 2025, 10:30 AM</span>
+                                    </div>
+                                    <div class="revised-timeline-details">
+                                        <div class="revised-timeline-row">
+                                            <span>Target:</span>
+                                            <span>₹320</span>
+                                        </div>
+                                        <div class="revised-timeline-row">
+                                            <span>Stop Loss:</span>
+                                            <span>₹250</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            1st Revision
+                            <div class="revised-timeline-item">
+                                <div class="revised-timeline-dot orange"></div>
+                                <div class="revised-timeline-content">
+                                    <div class="revised-timeline-header">
+                                        <span class="revised-timeline-label orange">1st Revision</span>
+                                        <span class="revised-timeline-time">16 Jul 2025, 02:15 PM</span>
+                                    </div>
+                                    <div class="revised-timeline-details">
+                                        <div class="revised-timeline-row">
+                                            <span>Stop Loss:</span>
+                                            <span class="red">₹250 → ₹260</span>
+                                        </div>
+                                        <a href="#" class="revised-timeline-report"><i class="bi bi-file-earmark-text"></i>
+                                            Report</a>
+                                    </div>
+                                </div>
+                            </div>
+                            2nd Revision
+                            <div class="revised-timeline-item">
+                                <div class="revised-timeline-dot green"></div>
+                                <div class="revised-timeline-content">
+                                    <div class="revised-timeline-header">
+                                        <span class="revised-timeline-label green">2nd Revision</span>
+                                        <span class="revised-timeline-time">17 Jul 2025, 11:00 AM</span>
+                                    </div>
+                                    <div class="revised-timeline-details">
+                                        <div class="revised-timeline-row">
+                                            <span>Target:</span>
+                                            <span class="green">₹320 → ₹350</span>
+                                        </div>
+                                        <a href="#" class="revised-timeline-report"><i class="bi bi-file-earmark-text"></i>
+                                            Report</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            Right Annotations - "WHAT SHOULD I DO?" (Action & Risk)
+            <div class="revised-annotations-right">
+                <div class="revised-annotation-group-title">What should I do?</div>
+                <div class="revised-annotation-item" data-target="5">
+                    <div class="revised-annotation-number pink">5</div>
+                    <div class="revised-annotation-content">
+                        <h4>BUY / SELL</h4>
+                        <p>Indicates whether the trade expects the price to rise or fall</p>
+                    </div>
+                </div>
+                <div class="revised-annotation-item" data-target="6">
+                    <div class="revised-annotation-number indigo">6</div>
+                    <div class="revised-annotation-content">
+                        <h4>Buying Zone</h4>
+                        <p>The recommended price range to execute the trade</p>
+                    </div>
+                </div>
+                <div class="revised-annotation-item" data-target="7">
+                    <div class="revised-annotation-number green">7</div>
+                    <div class="revised-annotation-content">
                         <h4>Target Price</h4>
-                        <p>Your profit booking level when the trade succeeds</p>
+                        <p>The price level at which profits can be booked</p>
                     </div>
                 </div>
-                <div class="annotation-item" data-target="6">
-                    <div class="annotation-number red">6</div>
-                    <div class="annotation-content">
+                <div class="revised-annotation-item" data-target="8">
+                    <div class="revised-annotation-number teal">8</div>
+                    <div class="revised-annotation-content">
+                        <h4>Revised Target</h4>
+                        <p>Updated profit target based on market movement</p>
+                    </div>
+                </div>
+                <div class="revised-annotation-item" data-target="9">
+                    <div class="revised-annotation-number red">9</div>
+                    <div class="revised-annotation-content">
                         <h4>Stop Loss</h4>
-                        <p>Exit price to limit losses if trade goes against you</p>
+                        <p>The price level to exit and limit losses</p>
+                    </div>
+                </div>
+                <div class="revised-annotation-item" data-target="10">
+                    <div class="revised-annotation-number amber">10</div>
+                    <div class="revised-annotation-content">
+                        <h4>Revised Stop Loss</h4>
+                        <p>Updated stop loss to reduce risk or protect profits</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <section class="revised-explainer-section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-badge"><i class="bi bi-arrow-repeat"></i> Understanding Revised Cards</div>
+            <h2 class="section-title">Anatomy of a <span class="gradient-text">Revised Recommendation</span></h2>
+            <p class="section-subtitle">When market conditions change, we update our recommendations to protect your investment</p>
+        </div>
+
+        <div class="revised-card-demo-container">
+            <!-- The Revised Recommendation Card Example -->
+            <div class="revision-card active">
+                <div class="revision-header">
+                    <div class="revision-header-left">
+                        <div class="revision-script-row">
+                            <span class="revision-script-name">TVSMOTOR27JAN26F</span>
+                        </div>
+                        <div class="revision-script-row">
+                            <span class="revision-live-price">₹3,893.50</span>
+                            <span class="live-tag"><span class="live-dot"></span> LTP</span>
+                        </div>
+                    </div>
+                    <div class="action-badge buy">BUY</div>
+                </div>
+
+                <div class="revision-buying-info">                            
+                    <div class="revision-buying-label">Buying Zone</div>
+                    <div class="revision-buying-value">₹3,890.00 - ₹3,895.00</div>
+                </div>
+
+                <div class="revision-current-prices" style="position: relative;">
+                    <div class="revision-price-row">
+                        <span class="revision-price-label">
+                            <i class="bi bi-bullseye"></i>
+                            Target
+                        </span>
+                        <div class="revision-price-value">
+                            <span class="strikethrough">₹4,100.00</span>
+                            ₹4,200.00
+                            <span class="revised-text">3rd Revised Target</span>
+                        </div>
+                    </div>
+                    <div class="revision-price-row">
+                        <span class="revision-price-label">
+                            <i class="bi bi-shield-x"></i>
+                            Stop Loss
+                        </span>
+                        <div class="revision-price-value">
+                            <span class="strikethrough">₹3,750.00</span>
+                            ₹3,800.00
+                            <span class="revised-text">1st Revised Stop Loss</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-detail bg-transparent">
+                    <div class="recommended-time">
+                        <span>
+                            <i class="bi bi-clock"></i>
+                            11:33 AM - Jan 05, 2026
+                        </span>
+                    </div>
+                    <span class="research-report mt-2">Research report <i class="bi bi-download download-icon"></i></span>
+                </div>
+                
+                <button class="history-toggle-btn expanded" id="demo-history-btn" onclick="toggleDemoHistory()">
+                    <i class="bi bi-clock-history"></i>
+                    <span id="demo-history-text">Hide History</span>
+                    <i class="bi bi-chevron-up" id="demo-history-icon"></i>
+                </button>
+
+                <div class="revision-history-section expanded" id="demo-history-section">
+                    <div class="revision-timeline">
+                        <!-- Original -->
+                        <div class="revision-item">
+                            <div class="revision-label">
+                                <span>Original</span>
+                                <span class="revision-timestamp">
+                                    <i class="bi bi-clock"></i>
+                                    <span class="time-text">
+                                        11:33:31 AM<br>Jan 05, 2026
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="revision-details">
+                                <div class="revision-row">
+                                    <span class="revision-row-label">Target</span>
+                                    <span class="revision-row-value">
+                                        <span style="text-decoration: line-through; opacity: 0.6;">₹4,200.00</span>
+                                    </span>
+                                </div>
+                                <div class="revision-row">
+                                    <span class="revision-row-label">Stop Loss</span>
+                                    <span class="revision-row-value">
+                                        <span style="text-decoration: line-through; opacity: 0.6;">₹3,750.00</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <!-- 1st Revised Target -->
+                        <div class="revision-item green">
+                            <div class="revision-label green">
+                                <span>1st Revised Target <i class="bi bi-download mx-2"></i></span>
+                                <span class="revision-timestamp">
+                                    <i class="bi bi-clock"></i>
+                                    <span class="time-text">
+                                        11:35:59 AM<br>Jan 05, 2026
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="revision-details">
+                                <div class="revision-row">
+                                    <span class="revision-row-label">Target</span>
+                                    <span class="revision-row-value">
+                                        <span style="font-size: 0.8rem; opacity: 0.5; text-decoration: line-through; margin-right: 0.5rem;">₹4,200.00</span>
+                                        <span style="text-decoration: line-through; opacity: 0.6;">₹4,150.00</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <!-- 1st Revised Stop Loss -->
+                        <div class="revision-item red">
+                            <div class="revision-label red">
+                                <span>1st Revised Stop Loss <i class="bi bi-download mx-2"></i></span>
+                                <span class="revision-timestamp">
+                                    <i class="bi bi-clock"></i>
+                                    <span class="time-text">
+                                        11:38:42 AM<br>Jan 05, 2026
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="revision-details">
+                                <div class="revision-row">
+                                    <span class="revision-row-label">Stop Loss</span>
+                                    <span class="revision-row-value">
+                                        <span style="font-size: 0.8rem; opacity: 0.5; text-decoration: line-through; margin-right: 0.5rem;">₹3,750.00</span>
+                                        ₹3,800.00
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <!-- 2nd Revised Target -->
+                        <div class="revision-item green">
+                            <div class="revision-label green">
+                                <span>2nd Revised Target <i class="bi bi-download mx-2"></i></span>
+                                <span class="revision-timestamp">
+                                    <i class="bi bi-clock"></i>
+                                    <span class="time-text">
+                                        02:44:56 PM<br>Jan 05, 2026
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="revision-details">
+                                <div class="revision-row">
+                                    <span class="revision-row-label">Target</span>
+                                    <span class="revision-row-value">
+                                        <span style="font-size: 0.8rem; opacity: 0.5; text-decoration: line-through; margin-right: 0.5rem;">₹4,150.00</span>
+                                        <span style="text-decoration: line-through; opacity: 0.6;">₹4,100.00</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <!-- 3rd Revised Target (Current) -->
+                        <div class="revision-item green">
+                            <div class="revision-label green">
+                                <span>3rd Revised Target <i class="bi bi-download mx-2"></i></span>
+                                <span class="revision-timestamp">
+                                    <i class="bi bi-clock"></i>
+                                    <span class="time-text">
+                                        10:38:22 PM<br>Jan 05, 2026
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="revision-details">
+                                <div class="revision-row">
+                                    <span class="revision-row-label">Target</span>
+                                    <span class="revision-row-value">
+                                        <span style="font-size: 0.8rem; opacity: 0.5; text-decoration: line-through; margin-right: 0.5rem;">₹4,100.00</span>
+                                        ₹4,200.00
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
