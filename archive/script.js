@@ -120,39 +120,23 @@ function animateCounter(element) {
 // FAQ ACCORDION
 // =====================================================
 function initFAQAccordion() {
-  const faqItems = document.querySelectorAll(".faq-item");
+  const faqItems = document.querySelectorAll(".faq-item")
 
   faqItems.forEach((item) => {
-    // Check if this item is already initialized to prevent double-click issue
-    if (item.hasAttribute("data-faq-init")) return;
-    
-    // Mark this item as initialized
-    item.setAttribute("data-faq-init", "true");
-
-    const question = item.querySelector(".faq-question");
-
-    // Safety check
-    if (!question) return;
+    const question = item.querySelector(".faq-question")
 
     question.addEventListener("click", () => {
-      const isActive = item.classList.contains("active");
-
       // Close all other items
       faqItems.forEach((otherItem) => {
         if (otherItem !== item) {
-          otherItem.classList.remove("active");
+          otherItem.classList.remove("active")
         }
-      });
+      })
 
       // Toggle current item
-      // We force the state based on what it was before we started closing others
-      if (isActive) {
-        item.classList.remove("active");
-      } else {
-        item.classList.add("active");
-      }
-    });
-  });
+      item.classList.toggle("active")
+    })
+  })
 }
 
 // =====================================================
@@ -238,10 +222,10 @@ function initNavbarScroll() {
 
   window.addEventListener("scroll", () => {
     if (window.scrollY > 50) {
-      // navbar.style.background = "rgba(10, 10, 15, 0.95)"
+      navbar.style.background = "rgba(10, 10, 15, 0.95)"
       navbar.style.boxShadow = "0 10px 40px rgba(0,0,0,0.3)"
     } else {
-      // navbar.style.background = "rgba(10, 10, 15, 0.8)"
+      navbar.style.background = "rgba(10, 10, 15, 0.8)"
       navbar.style.boxShadow = "none"
     }
   })
@@ -495,13 +479,13 @@ document.addEventListener("DOMContentLoaded", () => {
   initThemeToggle()
   initScrollAnimations()
   initCounterAnimations()
+  initFAQAccordion()
   initProfitCalculator()
   initSmoothScroll()
   initNavbarScroll()
   initDropdownMenus()
   activateBenefitsShowcase()
   initContactForm()
-  initBackToTop()
 })
 
 // =====================================================
@@ -664,6 +648,29 @@ function animateCounter(element) {
 }
 
 // =====================================================
+// FAQ ACCORDION
+// =====================================================
+function initFAQAccordion() {
+  const faqItems = document.querySelectorAll(".faq-item")
+
+  faqItems.forEach((item) => {
+    const question = item.querySelector(".faq-question")
+
+    question.addEventListener("click", () => {
+      // Close all other items
+      faqItems.forEach((otherItem) => {
+        if (otherItem !== item) {
+          otherItem.classList.remove("active")
+        }
+      })
+
+      // Toggle current item
+      item.classList.toggle("active")
+    })
+  })
+}
+
+// =====================================================
 // PROFIT CALCULATOR
 // =====================================================
 function initProfitCalculator() {
@@ -749,10 +756,10 @@ function initNavbarScroll() {
 
   window.addEventListener("scroll", () => {
     if (window.scrollY > 50) {
-      // navbar.style.background = "rgba(10, 10, 15, 0.95)"
+      navbar.style.background = "rgba(10, 10, 15, 0.95)"
       navbar.style.boxShadow = "0 10px 40px rgba(0,0,0,0.3)"
     } else {
-      // navbar.style.background = "rgba(10, 10, 15, 0.8)"
+      navbar.style.background = "rgba(10, 10, 15, 0.8)"
       navbar.style.boxShadow = "none"
     }
   })
@@ -926,166 +933,61 @@ function initContactForm() {
     }
     
     // ==================== DESKTOP: SVG CONNECTORS ====================
-    // function drawConnectors() {
-    //   const svg = document.getElementById('connectorSvg');
-    //   const container = document.getElementById('explainerContainer');
-    //   if (!svg || !container) return;
-      
-    //   svg.innerHTML = '';
-    //   const containerRect = container.getBoundingClientRect();
-      
-    //   // Connection mapping: number -> [side, color]
-    //   // Left: 1 (orange), 2 (purple), 3 (blue)
-    //   // Right: 4 (pink), 5 (green), 6 (red)
-    //   const connections = {
-    //       1: ['left', 'orange'],
-    //       2: ['left', 'purple'],
-    //       3: ['left', 'blue'],
-    //       4: ['right', 'pink'],
-    //       5: ['right', 'green'],
-    //       6: ['right', 'red'],
-    //       7: ['left', 'red'],
-    //       8: ['right', 'orange']
-    //   };
-      
-    //   Object.entries(connections).forEach(([num, [side, color]]) => {
-    //       const annotation = document.querySelector(`.annotation-item[data-target="${num}"]`);
-    //       const zone = document.querySelector(`.highlight-zone[data-num="${num}"]`);
-          
-    //       if (!annotation || !zone) return;
-          
-    //       const annotationRect = annotation.getBoundingClientRect();
-    //       const zoneRect = zone.getBoundingClientRect();
-          
-    //       let startX, startY, endX, endY;
-          
-    //       if (side === 'left') {
-    //           // From annotation right edge to zone left edge
-    //           startX = annotationRect.right - containerRect.left;
-    //           startY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
-    //           endX = zoneRect.left - containerRect.left;
-    //           endY = zoneRect.top + zoneRect.height / 2 - containerRect.top;
-    //       } else {
-    //           // From annotation left edge to zone right edge
-    //           startX = annotationRect.left - containerRect.left;
-    //           startY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
-    //           endX = zoneRect.right - containerRect.left;
-    //           endY = zoneRect.top + zoneRect.height / 2 - containerRect.top;
-    //       }
-          
-    //       // Create curved path using cubic bezier
-    //       const midX = (startX + endX) / 2;
-    //       const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    //       path.setAttribute('d', `M ${startX} ${startY} C ${midX} ${startY}, ${midX} ${endY}, ${endX} ${endY}`);
-    //       path.setAttribute('class', `connector-path ${color}`);
-    //       path.setAttribute('data-num', num);
-          
-    //       svg.appendChild(path);
-    //   });
-    // }
-
-  function drawConnectors() {
-    const svg = document.getElementById('connectorSvg');
-    const container = document.getElementById('explainerContainer');
-    if (!svg || !container) return;
-
-    svg.innerHTML = '';
-    const containerRect = container.getBoundingClientRect();
-
-    // Connection mapping: number -> [side, color]
-    // Left: 1 (orange), 2 (purple), 3 (blue)
-    // Right: 4 (pink), 5 (green), 6 (red)
-    const connections = {
-      1: ['left', 'orange'],
-      2: ['left', 'purple'],
-      3: ['left', 'blue'],
-      4: ['right', 'pink'],
-      5: ['right', 'green'],
-      6: ['right', 'red'],
-      7: ['left', 'red'],
-      8: ['right', 'orange']
-    };
-
-    Object.entries(connections).forEach(([num, [side, color]]) => {
-      const annotation = document.querySelector(`.annotation-item[data-target="${num}"]`);
-      const zone = document.querySelector(`.highlight-zone[data-num="${num}"]`);
-
-      if (!annotation || !zone) return;
-
-      const annotationRect = annotation.getBoundingClientRect();
-      const zoneRect = zone.getBoundingClientRect();
-
-      let startX, startY, endX, endY;
-
-      if (side === 'left') {
-        // From annotation right edge to zone left edge
-        startX = annotationRect.right - containerRect.left;
-        startY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
-        endX = zoneRect.left - containerRect.left;
-        endY = zoneRect.top + zoneRect.height / 2 - containerRect.top;
-      } else {
-        // From annotation left edge to zone right edge
-        startX = annotationRect.left - containerRect.left;
-        startY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
-        endX = zoneRect.right - containerRect.left;
-        endY = zoneRect.top + zoneRect.height / 2 - containerRect.top;
-      }
-
-      // <CHANGE> Replace curved path with orthogonal segments (horizontal → vertical → horizontal)
-      const midX = (startX + endX) / 2;
-      const dotRadius = 4;
-
-      // Create three line segments for orthogonal path
-      // Line 1: Horizontal from start
-      const line1 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      line1.setAttribute('x1', startX);
-      line1.setAttribute('y1', startY);
-      line1.setAttribute('x2', midX);
-      line1.setAttribute('y2', startY);
-      line1.setAttribute('class', `connector-path ${color}`);
-      line1.setAttribute('data-num', num);
-      svg.appendChild(line1);
-
-      // Line 2: Vertical in the middle
-      const line2 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      line2.setAttribute('x1', midX);
-      line2.setAttribute('y1', startY);
-      line2.setAttribute('x2', midX);
-      line2.setAttribute('y2', endY);
-      line2.setAttribute('class', `connector-path ${color}`);
-      line2.setAttribute('data-num', num);
-      svg.appendChild(line2);
-
-      // Line 3: Horizontal to end
-      const line3 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      line3.setAttribute('x1', midX);
-      line3.setAttribute('y1', endY);
-      line3.setAttribute('x2', endX);
-      line3.setAttribute('y2', endY);
-      line3.setAttribute('class', `connector-path ${color}`);
-      line3.setAttribute('data-num', num);
-      svg.appendChild(line3);
-
-      // <CHANGE> Add circles at start and end points
-      // Dot at start (annotation)
-      const dotStart = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      dotStart.setAttribute('cx', startX);
-      dotStart.setAttribute('cy', startY);
-      dotStart.setAttribute('r', dotRadius);
-      dotStart.setAttribute('class', `connector-path ${color}`);
-      dotStart.setAttribute('data-num', num);
-      svg.appendChild(dotStart);
-
-      // Dot at end (zone)
-      const dotEnd = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      dotEnd.setAttribute('cx', endX);
-      dotEnd.setAttribute('cy', endY);
-      dotEnd.setAttribute('r', dotRadius);
-      dotEnd.setAttribute('class', `connector-path ${color}`);
-      dotEnd.setAttribute('data-num', num);
-      svg.appendChild(dotEnd);
-    });
-  }
+    function drawConnectors() {
+        const svg = document.getElementById('connectorSvg');
+        const container = document.getElementById('explainerContainer');
+        if (!svg || !container) return;
+        
+        svg.innerHTML = '';
+        const containerRect = container.getBoundingClientRect();
+        
+        // Connection mapping: number -> [side, color]
+        // Left: 1 (orange), 2 (purple), 3 (blue)
+        // Right: 4 (pink), 5 (green), 6 (red)
+        const connections = {
+            1: ['left', 'orange'],
+            2: ['left', 'purple'],
+            3: ['left', 'blue'],
+            4: ['right', 'pink'],
+            5: ['right', 'green'],
+            6: ['right', 'red']
+        };
+        
+        Object.entries(connections).forEach(([num, [side, color]]) => {
+            const annotation = document.querySelector(`.annotation-item[data-target="${num}"]`);
+            const zone = document.querySelector(`.highlight-zone[data-num="${num}"]`);
+            
+            if (!annotation || !zone) return;
+            
+            const annotationRect = annotation.getBoundingClientRect();
+            const zoneRect = zone.getBoundingClientRect();
+            
+            let startX, startY, endX, endY;
+            
+            if (side === 'left') {
+                // From annotation right edge to zone left edge
+                startX = annotationRect.right - containerRect.left;
+                startY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
+                endX = zoneRect.left - containerRect.left;
+                endY = zoneRect.top + zoneRect.height / 2 - containerRect.top;
+            } else {
+                // From annotation left edge to zone right edge
+                startX = annotationRect.left - containerRect.left;
+                startY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
+                endX = zoneRect.right - containerRect.left;
+                endY = zoneRect.top + zoneRect.height / 2 - containerRect.top;
+            }
+            
+            // Create curved path using cubic bezier
+            const midX = (startX + endX) / 2;
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', `M ${startX} ${startY} C ${midX} ${startY}, ${midX} ${endY}, ${endX} ${endY}`);
+            path.setAttribute('class', `connector-path ${color}`);
+            path.setAttribute('data-num', num);
+            
+            svg.appendChild(path);
+        });
+    }
     
     // ==================== DESKTOP: HOVER INTERACTIONS ====================
     function setupDesktopHover() {
@@ -1220,9 +1122,6 @@ function initContactForm() {
 // =====================================================
 // SWITCH TO REVISED TAB (Called from "View Revised" button)
 // =====================================================
-// =====================================================
-// SWITCH TO REVISED TAB (Called from "View Revised" button)
-// =====================================================
 function switchToRevisedTab() {
   // Get the correct revised tab button
   const revisedTabBtn = document.querySelector('.tab-btn[data-tab="revised"]')
@@ -1244,7 +1143,7 @@ function switchToRevisedTab() {
     revisedContent.classList.add("active")
   }
 
-  // Also activate the inner reco-tab-content for revised
+  // <CHANGE> Also activate the inner reco-tab-content for revised
   const innerRevisedContent = document.getElementById("tab-revised-reco")
   if (innerRevisedContent) {
     innerRevisedContent.classList.add("active")
@@ -1254,14 +1153,6 @@ function switchToRevisedTab() {
   const section = document.querySelector(".tabbed-reco-section")
   if (section) {
     section.scrollIntoView({ behavior: "smooth", block: "start" })
-  }
-
-  // <FIX> Trigger the explainer initialization for Section 3
-  // We use a small timeout to ensure the DOM is visible before calculating positions
-  if (typeof initSection3Explainer === 'function') {
-    setTimeout(() => {
-        initSection3Explainer();
-    }, 100);
   }
 }
 
@@ -1306,9 +1197,6 @@ document.addEventListener("DOMContentLoaded", () => {
 // =====================================================
 // TOGGLE HISTORY SECTION
 // =====================================================
-// =====================================================
-// TOGGLE HISTORY SECTION
-// =====================================================
 function toggleTabbedHistory() {
   const section = document.getElementById("tabbed-history-section")
   const text = document.getElementById("tabbed-history-text")
@@ -1328,515 +1216,32 @@ function toggleTabbedHistory() {
     icon.classList.add("bi-chevron-up")
     btn.classList.add("expanded")
   }
-
-  // <FIX> Redraw connectors after the slide animation finishes
-  // This updates the lines based on whether the history is now open or closed
-  if (typeof drawConnectorsSection3 === 'function') {
-      setTimeout(() => {
-          drawConnectorsSection3();
-      }, 350); 
-  }
 }
 
-/* =====================================================
-   SECTION 2 EXPLAINER - CONNECTOR LOGIC
-===================================================== */
+document.querySelectorAll(".tab-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
 
-function drawConnectorsSection2() {
-    const svg = document.getElementById('connectorSvgSection2');
-    const container = document.getElementById('explainerContainerSection2');
-    if (!svg || !container) return;
+        // Remove active state from tabs
+        document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"))
 
-    svg.innerHTML = '';
-    const containerRect = container.getBoundingClientRect();
+        // Hide all tab contents
+        document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"))
 
-    // Section 2 connection mapping: s2-1 (left, orange), s2-2 (right, blue)
-    const connections = {
-        's2-1': ['left', 'orange'],
-        's2-2': ['right', 'blue']
-    };
+        // <CHANGE> Also handle inner reco-tab-content visibility
+        document.querySelectorAll(".reco-tab-content").forEach(c => c.classList.remove("active"))
 
-    Object.entries(connections).forEach(([num, [side, color]]) => {
-        const annotation = document.querySelector(`.section2-annotations .annotation-item[data-target="${num}"]`);
-        const zone = document.querySelector(`.highlight-zone[data-num="${num}"]`);
+        // Activate clicked tab
+        btn.classList.add("active")
 
-        if (!annotation || !zone) return;
+        // Show corresponding content
+        const tab = btn.dataset.tab
+        document.getElementById(`${tab}-tab`).classList.add("active")
 
-        const annotationRect = annotation.getBoundingClientRect();
-        const zoneRect = zone.getBoundingClientRect();
-
-        let startX, startY, endX, endY;
-
-        if (side === 'left') {
-            startX = annotationRect.right - containerRect.left;
-            startY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
-            endX = zoneRect.left - containerRect.left;
-            endY = zoneRect.top + zoneRect.height / 2 - containerRect.top;
-        } else {
-            startX = annotationRect.left - containerRect.left;
-            startY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
-            endX = zoneRect.right - containerRect.left;
-            endY = zoneRect.top + zoneRect.height / 2 - containerRect.top;
+        // <CHANGE> Also activate the corresponding inner content
+        if (tab === "active") {
+            document.getElementById("tab-active-reco").classList.add("active")
+        } else if (tab === "revised") {
+            document.getElementById("tab-revised-reco").classList.add("active")
         }
-
-        const midX = (startX + endX) / 2;
-        const dotRadius = 4;
-
-        // Line 1: Horizontal from start
-        const line1 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        line1.setAttribute('x1', startX);
-        line1.setAttribute('y1', startY);
-        line1.setAttribute('x2', midX);
-        line1.setAttribute('y2', startY);
-        line1.setAttribute('class', `connector-path ${color}`);
-        line1.setAttribute('data-num', num);
-        svg.appendChild(line1);
-
-        // Line 2: Vertical in the middle
-        const line2 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        line2.setAttribute('x1', midX);
-        line2.setAttribute('y1', startY);
-        line2.setAttribute('x2', midX);
-        line2.setAttribute('y2', endY);
-        line2.setAttribute('class', `connector-path ${color}`);
-        line2.setAttribute('data-num', num);
-        svg.appendChild(line2);
-
-        // Line 3: Horizontal to end
-        const line3 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        line3.setAttribute('x1', midX);
-        line3.setAttribute('y1', endY);
-        line3.setAttribute('x2', endX);
-        line3.setAttribute('y2', endY);
-        line3.setAttribute('class', `connector-path ${color}`);
-        line3.setAttribute('data-num', num);
-        svg.appendChild(line3);
-
-        // Dot at start
-        const dotStart = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        dotStart.setAttribute('cx', startX);
-        dotStart.setAttribute('cy', startY);
-        dotStart.setAttribute('r', dotRadius);
-        dotStart.setAttribute('class', `connector-path ${color}`);
-        dotStart.setAttribute('data-num', num);
-        svg.appendChild(dotStart);
-
-        // Dot at end
-        const dotEnd = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        dotEnd.setAttribute('cx', endX);
-        dotEnd.setAttribute('cy', endY);
-        dotEnd.setAttribute('r', dotRadius);
-        dotEnd.setAttribute('class', `connector-path ${color}`);
-        dotEnd.setAttribute('data-num', num);
-        svg.appendChild(dotEnd);
-    });
-}
-
-// Initialize Section 2 connectors
-function initSection2Explainer() {
-    if (window.innerWidth > 991) {
-        drawConnectorsSection2();
-        setupSection2Hover();
-    }
-}
-
-function setupSection2Hover() {
-    const annotations = document.querySelectorAll('.section2-annotations .annotation-item');
-    const zones = document.querySelectorAll('.highlight-zone[data-num^="s2-"]');
-
-    annotations.forEach(item => {
-        item.addEventListener('mouseenter', handleSection2HoverStart);
-        item.addEventListener('mouseleave', handleSection2HoverEnd);
-    });
-
-    zones.forEach(zone => {
-        zone.addEventListener('mouseenter', handleSection2HoverStart);
-        zone.addEventListener('mouseleave', handleSection2HoverEnd);
-    });
-}
-
-function handleSection2HoverStart(e) {
-    if (window.innerWidth <= 991) return;
-
-    const num = e.currentTarget.dataset.target || e.currentTarget.dataset.num;
-    if (!num) return;
-
-    const annotation = document.querySelector(`.section2-annotations .annotation-item[data-target="${num}"]`);
-    const zone = document.querySelector(`.highlight-zone[data-num="${num}"]`);
-    const paths = document.querySelectorAll(`#connectorSvgSection2 .connector-path[data-num="${num}"]`);
-
-    // Fade all in section 2
-    document.querySelectorAll('.section2-annotations .annotation-item').forEach(el => el.classList.add('faded'));
-    document.querySelectorAll('.highlight-zone[data-num^="s2-"]').forEach(el => el.classList.add('faded'));
-    document.querySelectorAll('#connectorSvgSection2 .connector-path').forEach(el => el.classList.add('faded'));
-
-    // Highlight active
-    if (annotation) {
-        annotation.classList.remove('faded');
-        annotation.classList.add('highlighted');
-    }
-    if (zone) {
-        zone.classList.remove('faded');
-        zone.classList.add('highlighted');
-    }
-    paths.forEach(path => {
-        path.classList.remove('faded');
-        path.classList.add('highlighted');
-    });
-}
-
-function handleSection2HoverEnd() {
-    if (window.innerWidth <= 991) return;
-
-    document.querySelectorAll('.section2-annotations .annotation-item, .highlight-zone[data-num^="s2-"], #connectorSvgSection2 .connector-path').forEach(el => {
-        el.classList.remove('highlighted', 'faded');
-    });
-}
-
-// Call on page load and resize
-document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(initSection2Explainer, 100);
-});
-
-window.addEventListener('resize', debounce(function() {
-    const svg = document.getElementById('connectorSvgSection2');
-    if (svg) svg.innerHTML = '';
-    
-    document.querySelectorAll('.section2-annotations .annotation-item, .highlight-zone[data-num^="s2-"], #connectorSvgSection2 .connector-path').forEach(el => {
-        el.classList.remove('highlighted', 'faded');
-    });
-    
-    if (window.innerWidth > 991) {
-        drawConnectorsSection2();
-        setupSection2Hover();
-    }
-}, 150));
-
-
-/* =====================================================
-   SECTION 3 EXPLAINER - REVISED TAB CONNECTOR LOGIC
-===================================================== */
-
-// =====================================================
-// DRAW CONNECTORS FOR SECTION 3 (Revised Tab)
-// =====================================================
-function drawConnectorsSection3() {
-    const svg = document.getElementById('connectorSvgSection3');
-    const container = document.getElementById('explainerContainerSection3');
-    if (!svg || !container) return;
-
-    // Ensure SVG is visible and on top
-    svg.style.overflow = 'visible';
-    svg.style.zIndex = '10';
-
-    svg.innerHTML = '';
-    const containerRect = container.getBoundingClientRect();
-
-    // Section 3 connection mapping
-    const connections = {
-        's3-1': { side: 'left', color: 'orange', targets: ['s3-1a', 's3-1b', 's3-1c'] },
-        's3-2': { side: 'left', color: 'red', targets: ['s3-2a', 's3-2b', 's3-2c'] },
-        's3-3': { side: 'right', color: 'green', targets: ['s3-3a', 's3-3b'] },
-        's3-4': { side: 'right', color: 'blue', targets: ['s3-4a', 's3-4b'] },
-        's3-5': { side: 'left', color: 'purple', targets: ['s3-5'] },
-        's3-6': { side: 'right', color: 'pink', targets: ['s3-6'] }
-    };
-
-    Object.entries(connections).forEach(([annotationId, config]) => {
-        const annotation = document.querySelector(`.section3-annotations .annotation-item[data-target="${annotationId}"]`);
-        if (!annotation) return;
-
-        const annotationRect = annotation.getBoundingClientRect();
-        const dotRadius = 4;
-
-        // Calculate annotation start point
-        let annotationX, annotationY;
-        if (config.side === 'left') {
-            annotationX = annotationRect.right - containerRect.left;
-        } else {
-            annotationX = annotationRect.left - containerRect.left;
-        }
-        annotationY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
-
-        // Draw dot at annotation
-        const dotAnnotation = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        dotAnnotation.setAttribute('cx', annotationX);
-        dotAnnotation.setAttribute('cy', annotationY);
-        dotAnnotation.setAttribute('r', dotRadius);
-        dotAnnotation.setAttribute('class', `connector-path ${config.color}`);
-        dotAnnotation.setAttribute('data-num', annotationId);
-        svg.appendChild(dotAnnotation);
-
-        // Draw connectors to each target
-        config.targets.forEach((targetNum, index) => {
-            const zone = document.querySelector(`.highlight-zone[data-num="${targetNum}"]`);
-            if (!zone) return;
-
-            // <FIX> CHECK IF ZONE IS INSIDE COLLAPSED HISTORY
-            // This ensures lines are NOT drawn if the history section is closed
-            const historyContainer = zone.closest('#tabbed-history-section');
-            if (historyContainer && !historyContainer.classList.contains('expanded')) {
-                return; // SKIP drawing this specific line
-            }
-
-            const zoneRect = zone.getBoundingClientRect();
-            // Also skip if the element is hidden via display:none or has no size
-            if (zoneRect.width === 0 || zoneRect.height === 0) return;
-
-            let endX, endY;
-            if (config.side === 'left') {
-                endX = zoneRect.left - containerRect.left;
-            } else {
-                endX = zoneRect.right - containerRect.left;
-            }
-            endY = zoneRect.top + zoneRect.height / 2 - containerRect.top;
-
-            // Calculate midX with offset for multiple connectors
-            const midX = (annotationX + endX) / 2 + (index * 10 - (config.targets.length - 1) * 5);
-
-            // Line 1: Horizontal from annotation
-            const line1 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-            line1.setAttribute('x1', annotationX);
-            line1.setAttribute('y1', annotationY);
-            line1.setAttribute('x2', midX);
-            line1.setAttribute('y2', annotationY);
-            line1.setAttribute('class', `connector-path ${config.color}`);
-            line1.setAttribute('data-num', annotationId);
-            svg.appendChild(line1);
-
-            // Line 2: Vertical
-            const line2 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-            line2.setAttribute('x1', midX);
-            line2.setAttribute('y1', annotationY);
-            line2.setAttribute('x2', midX);
-            line2.setAttribute('y2', endY);
-            line2.setAttribute('class', `connector-path ${config.color}`);
-            line2.setAttribute('data-num', annotationId);
-            svg.appendChild(line2);
-
-            // Line 3: Horizontal to target
-            const line3 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-            line3.setAttribute('x1', midX);
-            line3.setAttribute('y1', endY);
-            line3.setAttribute('x2', endX);
-            line3.setAttribute('y2', endY);
-            line3.setAttribute('class', `connector-path ${config.color}`);
-            line3.setAttribute('data-num', annotationId);
-            svg.appendChild(line3);
-
-            // Dot at target
-            const dotEnd = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-            dotEnd.setAttribute('cx', endX);
-            dotEnd.setAttribute('cy', endY);
-            dotEnd.setAttribute('r', dotRadius);
-            dotEnd.setAttribute('class', `connector-path ${config.color}`);
-            dotEnd.setAttribute('data-num', annotationId);
-            svg.appendChild(dotEnd);
-        });
-    });
-}
-
-// Initialize Section 3 connectors
-function initSection3Explainer() {
-    if (window.innerWidth > 991) {
-        // Only draw if revised tab is active
-        const revisedTab = document.getElementById('revised-tab');
-        if (revisedTab && revisedTab.classList.contains('active')) {
-            setTimeout(() => {
-                drawConnectorsSection3();
-                setupSection3Hover();
-            }, 100);
-        }
-    }
-}
-
-function setupSection3Hover() {
-    const annotations = document.querySelectorAll('.section3-annotations .annotation-item');
-    const zones = document.querySelectorAll('.highlight-zone[data-num^="s3-"]');
-
-    annotations.forEach(item => {
-        item.addEventListener('mouseenter', handleSection3HoverStart);
-        item.addEventListener('mouseleave', handleSection3HoverEnd);
-    });
-
-    zones.forEach(zone => {
-        zone.addEventListener('mouseenter', handleSection3ZoneHoverStart);
-        zone.addEventListener('mouseleave', handleSection3HoverEnd);
-    });
-}
-
-function handleSection3HoverStart(e) {
-    if (window.innerWidth <= 991) return;
-
-    const annotationId = e.currentTarget.dataset.target;
-    if (!annotationId) return;
-
-    // Fade all in section 3
-    document.querySelectorAll('.section3-annotations .annotation-item').forEach(el => el.classList.add('faded'));
-    document.querySelectorAll('.highlight-zone[data-num^="s3-"]').forEach(el => el.classList.add('faded'));
-    document.querySelectorAll('#connectorSvgSection3 .connector-path').forEach(el => el.classList.add('faded'));
-
-    // Highlight the annotation
-    e.currentTarget.classList.remove('faded');
-    e.currentTarget.classList.add('highlighted');
-
-    // Highlight all related zones and connectors
-    const connectionMap = {
-        's3-1': ['s3-1a', 's3-1b', 's3-1c'],
-        's3-2': ['s3-2a', 's3-2b', 's3-2c'],
-        's3-3': ['s3-3a', 's3-3b'],
-        's3-4': ['s3-4a', 's3-4b'],
-        's3-5': ['s3-5'],
-        's3-6': ['s3-6']
-    };
-
-    const targets = connectionMap[annotationId] || [];
-    targets.forEach(targetNum => {
-        const zone = document.querySelector(`.highlight-zone[data-num="${targetNum}"]`);
-        if (zone) {
-            zone.classList.remove('faded');
-            zone.classList.add('highlighted');
-        }
-    });
-
-    // Highlight connectors
-    document.querySelectorAll(`#connectorSvgSection3 .connector-path[data-num="${annotationId}"]`).forEach(path => {
-        path.classList.remove('faded');
-        path.classList.add('highlighted');
-    });
-}
-
-function handleSection3ZoneHoverStart(e) {
-    if (window.innerWidth <= 991) return;
-
-    const zoneNum = e.currentTarget.dataset.num;
-    if (!zoneNum) return;
-
-    // Find which annotation this zone belongs to
-    const reverseMap = {
-        's3-1a': 's3-1', 's3-1b': 's3-1', 's3-1c': 's3-1',
-        's3-2a': 's3-2', 's3-2b': 's3-2', 's3-2c': 's3-2',
-        's3-3a': 's3-3', 's3-3b': 's3-3',
-        's3-4a': 's3-4', 's3-4b': 's3-4',
-        's3-5': 's3-5',
-        's3-6': 's3-6'
-    };
-
-    const annotationId = reverseMap[zoneNum];
-    if (!annotationId) return;
-
-    // Trigger the same hover effect as hovering the annotation
-    const annotation = document.querySelector(`.section3-annotations .annotation-item[data-target="${annotationId}"]`);
-    if (annotation) {
-        handleSection3HoverStart({ currentTarget: annotation });
-    }
-}
-
-function handleSection3HoverEnd() {
-    if (window.innerWidth <= 991) return;
-
-    document.querySelectorAll('.section3-annotations .annotation-item, .highlight-zone[data-num^="s3-"], #connectorSvgSection3 .connector-path').forEach(el => {
-        el.classList.remove('highlighted', 'faded');
-    });
-}
-
-// Call on page load
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize when revised tab becomes active
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            setTimeout(() => {
-                if (btn.dataset.tab === 'revised') {
-                    initSection3Explainer();
-                }
-            }, 100);
-        });
-    });
-});
-
-// Redraw on resize
-window.addEventListener('resize', debounce(function() {
-    const svg = document.getElementById('connectorSvgSection3');
-    if (svg) svg.innerHTML = '';
-    
-    document.querySelectorAll('.section3-annotations .annotation-item, .highlight-zone[data-num^="s3-"], #connectorSvgSection3 .connector-path').forEach(el => {
-        el.classList.remove('highlighted', 'faded');
-    });
-    
-    if (window.innerWidth > 991) {
-        const revisedTab = document.getElementById('revised-tab');
-        if (revisedTab && revisedTab.classList.contains('active')) {
-            drawConnectorsSection3();
-            setupSection3Hover();
-        }
-    }
-}, 150));
-
-// Redraw connectors when history is toggled
-const originalToggleTabbedHistory = window.toggleTabbedHistory;
-window.toggleTabbedHistory = function() {
-    originalToggleTabbedHistory();
-    // Redraw connectors after history animation completes
-    setTimeout(() => {
-        if (window.innerWidth > 991) {
-            drawConnectorsSection3();
-        }
-    }, 350);
-};
-
-
-// =====================================================
-// BACK TO TOP BUTTON WITH SCROLL PROGRESS
-// =====================================================
-function initBackToTop() {
-  const backToTopBtn = document.getElementById("backToTopBtn");
-  const progressCircle = document.querySelector(".progress-ring__circle");
-
-  if (!backToTopBtn || !progressCircle) return;
-
-  // Circle Geometry settings
-  const radius = progressCircle.r.baseVal.value;
-  const circumference = 2 * Math.PI * radius;
-
-  // Initialize the circle
-  progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
-  progressCircle.style.strokeDashoffset = circumference;
-
-  function setProgress(percent) {
-    // Calculate the offset (inverse of percentage)
-    const offset = circumference - (percent / 100) * circumference;
-    progressCircle.style.strokeDashoffset = offset;
-  }
-
-  // Scroll Event Listener
-  window.addEventListener("scroll", () => {
-    // 1. Calculate how much we have scrolled (0 to 1)
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    
-    // Prevent division by zero
-    let scrollPercent = 0;
-    if (docHeight > 0) {
-        scrollPercent = (scrollTop / docHeight) * 100;
-    }
-
-    // 2. Show/Hide button logic
-    if (scrollTop > 200) {
-      backToTopBtn.classList.add("visible");
-    } else {
-      backToTopBtn.classList.remove("visible");
-    }
-
-    // 3. Update the circle progress
-    setProgress(scrollPercent);
-  });
-
-  // Click functionality
-  backToTopBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  });
-}
+    })
+})
