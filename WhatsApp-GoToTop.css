@@ -1,0 +1,140 @@
+/* =========================================
+   1. VARIABLES (Required Colors & Effects)
+   ========================================= */
+:root {
+    --text-primary: #ffffff;
+    --bg-secondary: #12121a;
+    --accent-buy: #10b981; /* Green used for WhatsApp/Success */
+    --shadow: rgba(0, 0, 0, 0.5);
+}
+
+/* =====================================================
+   GO TO TOP BUTTON WITH PROGRESS
+===================================================== */
+.back-to-top-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  /* Glassmorphism background */
+  background: rgba(22, 22, 31, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none; /* No default border, the SVG acts as the border */
+  cursor: pointer;
+  z-index: 9999;
+  
+  /* Initial State: Hidden */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.back-to-top-btn i {
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+  z-index: 2; /* Ensure icon is above the background */
+}
+
+/* SVG Progress Ring Positioning */
+.progress-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(-90deg); /* Start from top */
+  pointer-events: none; /* Let clicks pass through to button */
+}
+
+.progress-ring__circle {
+  transition: stroke-dashoffset 0.1s linear; /* Smooth filling */
+  stroke-linecap: round; /* Rounded ends for the line */
+  
+  /* Math: Circumference = 2 * pi * r 
+     r = 23, so C ≈ 144.5 
+  */
+  stroke-dasharray: 144.5; 
+  stroke-dashoffset: 144.5; /* Start completely empty */
+}
+
+/* Visible State (Toggled by JS) */
+.back-to-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Hover Effects */
+.back-to-top-btn:hover {
+  transform: translateY(-5px);
+  background: rgba(22, 22, 31, 0.9);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+}
+
+.back-to-top-btn:hover i {
+  transform: translateY(-3px);
+  color: #fff;
+}
+
+/* =====================================================
+   WHATSAPP FLOATING BUTTON
+===================================================== */
+.whatsapp-float-btn {
+  position: fixed;
+  bottom: 95px; /* Positioned above the Back-to-Top button */
+  right: 30px;   /* Aligned with the Back-to-Top button */
+  width: 50px;
+  height: 50px;
+  background: #25D366; /* WhatsApp Green */
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+  z-index: 9999;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  animation: pulse-green 2s infinite;
+}
+
+.whatsapp-float-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+  color: white;
+}
+
+/* Define the Pulse Animation (Referenced in WhatsApp button) */
+@keyframes pulse-green {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+    transform: scale(1.05);
+  }
+}
+
+/* =====================================================
+   RESPONSIVE ADJUSTMENTS (Mobile)
+===================================================== */
+@media (max-width: 576px) {
+  /* Move both buttons slightly for smaller screens */
+  .back-to-top-btn {
+    right: 20px;
+    bottom: 20px;
+  }
+  
+  .whatsapp-float-btn {
+    right: 20px;
+    bottom: 80px; /* 20px bottom + 50px height + 10px gap */
+  }
+}

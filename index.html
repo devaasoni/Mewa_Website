@@ -3,33 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Mewa - Smart Stock Recommendations</title>
+    <title>The Mewa - SEBI Registered Research Analyst</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- <link href="styles.css" rel="stylesheet"> -->
+    <link href="navbar.css" rel="stylesheet">
+    <link href="WhatsApp-GoToTop.css" rel="stylesheet">
+    <link href="footer.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link href="styles.css" rel="stylesheet">
+    <link href="home.css" rel="stylesheet">
+    <link href="contact-us.css" rel="stylesheet">
 </head>
 <body>
 
     <!-- Navbar -->
     <nav class="navbar-custom">
         <div class="container">
-            <div class="navbar-wrapper">
-                <!-- Logo -->
+            <div class="navbar-wrapper d-flex justify-content-between align-items-center">
                 <a href="index.html" class="navbar-brand">
-                    <img src="images/WhiteLogo.png" alt="Logo">
+                    <span class="logo-wrapper">
+                        <img src="images/WhiteLogo.png" alt="Logo">
+                    </span>
                     The Mewa
                 </a>
     
-                <!-- Navigation Links (Desktop) -->
-                <div class="nav-links-desktop">
-                    <!-- About MEWA Dropdown -->
+                <div class="nav-links-desktop d-none d-lg-flex align-items-center gap-4">
                     <div class="nav-dropdown">
                         <a href="about-mewa.html" class="nav-link-custom">
-                            About MEWA
-                            <i class="bi bi-chevron-down"></i>
+                            About MEWA <i class="bi bi-chevron-down"></i>
                         </a>
                         <div class="dropdown-menu-custom">
                             <a href="about-mewa.html#who-we-are" class="dropdown-item-custom">Who We Are</a>
@@ -40,37 +46,20 @@
                         </div>
                     </div>
     
-                    <!-- Our App Dropdown -->
                     <div class="nav-dropdown">
                         <a href="our-app.html" class="nav-link-custom">
                             Our App
-                            <!-- <i class="bi bi-chevron-down"></i> -->
                         </a>
-                        <!-- <div class="dropdown-menu-custom">
-                            <a href="#active" class="dropdown-item-custom">Active</a>
-                            <a href="#revised" class="dropdown-item-custom">Revised</a>
-                            <a href="#demo" class="dropdown-item-custom">Short Demo</a>
-                        </div> -->
                     </div>
     
-                    <!-- Price -->
                     <a href="pricing.html" class="nav-link-custom">Price</a>
-    
-                    <!-- Refer & Earn -->
                     <a href="refer&earn.html" class="nav-link-custom">Refer & Earn</a>
-
-                    <!-- Social Responsibility -->
                     <a href="social-responsibility.html" class="nav-link-custom">Social Responsibility</a>
                 </div>
-
-                <!-- Right Side Actions -->
-                <div class="navbar-actions">
-                    <button class="theme-toggle" id="themeToggle" style="display: none;">
-                        <i class="bi bi-sun-fill"></i>
-                    </button>
-                    <!-- Login Button -->
-                    <a href="#login" class="btn-gradient btn-login">Login</a>
-                    <!-- Mobile Menu Toggle -->
+    
+                <div class="navbar-actions d-flex align-items-center gap-3">
+                    <a href="#login" class="btn-gradient btn-login d-none d-sm-inline-block">Login</a>
+    
                     <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation">
                         <span class="hamburger-line"></span>
                         <span class="hamburger-line"></span>
@@ -78,15 +67,12 @@
                     </button>
                 </div>
             </div>
-
-            <!-- Mobile Navigation Menu -->
+    
             <div class="mobile-nav-menu" id="mobileNavMenu">
                 <div class="mobile-nav-content">
-                    <!-- About MEWA -->
-                    <div class="mobile-nav-dropdown">
-                        <button class="mobile-nav-link mobile-dropdown-toggle">
-                            About MEWA
-                            <i class="bi bi-chevron-down"></i>
+                    <div class="mobile-nav-dropdown w-100">
+                        <button class="mobile-nav-link mobile-dropdown-toggle bg-transparent border-0">
+                            About MEWA <i class="bi bi-chevron-down"></i>
                         </button>
                         <div class="mobile-dropdown-menu">
                             <a href="about-mewa.html#who-we-are" class="mobile-dropdown-item">Who We Are</a>
@@ -96,23 +82,12 @@
                             <a href="about-mewa.html#faq" class="mobile-dropdown-item">FAQs</a>
                         </div>
                     </div>
-
-                    <!-- Our App -->
-                    <div class="mobile-nav-dropdown">
-                        <button class="mobile-nav-link mobile-dropdown-toggle">
-                            Our App
-                            <i class="bi bi-chevron-down"></i>
-                        </button>
-                        <div class="mobile-dropdown-menu">
-                            <a href="#active" class="mobile-dropdown-item">Active</a>
-                            <a href="#revised" class="mobile-dropdown-item">Revised</a>
-                            <a href="#demo" class="mobile-dropdown-item">Short Demo</a>
-                        </div>
-                    </div>
-
+    
+                    <a href="our-app.html" class="mobile-nav-link">Our App</a>
                     <a href="pricing.html" class="mobile-nav-link">Price</a>
                     <a href="refer&earn.html" class="mobile-nav-link">Refer & Earn</a>
                     <a href="social-responsibility.html" class="mobile-nav-link">Social Responsibility</a>
+    
                     <a href="#login" class="btn-gradient mobile-login-btn">Login</a>
                 </div>
             </div>
@@ -121,54 +96,41 @@
 
     <!-- Hero Section -->
     <section class="hero-section">
-        <!-- Background Elements -->
-        <!-- <div class="hero-orb hero-orb-1"></div>
-        <div class="hero-orb hero-orb-2"></div>
-        <div class="hero-orb hero-orb-3"></div>
-        <div class="hero-grid"></div> -->
-    
-        <!-- Animated Lines SVG -->
-        <!-- <div class="animated-lines">
-            <svg viewBox="0 0 1000 600" preserveAspectRatio="none">
-                <defs>
-                    <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" style="stop-color:#f59e0b" />
-                        <stop offset="50%" style="stop-color:#ec4899" />
-                        <stop offset="100%" style="stop-color:#8b5cf6" />
-                    </linearGradient>
-                </defs>
-                <path d="M0,300 Q250,100 500,300 T1000,300" />
-                <path d="M0,400 Q250,200 500,400 T1000,400" style="animation-delay: 0.5s" />
-                <path d="M0,200 Q250,400 500,200 T1000,200" style="animation-delay: 1s" />
-            </svg>
-        </div> -->
-    
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="hero-content">
-                        <div class="hero-badge">
+                        <!-- <div class="hero-badge">
                             <span class="hero-badge-dot"></span>
                             SEBI Registered Research Analyst
-                        </div>
+                        </div> -->
+                        <a href="https://www.sebi.gov.in/" target="_blank" rel="noopener noreferrer" class="hero-badge" style="text-decoration: none;">
+                            <span class="hero-badge-dot"></span>
+                            SEBI Registered Research Analyst
+                        </a>
                         <h1 class="hero-title">
-                            <p style="color: var(--color-gold); font-size: 1.7rem; margin-bottom: 0.3rem;">We'll Provide You<br></p>
-                            <p style="font-size: 2.5rem; margin-bottom: 0.3rem">Buy & Sell Alerts</p>
-                            <p style="font-size: 2.5rem; margin-bottom: 0.3rem">With</p>
-                            <p style="font-size: 2.5rem; margin-bottom: 1.5rem">Target & Stop Loss</p>                            
-                            <p style="font-size: 2.5rem; margin-bottom: 0.3rem">Track every</p>
-                            <p style="font-size: 2.6rem; margin-bottom: 0.3rem">
-                                <span class="gradient-text">
-                                    Active
-                                </span>
-                                Recommendation <br>
-                                <span class="gradient-text">
-                                    Revised
-                                </span>
-                                Recommendation
-                            </p>
-                            <p style="font-size: 2.5rem;">In our App / Website</p>
+                            <span class="gold-label">We'll Provide You</span>
+                            Buy & Sell Alerts<br>
+                            <span class="sub-headline">With Target & Stop Loss</span>
                         </h1>
+                        <div class="hero-split-section fade-up">
+                            <p class="section-label">TRACK EVERY</p>
+                            <div class="split-container">
+                                <div class="split-item">
+                                    <span class="split-value gradient-text">Active</span>
+                                    <span class="split-desc">Recommendation</span>
+                                </div>
+                                <div class="split-divider"></div>
+                                <div class="split-item">
+                                    <span class="split-value gradient-text">Revised</span>
+                                    <span class="split-desc">Recommendation</span>
+                                </div>
+                            </div>
+                            <p class="section-footer">
+                                In our App / Website
+                            </p>
+                        </div>
+    
                         <div class="hero-buttons">
                             <a href="index.html" class="btn-gradient">
                                 Join Now
@@ -200,19 +162,19 @@
                                 </div>
                             </div>
                             <!-- <div class="floating-feature floating-feature-3 right">
-                                <div class="feature-icon-box pink"><i class="bi bi-bell-fill"></i></div>
-                                <div>
-                                    <div class="floating-feature-text">Instant Alerts</div>
-                                    <div class="floating-feature-sub">Never miss a trade</div>
-                                </div>
-                            </div> -->
+                                            <div class="feature-icon-box pink"><i class="bi bi-bell-fill"></i></div>
+                                            <div>
+                                                <div class="floating-feature-text">Instant Alerts</div>
+                                                <div class="floating-feature-sub">Never miss a trade</div>
+                                            </div>
+                                        </div> -->
                             <!-- <div class="floating-feature floating-feature-4 left">
-                                <div class="feature-icon-box blue"><i class="bi bi-shield-check"></i></div>
-                                <div>
-                                    <div class="floating-feature-text">SEBI Registered</div>
-                                    <div class="floating-feature-sub">100% compliant</div>
-                                </div>
-                            </div> -->
+                                            <div class="feature-icon-box blue"><i class="bi bi-shield-check"></i></div>
+                                            <div>
+                                                <div class="floating-feature-text">SEBI Registered</div>
+                                                <div class="floating-feature-sub">100% compliant</div>
+                                            </div>
+                                        </div> -->
     
                             <img src="images/dark-light4.png" alt="App Interface" class="hero-static-img">
     
@@ -224,23 +186,29 @@
     </section>
 
     <!-- Marquee -->
-    <section class="py-2" style="background:whitesmoke;">
+    <section class="py-2" style="background:var(--bg-secondary);">
         <div class="marquee-container">
             <div class="marquee-content">
-                <div class="trust-item"><b>"THE MEWA"</b> A product of “Equamatrix Advisors Pvt Ltd” * SEBI Reg No: INH0000XXXXX
+                <div class="trust-item"><b>"THE MEWA"</b> A product of “Equamatrix Advisors Pvt Ltd” * SEBI Reg. No: INH0000XXXXX
                 </div>
-                <div class="trust-item"><b>"THE MEWA"</b> A product of “Equamatrix Advisors Pvt Ltd” * SEBI Reg No: INH0000XXXXX
+                <div class="trust-item"><b>"THE MEWA"</b> A product of “Equamatrix Advisors Pvt Ltd” * SEBI Reg. No: INH0000XXXXX
+                </div>
+                <div class="trust-item"><b>"THE MEWA"</b> A product of “Equamatrix Advisors Pvt Ltd” * SEBI Reg. No: INH0000XXXXX
+                </div>
+                <div class="trust-item"><b>"THE MEWA"</b> A product of “Equamatrix Advisors Pvt Ltd” * SEBI Reg. No: INH0000XXXXX
+                </div>
+                <div class="trust-item"><b>"THE MEWA"</b> A product of “Equamatrix Advisors Pvt Ltd” * SEBI Reg. No: INH0000XXXXX
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Our Services/Products Section-->
-    <section id="services" class="services-section">
+    <section class="services-section" id="services">
         <div class="container">
             <!-- Section Header -->
             <div class="services-header">
-                <div class="section-badge">OUR SERVICES</div>
+                <div class="section-badge"><img width="30" height="30" src="https://img.icons8.com/ios/50/service--v1.png" alt="service--v1"/>Our Services</div>
                 <h2 class="section-title">Get Recommendations Across <span class="gradient-text">Multiple Segments</span>
                 </h2>                
             </div>
@@ -328,7 +296,7 @@
                                         </div>
                                         <h3 class="service-name">Options Trading</h3>
                                     </div>
-                                    <p class="service-description">Strategic options calls for Index Options & Stocks Options with  entry and exit points.</p>
+                                    <p class="service-description">Strategic options calls for Index Options & Stocks Options<br>with entry and exit points.</p>
                                     <div class="service-features">
                                         <div class="service-feature-item">
                                             <div class="feature-icon">
@@ -411,7 +379,7 @@
                                             </div>
                                             <div class="feature-content">
                                                 <div class="service-feature-title">Recommendation Management</div>
-                                                <div class="service-feature-desc">Get clear Entry, Target, and Stop Loss</div>
+                                                <div class="service-feature-desc">Get clear Entry Zone, Target and Stop Loss</div>
                                             </div>
                                         </div>
                                     </div>
@@ -429,7 +397,7 @@
     <section class="benefits-section">
         <div class="container">
             <div class="section-header text-center fade-up">
-                <div class="section-badge"><i class="bi bi-stars"></i> BENEFITS</div>
+                <div class="section-badge"><i class="bi bi-stars"></i>Benefits</div>
                 <h2 class="section-title">Made to make your experience <span class="gradient-text">smoother & hassle-free</span></h2>
             </div>
     
@@ -569,7 +537,7 @@
     <section class="how-section" id="how-it-works">
         <div class="container">
             <div class="section-header">
-                <div class="section-badge"><i class="bi bi-question-circle"></i> Get Started</div>
+                <div class="section-badge"><i class="bi bi-rocket-takeoff"></i>Get Started</div>
                 <h2 class="section-title">Start Getting Recommendations in <span class="gradient-text">3 Simple Steps</span>
                 </h2>
             </div>
@@ -593,57 +561,7 @@
                     <div class="step-number-large">03</div>
                     <div class="step-content">
                         <h3>Receive Expert Recommendations</h3>
-                        <p>Get notified instantly when our research team publishes a new stock pick. Each recommendation
-                            includes entry price, target, and stop loss.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Profit Calculator Section -->
-    <section class="calculator-section" style="display: none;">
-        <div class="container">
-            <div class="calc-container">
-                <div class="calc-visual fade-up">
-                    <div class="calc-card">
-                        <div class="calc-header">
-                            <h3>Profit Calculator</h3>
-                            <p>See your potential returns</p>
-                        </div>
-                        <div class="calc-input-group">
-                            <label>Investment Amount (₹)</label>
-                            <input type="number" class="calc-input" id="investmentAmount" value="100000" min="10000"
-                                step="10000">
-                        </div>
-                        <div class="calc-input-group">
-                            <label>Investment Period: <span id="monthsDisplay">12 months</span></label>
-                            <input type="range" class="calc-slider" id="investmentMonths" min="3" max="24" value="12">
-                        </div>
-                        <div class="calc-result">
-                            <div class="calc-result-label">Estimated Profit</div>
-                            <div class="calc-result-value" id="calcResultValue">₹79,586</div>
-                            <div class="calc-result-sub" id="calcResultSub">79.6% total return</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="calc-info fade-up">
-                    <h2 class="calc-info-title">Calculate Your <span class="gradient-text">Potential Returns</span></h2>
-                    <p class="calc-info-desc">Based on our historical performance of ~5% average monthly returns, see how
-                        your investment could grow over time. Past performance doesn't guarantee future results.</p>
-                    <div class="calc-features">
-                        <div class="calc-feature">
-                            <div class="calc-feature-icon"><i class="bi bi-shield-check"></i></div>
-                            <span class="calc-feature-text">Risk-managed recommendations</span>
-                        </div>
-                        <div class="calc-feature">
-                            <div class="calc-feature-icon"><i class="bi bi-graph-up-arrow"></i></div>
-                            <span class="calc-feature-text">Consistent monthly returns</span>
-                        </div>
-                        <div class="calc-feature">
-                            <div class="calc-feature-icon"><i class="bi bi-cash-stack"></i></div>
-                            <span class="calc-feature-text">Compound your profits</span>
-                        </div>
+                        <p>Get notified instantly when our research team publishes a new stock pick. Each recommendation includes entry zone, target and stop loss.</p>
                     </div>
                 </div>
             </div>
@@ -894,7 +812,7 @@
                 </div>
     
                 <!-- Contact & App Downloads -->
-                <div class="footer-column subscribe-column">
+                <div class="footer-column">
                     <h3 class="footer-heading">Contact Us</h3>
     
                     <div class="contact-info-footer">
@@ -916,12 +834,10 @@
                         <h4 class="download-heading">Download Our App</h4>
                         <div class="store-badges">
                             <a href="#" class="store-badge-link">
-                                <img src="images/google-play.png" alt="Get it on Google Play"
-                                    style="height: 45px; width: auto;">
+                                <img src="images/google-play.png" alt="Get it on Google Play">
                             </a>
                             <a href="#" class="store-badge-link">
-                                <img src="images/app-store.png" alt="Download on the App Store"
-                                    style="height: 45px; width: auto;">
+                                <img src="images/app-store.png" alt="Download on the App Store">
                             </a>
                         </div>
                     </div>
@@ -983,6 +899,14 @@
             </svg>
         </div>
     </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/919876543210?text=Hello%20The%20Mewa,%20I%20am%20interested%20in%20your%20services." 
+       class="whatsapp-float-btn" 
+       target="_blank" 
+       aria-label="Chat on WhatsApp">
+        <i class="bi bi-whatsapp"></i>
+    </a>
 
     <!-- Back-to-top Functionality -->
     <button id="backToTopBtn" class="back-to-top-btn" aria-label="Back to Top">

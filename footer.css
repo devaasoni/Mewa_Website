@@ -1,0 +1,431 @@
+/* =====================================================
+   FOOTER STYLES
+===================================================== */
+
+/* 1. Main Footer Container */
+.footer-market {
+    position: relative;
+    background: linear-gradient(180deg, #0a0a0a, #1a1a1a);
+    color: white;
+    font-family: "Inter", sans-serif;
+    overflow: hidden;
+}
+
+/* Background Pattern */
+.footer-grid-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(rgba(0, 200, 83, 0.05) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(0, 200, 83, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* Custom Container for Footer */
+.footer-market .container-custom {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* 2. Main Grid Layout */
+.footer-main {
+    display: grid;
+    /* Brand | About | App | Links | Contact */
+    grid-template-columns: 2fr 0.8fr 0.8fr 0.8fr 1.5fr; 
+    gap: 2.5rem;
+    padding: 4rem 0 2.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 3. Brand Column (Logo & Socials) */
+.brand-column {
+    max-width: 100%;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.footer-brand-logo {
+    width: 70px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.footer-brand-name {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.footer-tagline {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 2rem;
+}
+
+/* SEBI Badge */
+.sebi-footer-badge {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    padding: 0.75rem 1rem;
+    width: fit-content;
+}
+
+.sebi-seal {
+    width: 48px;
+    height: 48px;
+    background: white;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+}
+
+.sebi-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.sebi-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.sebi-reg {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #00c853; /* Bull Green */
+}
+
+/* Social Icons */
+.social-links-footer {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.social-link:hover {
+    background: #00c853;
+    transform: translateY(-4px);
+    color: white;
+}
+
+/* 4. Link Columns */
+.footer-heading {
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin-bottom: 1.25rem;
+    color: white;
+}
+
+.footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-left: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    list-style: none;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.footer-links a:hover {
+    color: #00c853;
+    transform: translateX(4px);
+}
+
+/* 5. Contact & Download Column */
+.contact-info-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.contact-item-footer {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+.contact-item-footer i {
+    color: #8b5cf6; /* Gradient Purple */
+    font-size: 1rem;
+}
+
+.download-heading {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.store-badges {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.store-badge-link img {
+    height: 40px;
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+.store-badge-link:hover img {
+    transform: translateY(-2px);
+}
+
+/* 6. Disclaimer Section */
+.footer-disclaimer {
+    display: flex;
+    gap: 1.25rem;
+    padding: 1.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.disclaimer-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 152, 0, 0.2); /* Gold alpha */
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ff9800;
+    font-size: 1.5rem;
+}
+
+.disclaimer-content {
+    flex: 1;
+}
+
+.disclaimer-title {
+    font-size: 1rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: #ff9800;
+}
+
+.disclaimer-text {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* 7. Footer Bottom */
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 1;
+}
+
+.footer-bottom-left p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+}
+
+.footer-bottom-left p a {
+    color: #8b5cf6;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer-bottom-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footer-bottom-right a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
+}
+
+.footer-bottom-right a:hover {
+    color: #00c853;
+}
+
+.separator {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Chart Decoration (Bottom Right) */
+.footer-chart-decoration {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* =====================================================
+   RESPONSIVE MEDIA QUERIES
+===================================================== */
+
+/* Tablet Layout (Landscape & Portrait) - 991px and below */
+@media (max-width: 991px) {
+    .footer-main {
+        /* Switch to 2 columns grid */
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem; 
+        text-align: left;
+    }
+
+    /* Make Brand column span full width on Tablet */
+    .brand-column {
+        grid-column: 1 / -1; 
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Center align the specific elements inside Brand Column */
+    .footer-tagline {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .sebi-footer-badge {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .social-links-footer {
+        justify-content: center;
+    }
+
+    /* Adjust Disclaimer for Tablet */
+    .footer-disclaimer {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+    
+    .disclaimer-content {
+        text-align: center;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .footer-bottom-right {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+/* Mobile Layout - 576px and below */
+@media (max-width: 576px) {
+    .footer-main {
+        /* Single column for mobile */
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        text-align: center;
+    }
+
+    .brand-column {
+        grid-column: span 1;
+    }
+
+    .footer-heading {
+        font-size: 1.2rem;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        padding-bottom: 0.5rem;
+        display: inline-block;
+        margin-bottom: 1rem;
+    }
+
+    .contact-item-footer {
+        justify-content: center;
+    }
+
+    .store-badges {
+        justify-content: center;
+    }
+
+    /* Stack Footer Bottom links vertically on very small screens */
+    .footer-bottom-right {
+        gap: 0.5rem;
+    }
+    .separator {
+        display: none;
+    }
+    .footer-bottom-right a {
+        display: block;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+}

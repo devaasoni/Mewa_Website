@@ -1,0 +1,437 @@
+/* =========================================
+   1. CSS VARIABLES (Theme Colors)
+   ========================================= */
+:root {
+    --bg-primary: #0a0a0f;
+    --bg-secondary: #12121a;
+    --bg-card: #16161f;
+    --bg-tertiary: #1a1a24;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0b0;
+    --text-muted: #6b6b7b;
+    --border-color: rgba(255, 255, 255, 0.08);
+
+    /* Brand Gradients */
+    --gradient-1: #f59e0b;
+    --gradient-2: #ec4899;
+    --gradient-3: #8b5cf6;
+    --gradient-4: #3b82f6;
+
+    /* Functional Colors */
+    --accent-buy: #10b981;
+    --accent-sell: #f87171;
+}
+
+/* =========================================
+   2. SECTION & HEADER LAYOUT
+   ========================================= */
+.pricing-section {
+    padding: 100px 0 0;
+    background: #f3f3f5;
+    position: relative;
+    overflow: hidden;
+    font-family: "Inter", sans-serif;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.pricing-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+/* Section Badge (Pill) */
+.section-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    border: 5px solid transparent;
+    background:
+        linear-gradient(#ffffff, #ffffff) padding-box,
+        linear-gradient(135deg, var(--gradient-1), var(--gradient-2), var(--gradient-3)) border-box;
+    color: #28282B;
+    backdrop-filter: blur(10px);
+}
+
+.pricing-title {
+    font-size: 2.75rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+    color: #1a1a2e;
+    margin-top: 0;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: #5a5a6e;
+}
+
+/* =========================================
+   3. TABS NAVIGATION (From home.css)
+   ========================================= */
+.service-tabs-nav {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+}
+
+.service-tab-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 12px 28px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #5a5a6e;
+    transition: all 0.3s ease;    
+}
+
+.service-tab-btn:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.service-tab-btn.active {
+    background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 4px 20px rgba(236, 72, 153, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Tab Content Visibility Logic */
+.service-tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.service-tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================
+   4. PRICING CARDS GRID
+   ========================================= */
+.pricing-cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    max-width: 1050px;
+    margin: 0 auto;
+}
+
+.pricing-card {
+    background: var(--bg-secondary);
+    border-radius: 20px;
+    padding: 1.5rem;
+    position: relative;
+    border: 1px solid var(--border-color);
+    transition: all 0.4s ease;
+    overflow: hidden;
+    /* Ensure content is above backgrounds */
+    z-index: 1;
+}
+
+/* Gradient Top Border Effect */
+.pricing-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2), var(--gradient-3), var(--gradient-4));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+/* Hover Effects */
+.pricing-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(139, 92, 246, 0.5);
+    border-color: rgba(139, 92, 246, 0.5);
+}
+
+.pricing-card:hover::before {
+    opacity: 1;
+}
+
+/* =========================================
+   5. CARD INTERNAL ELEMENTS
+   ========================================= */
+
+/* Icon */
+.pricing-icon {
+    width: 50px;
+    height: 50px;
+    margin: 1rem auto;
+    background: linear-gradient(135deg, var(--gradient-2), var(--gradient-3));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+}
+
+/* Plan Name */
+.pricing-plan-name {
+    font-size: 1.25rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    position: relative;
+}
+
+/* Divider */
+.pricing-divider {
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2));
+    margin: 0 auto 1.5rem;
+    border-radius: 2px;
+}
+
+/* Price Section */
+.pricing-original {
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.pricing-original-price {
+    font-size: 1rem;
+    color: var(--text-muted);
+    text-decoration: line-through;
+    margin-right: 8px;
+}
+
+.pricing-save-badge {
+    color: var(--accent-buy);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.pricing-current {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.pricing-rupee {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.pricing-amount {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+.pricing-card:hover .pricing-amount {
+    color: var(--gradient-2);
+}
+
+.pricing-period {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+/* Daily Cost Badge */
+.pricing-daily {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.pricing-daily-badge {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.pricing-daily-badge span {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+/* Info Text */
+.pricing-info {
+    text-align: center;
+    padding: 0.75rem 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1rem;
+}
+
+.pricing-info p {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* CTA Button */
+.pricing-cta {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.pricing-cta.primary {
+    background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+    color: white;
+    box-shadow: 0 4px 20px rgba(236, 72, 153, 0.3);
+}
+
+.pricing-cta.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(236, 72, 153, 0.4);
+}
+
+/* =========================================
+   6. POPULAR CARD VARIANT
+   ========================================= */
+.pricing-card.popular {
+    border-color: rgba(139, 92, 246, 0.4);
+    transform: scale(1.03);
+}
+
+.pricing-card.popular:hover {
+    transform: translateY(-12px) scale(1.05);
+}
+
+.pricing-card.popular::before {
+    opacity: 1;
+    /* Always show top border on popular */
+}
+
+.popular-badge {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--gradient-2), var(--gradient-3));
+    color: white;
+    padding: 0.35rem 1rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 0 0 10px 10px;
+    letter-spacing: 0.5px;
+    z-index: 2;
+}
+
+.pricing-card.popular .pricing-icon {
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+    box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+}
+
+/* =========================================
+   7. ANIMATIONS (Fade Up)
+   ========================================= */
+.fade-up {
+    animation: fadeUpAnim 0.8s ease forwards;
+}
+
+@keyframes fadeUpAnim {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================
+   8. RESPONSIVE DESIGN
+   ========================================= */
+
+/* Tablet & Smaller Desktop */
+@media (max-width: 992px) {
+    .pricing-cards-container {
+        grid-template-columns: 1fr;
+        /* Stack cards vertically */
+        max-width: 400px;
+    }
+
+    .pricing-card.popular {
+        transform: scale(1);
+        margin: 1.5rem 0;
+    }
+
+    .pricing-card.popular:hover {
+        transform: translateY(-10px) scale(1.02);
+    }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+    .pricing-section {
+        padding: 60px 0;
+    }
+
+    .pricing-title {
+        font-size: 2rem;
+    }
+
+    .service-tabs-nav {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .service-tab-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
