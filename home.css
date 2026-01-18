@@ -37,7 +37,7 @@
     }
 }
 
-@keyframes floatBadge {
+/* @keyframes floatBadge {
 
     0%,
     100% {
@@ -46,6 +46,17 @@
 
     50% {
         transform: translateY(-12px);
+    }
+} */
+
+@keyframes moveLeftRight {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(12px); /* Moves 12px to the Right */
     }
 }
 
@@ -61,6 +72,11 @@
     100% {
         background-position: 0% 50%;
     }
+}
+
+/* 3. Body font */
+body {
+  font-family: "Inter", sans-serif;
 }
 
 /* =====================================================
@@ -165,12 +181,13 @@ a.hero-badge:hover {
 .hero-split-section {
     width: 100%;
     max-width: 800px;
+    font-family: 'Oswald', sans-serif; /* ADD THIS LINE */
 }
 
 .section-label {
     font-size: 1.6rem;
-    font-weight: 900;
-    letter-spacing: 4px;
+    font-weight: 700; /* Adjusted for Oswald */
+    letter-spacing: 2px; /* Slightly reduced spacing looks better on Oswald */
     color: #ffffff;
     text-transform: uppercase;
     opacity: 0.9;
@@ -198,18 +215,22 @@ a.hero-badge:hover {
 }
 
 .split-value {
-    font-size: 3.5rem;
-    font-weight: 900;
-    line-height: 1;
-    margin-bottom: 8px;
-    letter-spacing: 2px;
+    font-size: 4rem; /* Increased size (Oswald is narrower, so we can go bigger) */
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+    text-transform: uppercase; /* Ensure it stays capitalized */
     filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.1));
 }
 
 .split-desc {
-    font-size: 1.8rem;
-    color: #ffffff;
-    font-weight: 700;
+    font-family: 'Inter', sans-serif; /* Keep the small text as Inter for readability */
+    font-size: 1.2rem; /* Adjusted size */
+    color: #a0a0b0; /* Lighter color for better contrast */
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .section-footer {
@@ -302,15 +323,14 @@ a.hero-badge:hover {
 
 .hero-static-img {
     width: 100%;
-    max-width: 350px;
+    max-width: 300px;
     height: auto;
     display: block;
     filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.4));
-    transform: rotateY(-5deg);
     transition: transform 0.5s ease;
 }
 
-.phone-3d-wrapper:hover .hero-static-img {
+.hero-static-img:hover {
     transform: rotateY(0deg) scale(1.02);
 }
 
@@ -325,7 +345,8 @@ a.hero-badge:hover {
     padding: 12px 18px;
     border-radius: 14px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-    animation: floatBadge 4s ease-in-out infinite;
+    /* animation: floatBadge 4s ease-in-out infinite; */
+    animation: moveLeftRight 3s ease-in-out infinite;
     z-index: 5;
 }
 
@@ -343,8 +364,8 @@ a.hero-badge:hover {
 }
 
 .floating-feature-2 {
-    top: 25%;
-    right: 40px;
+    top: 23%;
+    right: 35px;
     animation-delay: 1s;
 }
 
@@ -403,20 +424,52 @@ a.hero-badge:hover {
 
 /* RESPONSIVE MEDIA QUERIES (HERO) */
 @media (max-width: 1199px) {
+    
     .hero-title {
-        font-size: 3rem;
+        font-size: 2.5rem; /* Was 3rem */
     }
 
     .hero-static-img {
-        max-width: 350px;
+        max-width: 280px; /* Reduced from 350px to prevent overlap */
+    }
+
+    .split-value {
+        font-size: 3.3rem; /* Reduced from 3.5rem */
+    }
+
+    .split-desc {
+        font-size: 1.4rem; /* Reduced from 1.8rem */
+    }
+
+    .section-footer {
+        font-size: 1.4rem; /* Reduced from 2rem */
+    }
+
+    .split-container {
+        gap: 1.5rem;
+    }
+
+    .hero-buttons {
+        flex-wrap: nowrap;
+        margin-top: 0.5rem;
+    }
+
+    .btn-gradient{
+        padding: 1rem;
+    }
+
+    .btn-outline-custom{
+        padding: 1rem;
     }
 
     .floating-feature.left {
-        left: -20px;
+        top: 12%;
+        left: -85px;
     }
 
     .floating-feature.right {
-        right: -20px;
+        top: 22%;
+        right: -40px;
     }
 }
 
@@ -468,13 +521,13 @@ a.hero-badge:hover {
     }
 
     .floating-feature-1 {
-        top: 10%;
-        left: -10px;
+        top: 12%;
+        left: 45px !important;
     }
 
     .floating-feature-2 {
-        top: 20%;
-        right: -10px;
+        top: 22%;
+        right: 55px !important;
     }
 }
 
@@ -522,6 +575,10 @@ a.hero-badge:hover {
     .btn-outline-custom {
         width: 100%;
         justify-content: center;
+    }
+
+    .floating-feature {
+        display: none;
     }
 
     .hero-static-img {
@@ -650,7 +707,7 @@ a.hero-badge:hover {
     align-items: center;
     justify-content: center;
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     padding: 12px 28px;
     border-radius: 50px;
     cursor: pointer;
@@ -662,7 +719,7 @@ a.hero-badge:hover {
 }
 
 .service-tab-btn:hover {
-    color: var(--text-primary);
+    color: black;
     background: rgba(255, 255, 255, 0.05);
     border-color: rgba(255, 255, 255, 0.2);
 }

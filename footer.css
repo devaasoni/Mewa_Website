@@ -11,6 +11,31 @@
     overflow: hidden;
 }
 
+.footer-market::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    /* Size can be as big as you want now without blur */
+    width: 80%;
+    height: 60%;
+    
+    /* Point to the new SVG file */
+    background-image: url('images/WhiteLogo.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    
+    /* Opacity: 0.03 = 3% visible (Very subtle watermark) */
+    /* Change to 0.05 or 0.10 if you want it darker */
+    opacity: 0.03; 
+    
+    z-index: 0;
+    pointer-events: none;
+}
+
 /* Background Pattern */
 .footer-grid-bg {
     position: absolute;
@@ -82,7 +107,7 @@
 }
 
 /* SEBI Badge */
-.sebi-footer-badge {
+/* .sebi-footer-badge {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -119,7 +144,60 @@
 .sebi-reg {
     font-size: 1.1rem;
     font-weight: 800;
-    color: #00c853; /* Bull Green */
+    color: #00c853;
+} */
+
+
+/* =========================================
+   CREDENTIAL CARD STYLES (Boxed Design)
+   ========================================= */
+.sebi-credential-card {
+    /* The Box Look */
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Subtle grey border */
+    background: rgba(255, 255, 255, 0.03); /* Very faint background fill */
+    border-radius: 8px; /* Slightly rounded corners */
+    
+    /* Spacing & Layout */
+    padding: 12px 18px;
+    margin-bottom: 2rem;
+    display: inline-flex; /* Wraps tightly around the text */
+    flex-direction: column;
+    width: fit-content; /* Only as wide as the text */
+    
+    /* Hover Effect */
+    transition: all 0.3s ease;
+}
+
+.sebi-credential-card:hover {
+    border-color: #00c853; /* Border turns green on hover */
+    background: rgba(0, 200, 83, 0.05); /* Slight green tint */
+    transform: translateY(-2px); /* Subtle lift */
+}
+
+.credential-label {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+}
+
+.credential-value {
+    font-size: 1.2rem;
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Tablet/Mobile Adjustment */
+@media (max-width: 991px) {
+    .sebi-credential-card {
+        /* Ensure it stays centered on mobile */
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
 }
 
 /* Social Icons */

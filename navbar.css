@@ -3,6 +3,10 @@
 ===================================================== */
 
 /* 1. Navbar Container - EXACT ORIGINAL STYLING */
+.navbar-custom .container{
+    max-width: 1300px;
+}
+
 .navbar-custom {
     background: var(--bg-secondary);
     backdrop-filter: blur(20px);
@@ -95,6 +99,20 @@
     display: flex;
     align-items: center;
     gap: 4px;
+    position: relative;
+}
+
+/* Active Page Glowing Underline */
+.nav-link-custom.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+  box-shadow: 0 0 10px var(--gradient-2);
+  border-radius: 2px;
 }
 
 /* Hover Gradient Effect */
@@ -340,6 +358,10 @@
 
 /* Laptops & Tablets (Max Width: 1199px) - Switch to Mobile Menu */
 @media (max-width: 1199px) {
+    .navbar-custom .container{
+        max-width: 1000px !important;
+    }
+    
     /* Hide Desktop Links */
     .nav-links-desktop {
         display: none !important;
@@ -356,8 +378,18 @@
     }
 }
 
+@media (max-width: 992px) {
+    .navbar-custom .container {
+        max-width: 960px !important;
+    }
+}
+
 /* Smaller Mobile Screens */
 @media (max-width: 767px) {
+    .navbar-custom .container{
+        max-width: 720px !important;
+    }
+
     .navbar-brand {
         font-size: 1.5rem; /* Scale down logo text slightly on phones */
     }

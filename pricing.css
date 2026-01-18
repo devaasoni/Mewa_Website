@@ -30,14 +30,6 @@
     background: #f3f3f5;
     position: relative;
     overflow: hidden;
-    font-family: "Inter", sans-serif;
-}
-
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
 }
 
 .pricing-header {

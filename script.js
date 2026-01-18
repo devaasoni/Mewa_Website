@@ -61,10 +61,17 @@ function initMobileMenu() {
 
   // Mobile dropdown toggles
   mobileDropdownToggles.forEach((toggle) => {
-    toggle.addEventListener("click", () => {
-      const dropdownMenu = toggle.nextElementSibling;
-      toggle.classList.toggle("active");
-      dropdownMenu.classList.toggle("active");
+    toggle.addEventListener("click", (e) => {
+      e.preventDefault(); // Prevent any default button behavior
+      
+      // FIX: Find the parent container first, then find the menu inside it
+      const container = toggle.closest('.mobile-nav-dropdown');
+      const dropdownMenu = container.querySelector('.mobile-dropdown-menu');
+      
+      if (dropdownMenu) {
+        toggle.classList.toggle("active");
+        dropdownMenu.classList.toggle("active");
+      }
     });
   });
 

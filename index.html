@@ -10,6 +10,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&family=Oswald:wght@500;700&family=Great+Vibes&display=swap" rel="stylesheet">
     
     <!-- <link href="styles.css" rel="stylesheet"> -->
     <link href="navbar.css" rel="stylesheet">
@@ -71,9 +73,16 @@
             <div class="mobile-nav-menu" id="mobileNavMenu">
                 <div class="mobile-nav-content">
                     <div class="mobile-nav-dropdown w-100">
-                        <button class="mobile-nav-link mobile-dropdown-toggle bg-transparent border-0">
-                            About MEWA <i class="bi bi-chevron-down"></i>
-                        </button>
+                        <div class="mobile-nav-link border-0 p-0 d-flex align-items-center justify-content-between">
+                            <a href="about-mewa.html" class="text-decoration-none text-white flex-grow-1 py-2">
+                                About MEWA
+                            </a>
+                
+                            <button class="mobile-dropdown-toggle bg-transparent border-0 text-white p-2">
+                                <i class="bi bi-chevron-down"></i>
+                            </button>
+                        </div>
+
                         <div class="mobile-dropdown-menu">
                             <a href="about-mewa.html#who-we-are" class="mobile-dropdown-item">Who We Are</a>
                             <a href="about-mewa.html#how-we-work" class="mobile-dropdown-item">How We Work</a>
@@ -99,11 +108,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <div class="hero-content">
-                        <!-- <div class="hero-badge">
-                            <span class="hero-badge-dot"></span>
-                            SEBI Registered Research Analyst
-                        </div> -->
+                    <div class="hero-content">                        
                         <a href="https://www.sebi.gov.in/" target="_blank" rel="noopener noreferrer" class="hero-badge" style="text-decoration: none;">
                             <span class="hero-badge-dot"></span>
                             SEBI Registered Research Analyst
@@ -176,7 +181,7 @@
                                             </div>
                                         </div> -->
     
-                            <img src="images/dark-light4.png" alt="App Interface" class="hero-static-img">
+                            <img src="images/active-cash-dark.png" alt="App Interface" class="hero-static-img">
     
                         </div>
                     </div>
@@ -749,8 +754,8 @@
                     </div>
                     <p class="footer-tagline">SEBI-registered advisory for professional traders.</p>
     
-                    <!-- SEBI Badge with actual image -->
-                    <div class="sebi-footer-badge">
+                    <!-- SEBI Badge -->
+                    <!-- <div class="sebi-footer-badge">
                         <div class="sebi-seal">
                             <img src="images/sebi.png" alt="SEBI" style="width: 48px; height: 48px; object-fit: contain;">
                         </div>
@@ -758,6 +763,11 @@
                             <span class="sebi-label">SEBI Registered</span>
                             <span class="sebi-reg">INB231234567</span>
                         </div>
+                    </div> -->
+
+                    <div class="sebi-credential-card">
+                        <div class="credential-label">SEBI Registration No.</div>
+                        <div class="credential-value">INH0000XXXXX</div>
                     </div>
     
                     <div class="social-links-footer">
