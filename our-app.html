@@ -29,7 +29,7 @@
                     <span class="logo-wrapper">
                         <img src="images/WhiteLogo.png" alt="Logo">
                     </span>
-                    The Mewa
+                    <span class="brand-text" data-text="The Mewa">The Mewa</span>
                 </a>
     
                 <div class="nav-links-desktop d-none d-lg-flex align-items-center gap-4">
@@ -361,13 +361,13 @@
                                     </div>
     
                                     <!-- <CHANGE> Add highlight-zone wrapper around REVISED stamp -->
-                                    <div class="highlight-zone" data-num="s2-1">
+                                    <div class="highlight-zone stamp-zone" data-num="s2-1">
                                         <div class="status-stamp revised-stamp">
                                             REVISED
                                         </div>
                                         <div class="mobile-explanation">
-                                            <p>This indicates that the original Target and Stop Loss have been updated due
-                                                to changes in market conditions.</p>
+                                            <p>This indicates that the original Target and Stop Loss have been updated due to changes in market conditions.
+                                            </p>
                                         </div>
                                     </div>
     
@@ -501,23 +501,23 @@
                                                 Target
                                             </span>
                                             <div class="revision-price-value">
-                                                <!-- <CHANGE> Wrap strikethrough target for s3-1 connector -->
-                                                <span class="highlight-zone highlight-zone-inline" data-num="s3-1a">
-                                                    <span class="strikethrough">₹3,100.00</span>
-                                                    <div class="mobile-explanation">
-                                                        <p>Shows the earlier target values that were replaced after
-                                                            revisions.</p>
+                                                <div class="price-combo">
+                                                    <span class="highlight-zone highlight-zone-inline old-price-zone" data-num="s3-1a">
+                                                        <span class="strikethrough">₹3,100.00</span>
+                                                        <div class="mobile-explanation">
+                                                            <p>Shows the earlier target values that were replaced after revisions.</p>
+                                                        </div>
+                                                    </span>
+                                    
+                                                    <div class="highlight-zone highlight-zone-inline revised-group" data-num="s3-3a">
+                                                        <span class="new-price-text">₹3,500.00</span>
+                                                        <span class="revised-label-text">1st Revised Target</span>
+                                    
+                                                        <div class="mobile-explanation">
+                                                            <p>Indicates the currently active target based on updated research.</p>
+                                                        </div>
                                                     </div>
-                                                </span>
-                                                <!-- <CHANGE> Wrap revised target for s3-3 connector -->
-                                                <span class="highlight-zone highlight-zone-inline" data-num="s3-3a">
-                                                    ₹3,500.00
-                                                    <span class="revised-text">1st Revised Target</span>
-                                                    <div class="mobile-explanation">
-                                                        <p>Indicates the currently active target based on updated research.
-                                                        </p>
-                                                    </div>
-                                                </span>
+                                                </div>
                                             </div>
                                         </div>
                                         <!-- Stop Loss Row with highlight zones -->
@@ -527,22 +527,23 @@
                                                 Stop Loss
                                             </span>
                                             <div class="revision-price-value">
-                                                <!-- <CHANGE> Wrap strikethrough stop loss for s3-2 connector -->
-                                                <span class="highlight-zone highlight-zone-inline" data-num="s3-2a">
-                                                    <span class="strikethrough">₹2,700.00</span>
-                                                    <div class="mobile-explanation">
-                                                        <p>Shows the earlier stop-loss values that are no longer active.</p>
+                                                <div class="price-combo">
+                                                    <span class="highlight-zone highlight-zone-inline old-price-zone" data-num="s3-2a">
+                                                        <span class="strikethrough">₹2,700.00</span>
+                                                        <div class="mobile-explanation">
+                                                            <p>Shows the earlier stop-loss values that are no longer active.</p>
+                                                        </div>
+                                                    </span>
+                                    
+                                                    <div class="highlight-zone highlight-zone-inline revised-group" data-num="s3-4a">
+                                                        <span class="new-price-text">₹3,050.00</span>
+                                                        <span class="revised-label-text">1st Revised Stop Loss</span>
+                                    
+                                                        <div class="mobile-explanation">
+                                                            <p>Indicates the currently active stop-loss based on updated risk assessment.</p>
+                                                        </div>
                                                     </div>
-                                                </span>
-                                                <!-- <CHANGE> Wrap revised stop loss for s3-4 connector -->
-                                                <span class="highlight-zone highlight-zone-inline" data-num="s3-4a">
-                                                    ₹3,050.00
-                                                    <span class="revised-text">1st Revised Stop Loss</span>
-                                                    <div class="mobile-explanation">
-                                                        <p>Indicates the currently active stop-loss based on updated risk
-                                                            assessment.</p>
-                                                    </div>
-                                                </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -554,8 +555,10 @@
                                                 11:33 AM - Jan 05, 2026
                                             </span>
                                         </div>
-                                        <span class="research-report">Research report <i
-                                                class="bi bi-download download-icon"></i></span>
+                                        <span class="research-report">
+                                            Research report
+                                            <i class="bi bi-download download-icon"></i>
+                                        </span>
                                     </div>
     
                                     <!-- <CHANGE> Wrap history toggle button for s3-5 connector -->
@@ -746,15 +749,10 @@
                     </div>
                     <p class="footer-tagline">SEBI-registered advisory for professional traders.</p>
     
-                    <!-- SEBI Badge with actual image -->
-                    <div class="sebi-footer-badge">
-                        <div class="sebi-seal">
-                            <img src="images/sebi.png" alt="SEBI" style="width: 48px; height: 48px; object-fit: contain;">
-                        </div>
-                        <div class="sebi-info">
-                            <span class="sebi-label">SEBI Registered</span>
-                            <span class="sebi-reg">INB231234567</span>
-                        </div>
+                    <!-- SEBI Badge -->
+                    <div class="sebi-credential-card">
+                        <div class="credential-label">SEBI Registration No.</div>
+                        <div class="credential-value">INH0000XXXXX</div>
                     </div>
     
                     <div class="social-links-footer">

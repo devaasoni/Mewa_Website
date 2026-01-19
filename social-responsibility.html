@@ -16,6 +16,7 @@
     <link href="WhatsApp-GoToTop.css" rel="stylesheet">
     <link href="footer.css" rel="stylesheet">
 
+    <link href="home.css" rel="stylesheet">
     <link href="social-responsibility.css" rel="stylesheet">
 </head>
 <body>
@@ -28,7 +29,7 @@
                     <span class="logo-wrapper">
                         <img src="images/WhiteLogo.png" alt="Logo">
                     </span>
-                    The Mewa
+                    <span class="brand-text" data-text="The Mewa">The Mewa</span>
                 </a>
     
                 <div class="nav-links-desktop d-none d-lg-flex align-items-center gap-4">
@@ -117,10 +118,17 @@
                         <h1 class="sr-hero-title">
                             Your Growth Powers <span class="gradient-text">Real Change</span>
                         </h1>
-                        <p class="sr-hero-subtitle">
-                            At THE MEWA, we believe that true success isn't just measured in profits — it's measured in the
-                            lives we touch. Every subscription creates a ripple of positive impact.
-                        </p>
+                        <div class="sr-hero-subtitle">
+                            <p style="margin-bottom: 15px;">
+                                At <strong>THE MEWA</strong>, we believe that true growth isn't just measured in profits — it's
+                                measured in impact.
+                            </p>
+                            <p>
+                                Every subscription you make helps us contribute to causes that truly matter. Each step you take
+                                with THE MEWA will not only strengthen your financial future but also brings hope to those in
+                                need, creating <strong>real, positive change</strong> in the lives of others.
+                            </p>
+                        </div>
                         <div class="sr-hero-buttons">
                             <a href="#mission" class="btn-gradient">
                                 Learn More
@@ -137,15 +145,16 @@
         </div>
     </section>
 
-    <!-- MISSION SECTION -->
-    <section class="sr-mission-section" id="mission">
+    <!-- IMPACT CATEGORIES SECTION -->
+    <section class="sr-categories-section" id="mission">
         <div class="container">
-            <div class="row justify-content-center">
+    
+            <div class="row justify-content-center mb-5">
                 <div class="col-lg-10">
-                    <!-- Mission Highlight Card -->
                     <div class="sr-mission-highlight fade-up">
                         <div class="sr-mission-icon">
-                            <i class="bi bi-heart-pulse-fill"></i>
+                            <!-- <i class="bi bi-heart-pulse-fill"></i> -->
+                            <img src="images/sr-society-icon.png" alt="" height="35" width="50">
                         </div>
                         <h2>Our Commitment to <span class="gradient-text">Society</span></h2>
                         <p>
@@ -153,30 +162,16 @@
                             education, healthcare, child welfare, environmental care, and community development.
                         </p>
                     </div>
-    
-                    <!-- Mission Content -->
-                    <div class="sr-mission-content glass-card fade-up">
-                        <p>
-                            At <strong>THE MEWA</strong>, we believe that true growth isn't just measured in profits — it's
-                            measured in impact.
-                        </p>
-                        <p>
-                            Every subscription you make helps us contribute to causes that truly matter. Each step you take
-                            with THE MEWA will not only strengthen your financial future but also brings hope to those in
-                            need, creating <strong>real, positive change</strong> in the lives of others.
-                        </p>
-                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- IMPACT CATEGORIES SECTION -->
-    <section class="sr-categories-section">
-        <div class="container">
+    
             <div class="text-center mb-5">
-                <div class="hero-badge sr-hero-badge">
+                <!-- <div class="hero-badge sr-hero-badge">
                     <span class="hero-badge-dot"></span>
+                    Areas of Impact
+                </div> -->
+                <div class="section-badge">
+                    <img width="30" height="30" src="https://img.icons8.com/wired/64/social-network.png" alt="social-network"/>
                     Areas of Impact
                 </div>
                 <h2 class="sr-section-title">
@@ -188,7 +183,6 @@
             </div>
     
             <div class="row g-4">
-                <!-- Category 1 -->
                 <div class="col-md-6 col-lg-4">
                     <div class="sr-category-card fade-up">
                         <div class="sr-category-icon education">
@@ -199,8 +193,6 @@
                             for a brighter future.</p>
                     </div>
                 </div>
-    
-                <!-- Category 2 -->
                 <div class="col-md-6 col-lg-4">
                     <div class="sr-category-card fade-up">
                         <div class="sr-category-icon healthcare">
@@ -211,8 +203,6 @@
                             and individuals.</p>
                     </div>
                 </div>
-    
-                <!-- Category 3 -->
                 <div class="col-md-6 col-lg-4">
                     <div class="sr-category-card fade-up">
                         <div class="sr-category-icon environment">
@@ -223,8 +213,6 @@
                             practices.</p>
                     </div>
                 </div>
-    
-                <!-- Category 4 -->
                 <div class="col-md-6 col-lg-4">
                     <div class="sr-category-card fade-up">
                         <div class="sr-category-icon children">
@@ -235,8 +223,6 @@
                             them thrive.</p>
                     </div>
                 </div>
-    
-                <!-- Category 5 -->
                 <div class="col-md-6 col-lg-4">
                     <div class="sr-category-card fade-up">
                         <div class="sr-category-icon animals">
@@ -247,8 +233,6 @@
                             services.</p>
                     </div>
                 </div>
-    
-                <!-- Category 6 -->
                 <div class="col-md-6 col-lg-4">
                     <div class="sr-category-card fade-up">
                         <div class="sr-category-icon community">
@@ -267,8 +251,12 @@
     <section class="sr-ngo-section" id="ngo-partners">
         <div class="container">
             <div class="text-center mb-5">
-                <div class="hero-badge sr-hero-badge">
+                <!-- <div class="hero-badge sr-hero-badge">
                     <span class="hero-badge-dot"></span>
+                    Our Partners
+                </div> -->
+                <div class="section-badge">
+                    <img width="32" height="30" src="https://img.icons8.com/ios-filled/50/collaborating-in-circle.png" alt="collaborating-in-circle"/>
                     Our Partners
                 </div>
                 <h2 class="sr-section-title">
@@ -336,7 +324,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-10">
                     <div class="sr-image-wrapper fade-up">
-                        <img src="images/social-responsibilities.png" alt="Social Responsibility Infographic">
+                        <img src="images/social-responsibilities.jpg" alt="Social Responsibility Infographic">
                     </div>
                 </div>
             </div>
@@ -357,15 +345,10 @@
                     </div>
                     <p class="footer-tagline">SEBI-registered advisory for professional traders.</p>
     
-                    <!-- SEBI Badge with actual image -->
-                    <div class="sebi-footer-badge">
-                        <div class="sebi-seal">
-                            <img src="images/sebi.png" alt="SEBI" style="width: 48px; height: 48px; object-fit: contain;">
-                        </div>
-                        <div class="sebi-info">
-                            <span class="sebi-label">SEBI Registered</span>
-                            <span class="sebi-reg">INB231234567</span>
-                        </div>
+                    <!-- SEBI Badge -->
+                    <div class="sebi-credential-card">
+                        <div class="credential-label">SEBI Registration No.</div>
+                        <div class="credential-value">INH0000XXXXX</div>
                     </div>
     
                     <div class="social-links-footer">

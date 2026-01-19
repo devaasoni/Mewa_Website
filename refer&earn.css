@@ -44,13 +44,13 @@ body {
    ========================================= */
 .referral-hero {
     position: relative;
-    min-height: 100vh;
+    min-height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     padding: 100px 20px 60px;
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+    background: var(--bg-secondary);
 }
 
 .referral-hero-content {
@@ -59,54 +59,6 @@ body {
     text-align: center;
     max-width: 900px;
     width: 100%;
-}
-
-/* Hero Background Elements */
-.hero-grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 50px 50px;
-    pointer-events: none;
-}
-
-.hero-orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.5;
-    animation: float 8s ease-in-out infinite;
-    pointer-events: none;
-}
-
-.hero-orb-1 {
-    width: 400px;
-    height: 400px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    top: -100px;
-    left: -100px;
-    animation-delay: 0s;
-}
-
-.hero-orb-2 {
-    width: 300px;
-    height: 300px;
-    background: linear-gradient(135deg, #f093fb, #f5576c);
-    bottom: -50px;
-    right: -50px;
-    animation-delay: -3s;
-}
-
-.hero-orb-3 {
-    width: 250px;
-    height: 250px;
-    background: linear-gradient(135deg, #4facfe, #00f2fe);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation-delay: -5s;
 }
 
 /* Hero Typography & Badges */
@@ -161,7 +113,6 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     gap: 2rem;
-    margin-top: 3rem;
     padding-top: 2rem;
     border-top: 1px solid var(--border-color);
 }
@@ -205,13 +156,17 @@ body {
    ========================================= */
 .referral-section {
     padding: 100px 0;
-    background: var(--bg-secondary);
+    background: #f3f3f5;
     position: relative;
     overflow: hidden;
 }
 
-.referral-section .section-title {    
-    color: #f3f3f5;
+.referral-section .section-title {
+    color: #28282b;
+}
+
+.referral-section .section-subtitle {
+    color: var(--text-muted);
 }
 
 /* Engine Cards (Step Process) */
@@ -481,6 +436,12 @@ body {
     color: var(--text-secondary);
 }
 
+.text-center h4 {
+    color: #28282b;
+    font-weight: 500 !important;
+    font-size: 1.5rem;
+}
+
 /* =========================================
    4. ANIMATIONS
    ========================================= */
@@ -625,5 +586,830 @@ body {
     /* Hide Table Header */
     .info-row.header {
         display: none;
+    }
+}
+
+
+/* =========================================
+   9. FINAL POLISHED NEON LAYOUT
+   ========================================= */
+
+/* --- Headings --- */
+.aesthetic-heading {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #28282b;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    padding-left: 15px;
+}
+
+.aesthetic-heading::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 20px;
+    background: linear-gradient(to bottom, var(--gradient-1), var(--gradient-2));
+    border-radius: 2px;
+}
+
+/* --- Base Neon Card --- */
+.neon-card {
+    background: #16161f;
+    /* Dark Base */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+/* Gradient Border on Hover */
+.neon-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    padding: 2px;
+    background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2), var(--gradient-4));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.neon-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    border-color: transparent;
+}
+
+.neon-card:hover::after {
+    opacity: 1;
+}
+
+/* --- 1. Step Boxes (With Corner Badge) --- */
+.step-box {
+    padding: 2.5rem 2rem 2rem;
+    /* Top padding increased for badge */
+    height: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* The Cool "Step 01" Badge */
+.step-corner-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 6px 14px;
+    border-radius: 50px;
+    backdrop-filter: blur(5px);
+    z-index: 2;
+}
+
+/* Animation Container */
+.visual-area-large {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Glow behind animation */
+.visual-area-large::before {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+.step-text h4 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.step-text p {
+    font-size: 1rem;
+    color: #a0a0b0;
+    margin: 0;
+}
+
+/* --- 2. Commission Boxes --- */
+.comm-box {
+    padding: 2rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 220px;
+}
+
+/* Spotlight for Options */
+.comm-top {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.plan-tag {
+    display: inline-block;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.25rem;
+}
+
+.plan-tag.green {
+    color: var(--accent-buy);
+}
+
+.plan-tag.purple {
+    color: #a78bfa;
+}
+
+.plan-tag.orange {
+    color: #fbbf24;
+}
+
+.plan-tag.blue {
+    color: #60a5fa;
+}
+
+.plan-cost {
+    display: block;
+    font-size: 1.3rem;
+    color: #f3f3f5;
+    font-family: monospace;
+}
+
+.comm-bottom {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: right;
+}
+
+.earn-label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #f3f3f5;
+    margin-bottom: 2px;
+}
+
+.earn-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+    color: #fff;
+    letter-spacing: 1px;
+    margin: 0.4rem 0;
+}
+
+.earn-value.green {
+    color: var(--accent-buy);
+}
+
+.earn-value.purple {
+    color: #a78bfa;
+}
+
+.earn-value.orange {
+    color: #fbbf24;
+}
+
+.earn-value.blue {
+    color: #60a5fa;
+}
+
+.earn-freq {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-top: 2px;
+}
+
+/* --- 3. Scenario Widget --- */
+.scenario-box {
+    padding: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 1.3rem;
+}
+
+.sc-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex: 1;
+}
+
+.sc-icon-lg {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #fff;
+    box-shadow: 0 10px 20px rgba(236, 72, 153, 0.3);
+}
+
+.sc-info h5 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+}
+
+.sc-info p {
+    font-size: 1rem;
+    color: #a0a0b0;
+    margin: 0;
+}
+
+.sc-divider-vertical {
+    width: 1px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sc-right {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    flex: 1.5;
+    justify-content: space-around;
+}
+
+.sc-stat span {
+    display: block;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.sc-stat h4 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0;
+    color: #fff;
+}
+
+.sc-plus {
+    font-size: 2rem;
+    color: var(--text-secondary);
+}
+
+/* --- 4. Why Refer --- */
+.why-refer-wrapper .value-prop h5 {
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.why-refer-wrapper .value-prop p {
+    color: #a0a0b0;
+    margin: 0;
+}
+
+.why-refer-wrapper .vp-icon {
+    color: #fff;
+    opacity: 0.8;
+}
+
+.border-end-glass {
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --- Animations (Explicitly Added) --- */
+.globe-visual-custom {
+    position: relative;
+    width: 85px;
+    height: 85px;
+}
+
+.globe-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gradient-4);
+    font-size: 1.7rem;
+    z-index: 2;
+}
+
+.globe-ring {
+    position: absolute;
+    inset: 0;
+    border: 2px dashed rgba(59, 130, 246, 0.3);
+    border-radius: 50%;
+    animation: spin 10s linear infinite;
+}
+
+.globe-dot {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: var(--gradient-4);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--gradient-4);
+}
+
+.dot-1 {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: dotPulse 2s infinite;
+}
+
+.dot-2 {
+    bottom: 10%;
+    left: 10%;
+    animation: dotPulse 2s 0.6s infinite;
+}
+
+.dot-3 {
+    bottom: 10%;
+    right: 10%;
+    animation: dotPulse 2s 1.2s infinite;
+}
+
+.analytics-rings-custom {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.ring-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gradient-2);
+    font-size: 1.5rem;
+    z-index: 2;
+}
+
+.ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid transparent;
+}
+
+.ring-outer {
+    inset: 0;
+    border-color: rgba(236, 72, 153, 0.2);
+    border-top-color: var(--gradient-2);
+    animation: spin 3s linear infinite;
+}
+
+.ring-middle {
+    inset: 10px;
+    border-color: rgba(236, 72, 153, 0.15);
+    border-right-color: var(--gradient-2);
+    animation: spin 2s linear infinite reverse;
+}
+
+.ring-inner {
+    inset: 20px;
+    border-color: rgba(236, 72, 153, 0.1);
+    border-bottom-color: var(--gradient-2);
+    animation: spin 1.5s linear infinite;
+}
+
+.chart-bars-custom {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    height: 80px;
+    width: 100px;
+}
+
+.bar {
+    flex: 1;
+    background: linear-gradient(to top, rgba(16, 185, 129, 0.3), rgba(16, 185, 129, 1));
+    border-radius: 4px 4px 0 0;
+    animation: barPulse 2s ease-in-out infinite;
+}
+
+.bar-1 {
+    height: 40%;
+    animation-delay: 0s;
+}
+
+.bar-2 {
+    height: 70%;
+    animation-delay: 0.2s;
+}
+
+.bar-3 {
+    height: 50%;
+    animation-delay: 0.4s;
+}
+
+.bar-4 {
+    height: 90%;
+    animation-delay: 0.6s;
+}
+
+.bar-5 {
+    height: 60%;
+    animation-delay: 0.8s;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes dotPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.5);
+        opacity: 0.5;
+    }
+}
+
+@keyframes barPulse {
+
+    0%,
+    100% {
+        opacity: 0.7;
+        transform: scaleY(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scaleY(1.1);
+    }
+}
+
+/* --- Responsive --- */
+@media (max-width: 991px) {
+    .scenario-box {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .sc-left {
+        flex-direction: column;
+    }
+
+    .sc-divider-vertical {
+        width: 100%;
+        height: 1px;
+    }
+
+    .sc-right {
+        flex-direction: column;
+        gap: 1.5rem;
+        width: 100%;
+    }
+
+    .border-end-glass {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .why-refer-wrapper .value-prop {
+        padding: 0;
+        justify-content: center;
+        text-align: center;
+        flex-direction: column;
+    }
+}
+
+/* =========================================
+   VISUAL TWEAKS FOR STEP ARROWS
+   ========================================= */
+
+@media (min-width: 992px) {
+    /* Adds space on left/right of the boxes so they don't touch the arrows.
+       1.5rem (approx 24px) creates enough gap for the 50px arrow to sit freely.
+    */
+    .step-box {
+        margin-left: 1.8rem;
+        margin-right: 1.8rem;
+    }
+}
+
+
+/* =========================================
+   10. UPDATES: GLOWING ORB ARROWS & TEXT
+   ========================================= */
+
+/* --- Step Arrows (Glowing Orb Style) --- */
+.step-arrow {
+    position: absolute;
+    top: 50%;
+    right: -25px; /* Perfectly centered in the gap */
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: #16161f; /* Matches card bg */
+    border: 1px solid rgba(139, 92, 246, 0.5); /* Purple border */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3); /* Purple Glow */
+    color: #fff;
+    font-size: 1.4rem;
+}
+
+/* Outer Ring Animation */
+.step-arrow::before {
+    content: '';
+    position: absolute;
+    inset: -6px; /* Ring distance */
+    border-radius: 50%;
+    border: 1px dashed rgba(139, 92, 246, 0.3);
+    animation: spin 10s linear infinite;
+}
+
+/* Arrow Slide Animation */
+.step-arrow i {
+    animation: arrowFloat 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+@keyframes arrowFloat {
+    0%, 100% { transform: translateX(-2px); }
+    50% { transform: translateX(2px); }
+}
+
+/* --- Referral Structure Description (Refined) --- */
+.comm-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.earn-val {
+    margin-bottom: 4px;
+    display: block;
+    line-height: 1;
+}
+
+.earn-desc {
+    display: block;
+    font-size: 0.9rem;
+    color: #ffffff;
+    line-height: 1.4;
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================
+   NEW SPLIT SCENARIO CARDS
+   ========================================= */
+
+.scenario-card-split {
+    padding: 2rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #16161f; /* Matches dark theme */
+}
+
+/* Header Section */
+.card-icon-header {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.icon-box-lg {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.icon-box-lg.purple {
+    background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+    box-shadow: 0 8px 16px rgba(139, 92, 246, 0.2);
+}
+
+.icon-box-lg.green {
+    background: linear-gradient(135deg, #10b981, #059669);
+    box-shadow: 0 8px 16px rgba(16, 185, 129, 0.2);
+}
+
+.header-text h5 {
+    margin: 0 0 4px 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.header-text span {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+/* Body Section (Calculations) */
+.math-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+}
+
+.math-val {
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+.divider-dashed {
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    margin-bottom: 1rem;
+}
+
+.total-row {
+    text-align: right;
+}
+
+.total-label {
+    display: block;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+}
+
+.total-value {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0;
+    line-height: 1;
+}
+
+/* =========================================
+   RIGHT BOX SPECIFIC (TRADE FOR FREE)
+   ========================================= */
+
+.goal-badge {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 50px;
+}
+
+.free-logic-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.logic-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.step-circle {
+    width: 35px;
+    height: 35px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+.step-circle.check {
+    background: #10b981;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+}
+
+.step-text strong {
+    display: block;
+    color: #fff;
+    font-size: 1.1rem;
+    line-height: 1.2;
+}
+
+.step-text small {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.logic-arrow {
+    color: var(--text-primary);
+    font-size: 2rem;
+}
+
+/* Progress Bar */
+.progress-bar-wrapper {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    padding: 12px;
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.custom-progress {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #34d399);
+    border-radius: 4px;
+}
+
+/* Mobile Tweak */
+@media (max-width: 576px) {
+    .free-logic-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    .logic-arrow {
+        transform: rotate(90deg); /* Point down on mobile */
+        align-self: center;
     }
 }

@@ -12,6 +12,7 @@
     --bg-card: #16161f;
     --text-primary: #ffffff;
     --text-secondary: #a0a0b0;
+    --text-muted: #6b6b7b;
     --border-color: rgba(255, 255, 255, 0.08);
     --gradient-1: #f59e0b;
     --gradient-2: #ec4899;
@@ -181,15 +182,16 @@ a.hero-badge:hover {
 .hero-split-section {
     width: 100%;
     max-width: 800px;
-    font-family: 'Oswald', sans-serif; /* ADD THIS LINE */
+    font-family: 'Inter', sans-serif;
 }
 
 .section-label {
     font-size: 1.6rem;
-    font-weight: 700; /* Adjusted for Oswald */
-    letter-spacing: 2px; /* Slightly reduced spacing looks better on Oswald */
+    font-weight: 600;
+    letter-spacing: 1px;
     color: #ffffff;
     text-transform: uppercase;
+    margin-bottom: 1rem;
     opacity: 0.9;
 }
 
@@ -197,12 +199,12 @@ a.hero-badge:hover {
     display: flex;
     align-items: center;
     gap: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .split-divider {
-    width: 2px;
-    height: 100px;
+    width: 1px;
+    height: 60px;
     background: #ffffff;
     opacity: 0.3;
     flex-shrink: 0;
@@ -215,7 +217,7 @@ a.hero-badge:hover {
 }
 
 .split-value {
-    font-size: 4rem; /* Increased size (Oswald is narrower, so we can go bigger) */
+    font-size: 3.5rem; /* Increased size (Oswald is narrower, so we can go bigger) */
     font-weight: 700;
     line-height: 1.1;
     margin-bottom: 5px;
@@ -234,7 +236,7 @@ a.hero-badge:hover {
 }
 
 .section-footer {
-    font-size: 2rem;
+    font-size: 1.6rem;
     color: #ffffff;
     font-weight: 600;
     border-top: 2px solid rgba(255, 255, 255, 0.2);
@@ -590,12 +592,12 @@ a.hero-badge:hover {
 /* =====================================================
    SECTION 2: MARQUEE SECTION
 ===================================================== */
-.marquee-container {
+.marquee-section{
+    background: var(--bg-secondary);
     overflow: hidden;
     width: 100%;
     position: relative;
     padding: 1rem 0;
-    background: var(--bg-secondary);
 }
 
 .marquee-content {
@@ -606,7 +608,7 @@ a.hero-badge:hover {
 }
 
 .trust-item {
-    font-family: 'Oswald', sans-serif;
+    font-family: Open Sans, sans-serif;
     font-weight: 700;
     font-size: 100px;
     text-transform: uppercase;
@@ -614,6 +616,14 @@ a.hero-badge:hover {
     color: transparent;
     -webkit-text-stroke: 2px #cccccc;
     white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.trust-item .separator {
+    position: relative;
+    top: 20px;
 }
 
 @keyframes marquee {
@@ -694,11 +704,14 @@ a.hero-badge:hover {
     margin-bottom: 60px;
 }
 
+/* =========================================
+   Navs-and-Tabs (Home Page & Price Page)
+   ========================================= */
 .service-tabs-nav {
     display: flex;
     justify-content: center;
-    gap: 12px;
-    margin-bottom: 60px;
+    gap: 16px; /* Slightly wider gap */
+    margin-bottom: 50px;
     flex-wrap: wrap;
 }
 
@@ -706,30 +719,46 @@ a.hero-badge:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: transparent;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 12px 28px;
+    
+    /* Base State: Clean White Pill */
+    background: #ffffff; 
+    border: 1px solid rgba(0,0,0,0.05);
+    padding: 14px 32px; /* Larger click area */
     border-radius: 50px;
+    
+    /* Typography */
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #5a5a6e;
+    letter-spacing: 0.3px;
+    
+    /* Interaction */
     cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text-secondary);
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
+    overflow: hidden;
+    
+    /* Soft Shadow for Depth */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
+/* Hover State */
 .service-tab-btn:hover {
-    color: black;
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+    color: #000000;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-color: rgba(0,0,0,0.1);
 }
 
+/* Active State */
 .service-tab-btn.active {
     background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
-    color: white;
+    color: #ffffff;
     border-color: transparent;
-    box-shadow: 0 4px 20px rgba(236, 72, 153, 0.3);
-    transform: translateY(-2px);
+    
+    /* Glowing Shadow matching brand colors */
+    box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4); 
+    transform: translateY(-3px) scale(1.02);
 }
 
 .service-tabs-content {

@@ -244,7 +244,7 @@
     right: 20px;
     font-size: 3rem;
     font-weight: 900;
-    color: var(--primary-color, #f59e0b);
+    color: var(--accent-sell);
     opacity: 0.2;
     line-height: 1;
     z-index: 0;
@@ -702,8 +702,8 @@
 
 .data-label {
     display: block;
-    font-size: 0.75rem;
-    color: var(--text-muted);
+    font-size: 1.1rem;
+    color: var(--text-primary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-bottom: 0.5rem;
@@ -711,7 +711,7 @@
 
 .data-value {
     display: block;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     font-weight: 700;
     color: var(--text-primary);
 }
@@ -812,7 +812,7 @@
 }
 
 .testimonial-card {
-    background: var(--bg-card);
+    background: #f3f3f5;
     border-radius: 24px;
     padding: 2rem;
     border: 1px solid var(--border-color);
@@ -834,9 +834,9 @@
 }
 
 .testimonial-text {
-    font-size: 1rem;
+    font-size: 1.1rem;
     line-height: 1.7;
-    color: var(--text-secondary);
+    color: #28282B;
     margin-bottom: 1.5rem;
 }
 
@@ -864,12 +864,12 @@
 .testimonial-info h5 {
     font-weight: 700;
     margin-bottom: 0.25rem;
-    color: var(--text-primary);
+    color: #28282B;
 }
 
 .testimonial-info p {
-    font-size: 0.85rem;
-    color: var(--text-muted);
+    font-size: 0.9rem;
+    color: #28282B;
     margin: 0;
 }
 

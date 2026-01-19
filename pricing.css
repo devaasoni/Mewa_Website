@@ -47,7 +47,7 @@
     font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 1.5rem;
-    border: 5px solid transparent;
+    border: 3px solid transparent;
     background:
         linear-gradient(#ffffff, #ffffff) padding-box,
         linear-gradient(135deg, var(--gradient-1), var(--gradient-2), var(--gradient-3)) border-box;
@@ -69,44 +69,8 @@
 }
 
 /* =========================================
-   3. TABS NAVIGATION (From home.css)
+   3. TABS NAVIGATION
    ========================================= */
-.service-tabs-nav {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 60px;
-    flex-wrap: wrap;
-}
-
-.service-tab-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 12px 28px;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #5a5a6e;
-    transition: all 0.3s ease;    
-}
-
-.service-tab-btn:hover {
-    color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.2);
-}
-
-.service-tab-btn.active {
-    background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
-    color: white;
-    border-color: transparent;
-    box-shadow: 0 4px 20px rgba(236, 72, 153, 0.3);
-    transform: translateY(-2px);
-}
 
 /* Tab Content Visibility Logic */
 .service-tab-content {

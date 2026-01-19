@@ -77,9 +77,53 @@
     pointer-events: none;
 }
 
-.logo-wrapper:hover::after {
+.navbar-brand:hover .logo-wrapper::after {
     opacity: 1;
 }
+
+/* =========================================
+   Brand Text Smooth Gradient Animation
+   ========================================= */
+
+/* 1. Base Text (White) */
+.brand-text {
+    position: relative;
+    display: inline-block;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.3s ease; /* Optional: fade out white slightly if needed */
+}
+
+/* 2. The "Ghost" Gradient Overlay */
+.brand-text::before {
+    content: attr(data-text); /* Grabs text from HTML automatically */
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Apply the Gradient */
+    background: var(--brand-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* Animation State: Hidden by default */
+    opacity: 0;
+    transition: opacity 0.4s ease; /* The Smoothness Control */
+    
+    /* Ensure it aligns perfectly */
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* 3. Trigger Fade on Hover */
+/* When you hover ANYWHERE on the brand link, fade in the gradient text */
+.navbar-brand:hover .brand-text::before {
+    opacity: 1;
+}
+
 
 /* 3. Desktop Navigation Links - RESTORED COLORS */
 .nav-links-desktop {

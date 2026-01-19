@@ -558,98 +558,71 @@ function initContactForm() {
     // }
 
   function drawConnectors() {
-    const svg = document.getElementById('connectorSvg');
-    const container = document.getElementById('explainerContainer');
-    if (!svg || !container) return;
+  const svg = document.getElementById('connectorSvg');
+  const container = document.getElementById('explainerContainer');
+  if (!svg || !container) return;
 
-    svg.innerHTML = '';
-    const containerRect = container.getBoundingClientRect();
+  svg.innerHTML = '';
+  const containerRect = container.getBoundingClientRect();
 
-    const connections = {
-      1: ['left', 'orange'],
-      2: ['left', 'purple'],
-      3: ['left', 'blue'],
-      4: ['right', 'pink'],
-      5: ['right', 'green'],
-      6: ['right', 'red'],
-      7: ['left', 'red'],
-      8: ['right', 'orange']
-    };
+  const connections = {
+    1: ['left', 'orange'], 2: ['left', 'purple'], 3: ['left', 'blue'],
+    4: ['right', 'pink'], 5: ['right', 'green'], 6: ['right', 'red'],
+    7: ['left', 'red'], 8: ['right', 'orange']
+  };
 
-    Object.entries(connections).forEach(([num, [side, color]]) => {
-      const annotation = document.querySelector(`.annotation-item[data-target="${num}"]`);
-      const zone = document.querySelector(`.highlight-zone[data-num="${num}"]`);
+  Object.entries(connections).forEach(([num, [side, color]]) => {
+    const annotation = document.querySelector(`.annotation-item[data-target="${num}"]`);
+    const zone = document.querySelector(`.highlight-zone[data-num="${num}"]`);
 
-      if (!annotation || !zone) return;
+    if (!annotation || !zone) return;
 
-      const annotationRect = annotation.getBoundingClientRect();
-      const zoneRect = zone.getBoundingClientRect();
+    const annotationRect = annotation.getBoundingClientRect();
+    const zoneRect = zone.getBoundingClientRect();
 
-      let startX, startY, endX, endY;
+    let startX, startY, endX, endY;
 
-      if (side === 'left') {
-        startX = annotationRect.right - containerRect.left;
-        startY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
-        endX = zoneRect.left - containerRect.left;
-        endY = zoneRect.top + zoneRect.height / 2 - containerRect.top;
-      } else {
-        startX = annotationRect.left - containerRect.left;
-        startY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
-        endX = zoneRect.right - containerRect.left;
-        endY = zoneRect.top + zoneRect.height / 2 - containerRect.top;
-      }
+    if (side === 'left') {
+      startX = annotationRect.right - containerRect.left;
+      startY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
+      endX = zoneRect.left - containerRect.left;
+      endY = zoneRect.top + zoneRect.height / 2 - containerRect.top;
+    } else {
+      startX = annotationRect.left - containerRect.left;
+      startY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
+      endX = zoneRect.right - containerRect.left;
+      endY = zoneRect.top + zoneRect.height / 2 - containerRect.top;
+    }
 
-      const midX = (startX + endX) / 2;
-      const dotRadius = 4;
+    // --- HANGING THREAD LOGIC ---
+    const midX = (startX + endX) / 2;
+    
+    // Calculate distance to determine how much it should "hang"
+    const distance = Math.abs(endX - startX);
+    // Slack: The longer the line, the more it hangs (max 50px drop)
+    const slack = Math.min(50, distance * 0.15); 
+    
+    // The "Control Point" Y position is the midpoint + slack
+    const controlY = (startY + endY) / 2 + slack;
 
-      // Line 1: Horizontal from start
-      const line1 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      line1.setAttribute('x1', startX);
-      line1.setAttribute('y1', startY);
-      line1.setAttribute('x2', midX);
-      line1.setAttribute('y2', startY);
-      line1.setAttribute('class', `connector-path ${color}`);
-      line1.setAttribute('data-num', num);
-      svg.appendChild(line1);
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    // 'Q' creates the smooth hanging curve
+    path.setAttribute('d', `M ${startX} ${startY} Q ${midX} ${controlY} ${endX} ${endY}`);
+    path.setAttribute('class', `connector-path ${color}`);
+    path.setAttribute('data-num', num);
+    svg.appendChild(path);
 
-      // Line 2: Vertical in the middle
-      const line2 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      line2.setAttribute('x1', midX);
-      line2.setAttribute('y1', startY);
-      line2.setAttribute('x2', midX);
-      line2.setAttribute('y2', endY);
-      line2.setAttribute('class', `connector-path ${color}`);
-      line2.setAttribute('data-num', num);
-      svg.appendChild(line2);
-
-      // Line 3: Horizontal to end
-      const line3 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      line3.setAttribute('x1', midX);
-      line3.setAttribute('y1', endY);
-      line3.setAttribute('x2', endX);
-      line3.setAttribute('y2', endY);
-      line3.setAttribute('class', `connector-path ${color}`);
-      line3.setAttribute('data-num', num);
-      svg.appendChild(line3);
-
-      // Dots
-      const dotStart = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      dotStart.setAttribute('cx', startX);
-      dotStart.setAttribute('cy', startY);
-      dotStart.setAttribute('r', dotRadius);
-      dotStart.setAttribute('class', `connector-path ${color}`);
-      dotStart.setAttribute('data-num', num);
-      svg.appendChild(dotStart);
-
-      const dotEnd = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      dotEnd.setAttribute('cx', endX);
-      dotEnd.setAttribute('cy', endY);
-      dotEnd.setAttribute('r', dotRadius);
-      dotEnd.setAttribute('class', `connector-path ${color}`);
-      dotEnd.setAttribute('data-num', num);
-      svg.appendChild(dotEnd);
+    // Dots
+    [ {x: startX, y: startY}, {x: endX, y: endY} ].forEach(pt => {
+        const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        dot.setAttribute('cx', pt.x); dot.setAttribute('cy', pt.y);
+        dot.setAttribute('r', 3);
+        dot.setAttribute('class', `connector-path ${color}`);
+        dot.setAttribute('data-num', num);
+        svg.appendChild(dot);
     });
-  }
+  });
+}
     
     // ==================== DESKTOP: HOVER INTERACTIONS ====================
     function setupDesktopHover() {
@@ -850,10 +823,7 @@ function drawConnectorsSection2() {
 
     svg.innerHTML = '';
     const containerRect = container.getBoundingClientRect();
-    const connections = {
-        's2-1': ['left', 'orange'],
-        's2-2': ['right', 'blue']
-    };
+    const connections = { 's2-1': ['left', 'orange'], 's2-2': ['right', 'blue'] };
 
     Object.entries(connections).forEach(([num, [side, color]]) => {
         const annotation = document.querySelector(`.section2-annotations .annotation-item[data-target="${num}"]`);
@@ -876,42 +846,26 @@ function drawConnectorsSection2() {
             endY = zoneRect.top + zoneRect.height / 2 - containerRect.top;
         }
 
+        // --- HANGING THREAD LOGIC ---
         const midX = (startX + endX) / 2;
-        const dotRadius = 4;
+        const distance = Math.abs(endX - startX);
+        const slack = Math.min(30, distance * 0.15); // Slightly tighter slack for this section
+        const controlY = (startY + endY) / 2 + slack;
 
-        // Line 1
-        const line1 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        line1.setAttribute('x1', startX); line1.setAttribute('y1', startY);
-        line1.setAttribute('x2', midX);   line1.setAttribute('y2', startY);
-        line1.setAttribute('class', `connector-path ${color}`);
-        line1.setAttribute('data-num', num); svg.appendChild(line1);
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', `M ${startX} ${startY} Q ${midX} ${controlY} ${endX} ${endY}`);
+        path.setAttribute('class', `connector-path ${color}`);
+        path.setAttribute('data-num', num);
+        svg.appendChild(path);
 
-        // Line 2
-        const line2 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        line2.setAttribute('x1', midX);   line2.setAttribute('y1', startY);
-        line2.setAttribute('x2', midX);   line2.setAttribute('y2', endY);
-        line2.setAttribute('class', `connector-path ${color}`);
-        line2.setAttribute('data-num', num); svg.appendChild(line2);
-
-        // Line 3
-        const line3 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        line3.setAttribute('x1', midX);   line3.setAttribute('y1', endY);
-        line3.setAttribute('x2', endX);   line3.setAttribute('y2', endY);
-        line3.setAttribute('class', `connector-path ${color}`);
-        line3.setAttribute('data-num', num); svg.appendChild(line3);
-
-        // Dots
-        const dotStart = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        dotStart.setAttribute('cx', startX); dotStart.setAttribute('cy', startY);
-        dotStart.setAttribute('r', dotRadius);
-        dotStart.setAttribute('class', `connector-path ${color}`);
-        dotStart.setAttribute('data-num', num); svg.appendChild(dotStart);
-
-        const dotEnd = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        dotEnd.setAttribute('cx', endX);     dotEnd.setAttribute('cy', endY);
-        dotEnd.setAttribute('r', dotRadius);
-        dotEnd.setAttribute('class', `connector-path ${color}`);
-        dotEnd.setAttribute('data-num', num); svg.appendChild(dotEnd);
+        [ {x: startX, y: startY}, {x: endX, y: endY} ].forEach(pt => {
+            const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            dot.setAttribute('cx', pt.x); dot.setAttribute('cy', pt.y);
+            dot.setAttribute('r', 3);
+            dot.setAttribute('class', `connector-path ${color}`);
+            dot.setAttribute('data-num', num);
+            svg.appendChild(dot);
+        });
     });
 }
 
@@ -1013,33 +967,29 @@ function drawConnectorsSection3() {
         if (!annotation) return;
 
         const annotationRect = annotation.getBoundingClientRect();
-        const dotRadius = 4;
-
-        let annotationX, annotationY;
+        
+        let startX, startY;
         if (config.side === 'left') {
-            annotationX = annotationRect.right - containerRect.left;
+            startX = annotationRect.right - containerRect.left;
         } else {
-            annotationX = annotationRect.left - containerRect.left;
+            startX = annotationRect.left - containerRect.left;
         }
-        annotationY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
+        startY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
 
-        // Dot at annotation
-        const dotAnnotation = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        dotAnnotation.setAttribute('cx', annotationX); dotAnnotation.setAttribute('cy', annotationY);
-        dotAnnotation.setAttribute('r', dotRadius);
-        dotAnnotation.setAttribute('class', `connector-path ${config.color}`);
-        dotAnnotation.setAttribute('data-num', annotationId);
-        svg.appendChild(dotAnnotation);
+        // Draw Start Dot
+        const dotStart = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        dotStart.setAttribute('cx', startX); dotStart.setAttribute('cy', startY);
+        dotStart.setAttribute('r', 3);
+        dotStart.setAttribute('class', `connector-path ${config.color}`);
+        dotStart.setAttribute('data-num', annotationId);
+        svg.appendChild(dotStart);
 
-        // Connectors
-        config.targets.forEach((targetNum, index) => {
+        config.targets.forEach((targetNum) => {
             const zone = document.querySelector(`.highlight-zone[data-num="${targetNum}"]`);
             if (!zone) return;
 
             const historyContainer = zone.closest('#tabbed-history-section');
-            if (historyContainer && !historyContainer.classList.contains('expanded')) {
-                return; // SKIP if history is closed
-            }
+            if (historyContainer && !historyContainer.classList.contains('expanded')) return;
 
             const zoneRect = zone.getBoundingClientRect();
             if (zoneRect.width === 0 || zoneRect.height === 0) return;
@@ -1052,33 +1002,25 @@ function drawConnectorsSection3() {
             }
             endY = zoneRect.top + zoneRect.height / 2 - containerRect.top;
 
-            const midX = (annotationX + endX) / 2 + (index * 10 - (config.targets.length - 1) * 5);
+            // --- HANGING THREAD LOGIC ---
+            const midX = (startX + endX) / 2;
+            const distance = Math.abs(endX - startX);
+            const slack = Math.min(30, distance * 0.15);
+            const controlY = (startY + endY) / 2 + slack;
 
-            // Lines
-            const line1 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-            line1.setAttribute('x1', annotationX); line1.setAttribute('y1', annotationY);
-            line1.setAttribute('x2', midX);        line1.setAttribute('y2', annotationY);
-            line1.setAttribute('class', `connector-path ${config.color}`);
-            line1.setAttribute('data-num', annotationId); svg.appendChild(line1);
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', `M ${startX} ${startY} Q ${midX} ${controlY} ${endX} ${endY}`);
+            path.setAttribute('class', `connector-path ${config.color}`);
+            path.setAttribute('data-num', annotationId);
+            svg.appendChild(path);
 
-            const line2 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-            line2.setAttribute('x1', midX);        line2.setAttribute('y1', annotationY);
-            line2.setAttribute('x2', midX);        line2.setAttribute('y2', endY);
-            line2.setAttribute('class', `connector-path ${config.color}`);
-            line2.setAttribute('data-num', annotationId); svg.appendChild(line2);
-
-            const line3 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-            line3.setAttribute('x1', midX);        line3.setAttribute('y1', endY);
-            line3.setAttribute('x2', endX);        line3.setAttribute('y2', endY);
-            line3.setAttribute('class', `connector-path ${config.color}`);
-            line3.setAttribute('data-num', annotationId); svg.appendChild(line3);
-
-            // Dot at target
+            // End Dot
             const dotEnd = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-            dotEnd.setAttribute('cx', endX);       dotEnd.setAttribute('cy', endY);
-            dotEnd.setAttribute('r', dotRadius);
+            dotEnd.setAttribute('cx', endX); dotEnd.setAttribute('cy', endY);
+            dotEnd.setAttribute('r', 3);
             dotEnd.setAttribute('class', `connector-path ${config.color}`);
-            dotEnd.setAttribute('data-num', annotationId); svg.appendChild(dotEnd);
+            dotEnd.setAttribute('data-num', annotationId);
+            svg.appendChild(dotEnd);
         });
     });
 }

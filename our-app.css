@@ -82,7 +82,7 @@ body {
     font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 1.5rem;
-    border: 5px solid transparent;
+    border: 3px solid transparent;
     background:
         linear-gradient(#ffffff, #ffffff) padding-box,
         linear-gradient(135deg, var(--gradient-1), var(--gradient-2), var(--gradient-3)) border-box;
@@ -275,7 +275,7 @@ body {
 }
 
 /* =========================================
-   4. SVG CONNECTORS & ZONES
+   4. SVG CONNECTORS & ZONES (UPDATED)
    ========================================= */
 .connector-svg {
     position: absolute;
@@ -287,52 +287,107 @@ body {
     z-index: 1;
 }
 
+/* --- THREAD STYLES (New) --- */
+
+/* 1. Default State: Faint, thin "thread" */
 .connector-path {
     fill: none;
-    stroke: rgba(255, 255, 255, 0.2);
-    stroke-width: 1.5;
-    transition: all 0.2s ease;
+    stroke: rgba(255, 255, 255, 0.08);
+    /* Very faint gray by default */
+    stroke-width: 1px;
+    /* Thin like a thread */
+    transition: all 0.3s ease;
 }
 
-.connector-path.faded {
-    stroke: rgba(255, 255, 255, 0.05);
+/* Ensure dots are also faint by default */
+circle.connector-path {
+    fill: rgba(255, 255, 255, 0.08);
+    stroke: none;
 }
 
+/* 2. Override Colors: Ignore color classes by default so they stay faint */
+.connector-path.orange,
+.connector-path.purple,
+.connector-path.blue,
+.connector-path.pink,
+.connector-path.green,
+.connector-path.red {
+    stroke: rgba(255, 255, 255, 0.08);
+}
+
+circle.connector-path.orange,
+circle.connector-path.purple,
+circle.connector-path.blue,
+circle.connector-path.pink,
+circle.connector-path.green,
+circle.connector-path.red {
+    fill: rgba(255, 255, 255, 0.08);
+}
+
+/* 3. Hover State: Only show color/glow when 'highlighted' class is added */
 .connector-path.highlighted {
-    stroke-width: 2.5;
-    filter: brightness(1.3);
+    stroke-width: 2px;
+    opacity: 1;
+    filter: drop-shadow(0 0 5px currentColor);
 }
 
-/* Path Colors */
-.connector-path.orange {
+/* Re-apply colors ONLY when highlighted */
+.connector-path.highlighted.orange {
     stroke: #f59e0b;
+    color: #f59e0b;
+}
+
+circle.connector-path.highlighted.orange {
     fill: #f59e0b;
 }
 
-.connector-path.purple {
+.connector-path.highlighted.purple {
     stroke: #8b5cf6;
+    color: #8b5cf6;
+}
+
+circle.connector-path.highlighted.purple {
     fill: #8b5cf6;
 }
 
-.connector-path.blue {
+.connector-path.highlighted.blue {
     stroke: #3b82f6;
+    color: #3b82f6;
+}
+
+circle.connector-path.highlighted.blue {
     fill: #3b82f6;
 }
 
-.connector-path.pink {
+.connector-path.highlighted.pink {
     stroke: #ec4899;
+    color: #ec4899;
+}
+
+circle.connector-path.highlighted.pink {
     fill: #ec4899;
 }
 
-.connector-path.green {
+.connector-path.highlighted.green {
     stroke: #10b981;
+    color: #10b981;
+}
+
+circle.connector-path.highlighted.green {
     fill: #10b981;
 }
 
-.connector-path.red {
+.connector-path.highlighted.red {
     stroke: #ef4444;
+    color: #ef4444;
+}
+
+circle.connector-path.highlighted.red {
     fill: #ef4444;
 }
+
+
+/* --- ZONE STYLES (Kept from your original file) --- */
 
 /* Highlight Zones (Target Areas) */
 .highlight-zone {
@@ -621,7 +676,7 @@ body {
 
 .card-detail.bg-transparent {
     background: transparent;
-    padding: 0.5rem 0;
+    padding: 2rem 0 0.5rem;
     margin-top: 0;
 }
 
@@ -651,19 +706,51 @@ body {
     color: var(--text-primary);
 }
 
-.detail-value {
-    font-size: 1rem;
-    color: var(--text-secondary);
-    text-align: right;
-    text-decoration: line-through;
-}
-
 .revision-price-value {
     font-size: 1rem;
     text-align: right;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+}
+
+/* =========================================
+   FIX FOR REVISED HIGHLIGHT ZONES
+   ========================================= */
+
+/* 1. Update price-combo to align items to the TOP */
+.price-combo {
+    display: flex;
+    align-items: flex-start; /* Ensures Old Price aligns with the top (New Price), not the middle */
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+/* 2. Create a specific wrapper for the Price + Label group */
+.revised-group {
+    /* Override standard highlight-zone-inline flex settings */
+    display: inline-flex !important;
+    flex-direction: column !important; /* Stack vertical */
+    align-items: flex-end !important;  /* Align right */
+    justify-content: center;
+    
+    /* Adjust padding for the larger box */
+    padding: 6px 8px !important;
+}
+
+/* 3. Style the price text inside the group */
+.revised-group .new-price-text {
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* 4. Style the label inside the group */
+.revised-group .revised-label-text {
+    font-size: 0.75rem;
+    color: var(--accent-primary);
+    font-weight: 700;
+    margin-top: 4px;
+    line-height: 1;
 }
 
 .exp-detail-value.green {
@@ -807,26 +894,54 @@ body {
     box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
 }
 
-/* Stamp */
-.status-stamp {
+/* =========================================
+   FIXED STAMP STYLES (Restores the Stamp & Fixes Hover)
+   ========================================= */
+
+/* 1. TARGET THE SPECIFIC ZONE WRAPPER */
+.highlight-zone[data-num="s2-1"] {
     position: absolute;
-    top: 62%;
-    width: 95%;
+    top: 60.5%;
+    left: 5%;
+    width: 90.1%;
     height: 113px;
     transform: translateY(-50%);
-    text-align: center;
-    padding: 1.6rem 0;
-    font-size: 1.15rem;
-    font-weight: 900;
-    letter-spacing: 4px;
-    text-transform: uppercase;
     z-index: 5;
-    background: repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.08) 0px, rgba(255, 255, 255, 0.08) 6px, transparent 6px, transparent 12px);
-    backdrop-filter: blur(1px);
+    margin: 0;
+    padding: 0;
     pointer-events: auto;
     cursor: pointer;
 }
 
+/* 2. STYLE THE INNER STAMP */
+.status-stamp {
+    /* Fill the wrapper completely */
+    position: relative;
+    width: 100%;
+    height: 100%;
+    top: auto;
+    left: auto;
+    transform: none;
+    
+    /* Flexbox for centering text */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Visual Styles */
+    text-align: center;
+    font-size: 1.15rem;
+    font-weight: 900;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    
+    /* Background & Effects */
+    background: repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.08) 0px, rgba(255, 255, 255, 0.08) 6px, transparent 6px, transparent 12px);
+    backdrop-filter: blur(1px);
+    border-radius: 5px; /* Ensure background follows radius */
+}
+
+/* Text Color */
 .status-stamp.revised-stamp {
     color: var(--accent-primary);
 }
@@ -836,14 +951,6 @@ body {
     text-decoration: line-through;
     color: var(--text-secondary);
     opacity: 0.6;
-}
-
-.revised-text {
-    display: block;
-    font-size: 0.75rem;
-    color: var(--accent-primary);
-    font-weight: 700;
-    margin-top: 0.25rem;
 }
 
 .history-toggle-btn {

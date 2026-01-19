@@ -41,7 +41,7 @@ body {
    2. HERO SECTION
    ========================================= */
 .sr-hero-section {
-    min-height: 100vh;
+    min-height: 80vh;
     display: flex;
     align-items: center;
     padding: 140px 0 80px;
@@ -108,7 +108,7 @@ body {
 .sr-hero-subtitle {
     font-size: 1.25rem;
     color: var(--text-secondary);
-    max-width: 700px;
+    max-width: 1000px;
     margin: 0 auto 2.5rem;
     line-height: 1.7;
 }
@@ -454,7 +454,8 @@ body {
    7. INFOGRAPHIC IMAGE SECTION
    ========================================= */
 .sr-image-section {
-    padding: 60px 0 100px;
+    padding: 60px 0;
+    background: #f3f3f5;
 }
 
 .sr-image-wrapper {
@@ -562,4 +563,59 @@ body {
     .sr-ngo-card {
         padding: 1.5rem;
     }
+}
+
+
+/* =========================================
+   MERGED LIGHT SECTION CUSTOMIZATION
+   ========================================= */
+
+/* 1. Make the section background LIGHT (#f3f3f5) */
+.sr-categories-section {
+    background-color: #f3f3f5;
+    padding: 100px 0;
+}
+
+/* 2. Make TEXT outside cards DARK so it's visible on light bg */
+.sr-categories-section .sr-section-title {
+    color: #28282B;
+    /* Dark Black-Grey */
+}
+
+.sr-categories-section .sr-section-subtitle {
+    color: #5a5a6e;
+    /* Muted Dark Grey */
+}
+
+/* 3. Make CARDS have a solid DARK background */
+/* We use var(--bg-secondary) i.e., #12121a so they look like dark boxes */
+
+.sr-categories-section .sr-mission-highlight {
+    background: var(--bg-secondary);
+    /* Solid Dark BG */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    /* Subtle border for contrast */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    /* Shadow for depth */
+}
+
+.sr-categories-section .sr-category-card {
+    background: var(--bg-secondary);
+    /* Solid Dark BG */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* 4. Ensure TEXT INSIDE cards remains WHITE/LIGHT */
+.sr-categories-section .sr-mission-highlight h2,
+.sr-categories-section .sr-mission-highlight p,
+.sr-categories-section .sr-category-title,
+.sr-categories-section .sr-category-desc {
+    color: var(--text-primary);
+    /* Keeps them white */
+}
+
+.sr-categories-section .sr-category-desc {
+    color: var(--text-secondary);
+    /* Keeps description light grey */
 }
