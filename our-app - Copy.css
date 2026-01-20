@@ -1365,3 +1365,140 @@ circle.connector-path.highlighted.red {
         justify-content: center;
     }
 }
+
+
+/* ==========================================================================
+   GSAP SCROLLTRIGGER FIXES
+   ========================================================================== */
+
+/* 1. Ensure sections take up full viewport height for centering */
+.explainer-section,
+.tabbed-reco-section {
+    min-height: 100vh; /* Force full height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertical Center */
+    align-items: center;    /* Horizontal Center */
+    
+    /* Ensure background stays consistent during pin */
+    background-color: var(--bg-primary); 
+    position: relative;
+    z-index: 2; /* Ensure it sits above other elements */
+}
+
+/* 2. Hide annotations initially (GSAP will reveal them) */
+.annotation-item, 
+.mobile-explanation {
+    opacity: 0; 
+    visibility: hidden;
+}
+
+/* 3. Helper to prevent layout shifts */
+.explainer-container,
+.tabbed-reco-section .container {
+    width: 100%;
+    max-width: 1400px; /* Ensure wide screens don't stretch too far */
+}
+
+/* 4. Fix for the Revised Tab visibility during animation */
+/* We need them to occupy space but be hidden/shown via GSAP */
+.tab-content {
+    display: none; 
+}
+.tab-content.active {
+    display: block;
+}
+
+/* 5. Force the cursor to be on top */
+#demo-cursor {
+    z-index: 99999;
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
+}
+
+/* ==========================================================================
+   FINAL "THREADS EVERYWHERE" SCALING
+   ========================================================================== */
+
+/* 1. Base Container Setup */
+.explainer-container, 
+.reco-card-demo-container {
+    transform-origin: center center;
+    transition: transform 0.2s ease-out;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* Ensure flex direction stays ROW even on small screens to keep threads */
+    flex-direction: row !important; 
+    align-items: center;
+}
+
+/* 2. FORCE VISIBILITY (Override previous mobile hiding) */
+.explainer-annotations-left,
+.explainer-annotations-right,
+.section2-annotations,
+.section3-annotations {
+    display: flex !important; /* Force visible on ALL screens */
+    flex: 1;
+    min-width: 200px; /* Ensure they have width */
+}
+
+/* 3. SUPER SCALING LOGIC (Fit the desktop layout on all screens) */
+
+/* Laptop (Standard) */
+@media (max-width: 1400px) {
+    .explainer-container.section2-explainer,
+    .explainer-container.section3-explainer { transform: scale(0.9); }
+}
+
+/* Small Laptop / Tablet Landscape */
+@media (max-width: 1100px) {
+    .explainer-container.section2-explainer,
+    .explainer-container.section3-explainer { transform: scale(0.75); }
+    
+    /* Pull margins in to reduce white space from scaling */
+    .explainer-section, .tabbed-reco-section { overflow: hidden; }
+    .explainer-container { margin: -50px 0; }
+}
+
+/* Tablet Portrait */
+@media (max-width: 850px) {
+    .explainer-container.section2-explainer,
+    .explainer-container.section3-explainer { transform: scale(0.6); }
+    .explainer-container { margin: -100px 0; }
+}
+
+/* Mobile (Aggressive Scale to keep structure) */
+@media (max-width: 600px) {
+    .explainer-container.section2-explainer,
+    .explainer-container.section3-explainer { transform: scale(0.4); }
+    .explainer-container { margin: -200px 0; }
+    
+    /* Adjust text size for readability when scaled down */
+    .annotation-content h4 { font-size: 1.2rem; } 
+    .annotation-content p { font-size: 1rem; }
+}
+
+/* 4. SECTION SPACING & FOOTER PROTECTION */
+.explainer-section,
+.tabbed-reco-section {
+    min-height: 100vh;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 60px;
+    background-color: var(--bg-primary); 
+    position: relative;
+    z-index: 20; 
+    overflow: hidden; /* Hide scrollbars from scaling */
+}
+
+.tabbed-reco-section {
+    padding-bottom: 250px !important; 
+}
+
+/* 5. Hide Mobile-Only Tooltips (Since we are using Desktop mode everywhere) */
+.mobile-explanation {
+    display: none !important;
+}

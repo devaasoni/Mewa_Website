@@ -981,12 +981,12 @@
 }
 
 .faq-question:hover {
-    color: var(--gradient-3);
+    color: var(--gradient-1);
 }
 
 .faq-question i {
     transition: transform 0.3s ease;
-    color: var(--gradient-3);
+    color: var(--gradient-1);
 }
 
 .faq-item.active .faq-question i {
@@ -1006,7 +1006,7 @@
 
 .faq-answer p {
     padding: 0 2rem 1.5rem;
-    color: var(--text-secondary);
+    color: var(--text-primary);
     line-height: 1.7;
     margin: 0;
 }

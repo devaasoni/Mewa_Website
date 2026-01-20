@@ -32,16 +32,18 @@
    (This now holds the border and shadow, instead of the inner containers) */
 .contact-wrapper {
     display: flex;
-    max-width: 950px;
-    /* Limits width for a compact look */
+    max-width: 950px; /* Limits width for a compact look */
     margin: 0 auto;
-    background: var(--bg-card);
-    /* Dark background for form side */
+
+    /* NEW: White background + Gradient Border Trick */
+    background: 
+        linear-gradient(#fff, #fff) padding-box, /* Inner white background */
+        linear-gradient(135deg, var(--gradient-1), var(--gradient-2)) border-box; /* Gradient border source */
+    border: 2px solid transparent; /* Transparent border allows gradient to show through */
+    
     border-radius: 24px;
-    border: 1px solid var(--border-color);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    /* Ensures the gradient side stays inside rounded corners */
+    overflow: hidden; /* Ensures the gradient side stays inside rounded corners */
 }
 
 /* 3. Left Side: The Form (60% Width) */
@@ -70,9 +72,12 @@
 }
 
 .contact-form .form-label {
-    font-size: 0.85rem;
+    font-size: 1rem;
     font-weight: 600;
-    color: var(--text-primary);
+
+    /* CHANGED: Dark text */
+    color: #374151;
+
     margin-left: 4px;
 }
 
@@ -98,13 +103,14 @@
 .contact-form .form-input,
 .contact-form .form-textarea {
     width: 100%;
-    padding: 12px 12px 12px 40px;
-    /* Compact padding */
-    background: var(--bg-tertiary);
-    /* Slightly lighter than card */
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 12px 12px 12px 40px; /* Compact padding */
+    
+    /* CHANGED: Light background and border */
+    background: #f3f3f5; 
+    border: 1px solid #d1d5db; /* Light grey border */
+    color: #333333; /* Dark text */
+
     border-radius: 10px;
-    color: white;
     font-size: 0.95rem;
     outline: none;
     transition: all 0.3s ease;
@@ -113,13 +119,15 @@
 .contact-form .form-input:focus,
 .contact-form .form-textarea:focus {
     border-color: var(--gradient-3);
-    background: rgba(255, 255, 255, 0.05);
+    
+    /* CHANGED: Keep background white on focus */
+    background: #f3f3f5;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1); /* Optional: adds a subtle glow */
 }
 
 .contact-form .form-textarea {
     resize: none;
-    min-height: 100px;
-    /* Shorter height */
+    min-height: 100px; /* Shorter height */
     padding-top: 12px;
 }
 
@@ -154,24 +162,27 @@
 /* 4. Right Side: The Info Sidebar (40% Width) 
    (This side gets the nice gradient background) */
 .contact-info-container {
-    /* flex: 1; */
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.15));
-    border-left: 1px solid var(--border-color);
+    /* REMOVED: background gradient */
+    background: transparent; 
+    
+    /* CHANGED: Light grey separator line instead of dark border */
+    border-left: 1px solid #f0f0f0;
+    
     padding: 40px;
     display: flex;
-    flex-direction: column;
-    /* justify-content: space-between; */
+    flex-direction: column; /* justify-content: space-between; */
     gap: 40px;
     position: relative;
 }
 
-/* Decorative backdrop blur */
+/* REMOVED: The backdrop blur ::before element is no longer needed on white */
 .contact-info-container::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    backdrop-filter: blur(10px);
-    z-index: -1;
+    display: none;
+}
+
+/* NEW: Force the "Quick Contact" title to be dark */
+.contact-info-container h3 {
+    color: #111827 !important; /* Dark black */
 }
 
 /* Redesigning the Info Cards to look like list items */
@@ -200,10 +211,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.1);
-    /* Glass effect */
+
+    /* CHANGED: Light grey background instead of glass effect */
+    background: #f3f4f6; 
+    
+    /* CHANGED: Dark grey icon color */
+    color: #4b5563;
+
     border-radius: 12px;
-    color: #ffffff;
     font-size: 1.2rem;
     flex-shrink: 0;
 }
@@ -211,15 +226,19 @@
 .info-card-content h4 {
     font-size: 0.95rem;
     font-weight: 700;
-    color: #ffffff;
-    /* Explicit white */
+
+    /* CHANGED: Dark text */
+    color: #1f2937;
+
     margin-bottom: 2px;
 }
 
 .info-card-content p {
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
-    /* Muted white */
+
+    /* CHANGED: Medium grey text */
+    color: #6b7280;
+
     margin: 0;
 }
 
