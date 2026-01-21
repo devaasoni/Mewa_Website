@@ -1488,15 +1488,15 @@ body {
 .icon-box-sm.blue { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
 
 .strip-info h4 {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 700;
     margin: 0;
     color: #fff;
 }
 
 .strip-info span {
-    font-size: 0.9rem;
-    color: #a0a0b0;
+    font-size: 1rem;
+    color: var(--text-secondary);
 }
 
 /* Strip Tiers (Right - The Data) */
@@ -1541,8 +1541,8 @@ body {
 .tier-earn.blue { color: #3b82f6; }
 
 .tier-cost {
-    font-size: 0.85rem;
-    color: #6b6b7b;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
     font-family: monospace;
 }
 
