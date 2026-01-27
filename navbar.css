@@ -91,7 +91,7 @@
     display: inline-block;
     color: var(--text-primary);
     text-decoration: none;
-    transition: color 0.3s ease; /* Optional: fade out white slightly if needed */
+    transition: color 0.4s ease;
 }
 
 /* 2. The "Ghost" Gradient Overlay */
@@ -122,6 +122,11 @@
 /* When you hover ANYWHERE on the brand link, fade in the gradient text */
 .navbar-brand:hover .brand-text::before {
     opacity: 1;
+}
+
+/* ADD THIS: Make the underlying white text transparent on hover */
+.navbar-brand:hover .brand-text {
+    color: transparent;
 }
 
 

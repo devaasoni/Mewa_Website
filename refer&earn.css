@@ -44,12 +44,12 @@ body {
    ========================================= */
 .referral-hero {
     position: relative;
-    min-height: 90vh;
+    min-height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding: 100px 20px 60px;
+    padding: 100px 20px 30px;
     background: var(--bg-secondary);
 }
 
@@ -83,9 +83,9 @@ body {
 }
 
 .hero-title {
-    font-size: clamp(2.5rem, 6vw, 3rem);
+    font-size: clamp(2rem, 5vw, 3rem);
     font-weight: 700;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     letter-spacing: -0.03em;
     line-height: 1.1;
     color: var(--text-primary);
@@ -103,8 +103,8 @@ body {
 .hero-subtitle {
     font-size: 1.1rem;
     color: var(--text-secondary);
-    max-width: 650px;
-    margin: 0 auto 2rem;
+    max-width: 700px;
+    margin: 0 auto 1rem;
 }
 
 /* Hero Stats Cards */
@@ -113,7 +113,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     gap: 2rem;
-    padding-top: 2rem;
+    padding-top: 1.5rem;
     border-top: 1px solid var(--border-color);
 }
 
@@ -121,7 +121,7 @@ body {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
-    padding: 24px 32px;
+    padding: 20px 25px;
     text-align: center;
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
@@ -899,6 +899,65 @@ body {
     color: var(--text-secondary);
 }
 
+/* Custom Scenario Card Styles */
+.scenario-label {
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.scenario-desc {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    margin-bottom: 0;
+}
+
+.calculation-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 1rem;
+}
+
+.calc-box {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    padding-bottom: 5px;
+}
+
+.result-box {
+    text-align: center;
+}
+
+.you-earn-text {
+    display: block;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+
+.calculation-footer .total-value {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--gradient-2); /* Pinkish color from your image */
+    margin: 0;
+    line-height: 1;
+}
+
+/* Responsive adjustment for small screens */
+@media (max-width: 576px) {
+    .calculation-footer {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        text-align: center;
+    }
+}
+
 /* --- 4. Why Refer --- */
 .why-refer-wrapper .value-prop h5 {
     color: #fff;
@@ -1257,7 +1316,7 @@ body {
 
 .header-text h5 {
     margin: 0 0 4px 0;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: #fff;
 }

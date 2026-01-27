@@ -390,6 +390,7 @@ function initFAQAccordion() {
 }
 
 function initServiceTabs() {
+  // 1. Service Page Tabs (Unchanged)
   const tabButtons = document.querySelectorAll(".service-tab-btn");
   const tabContents = document.querySelectorAll(".service-tab-content");
 
@@ -410,27 +411,61 @@ function initServiceTabs() {
     });
   }
   
+  // 2. Recommendation Tabs (FULLY SCOPED FIX)
   const recoTabButtons = document.querySelectorAll(".tab-btn");
   if (recoTabButtons.length > 0) {
       recoTabButtons.forEach(btn => {
         btn.addEventListener("click", () => {
-          document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-          document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
-          document.querySelectorAll(".reco-tab-content").forEach(c => c.classList.remove("active"));
+          // 1. Find which section this button belongs to (Original or Duplicate)
+          const parentSection = btn.closest('section');
+          if (!parentSection) return;
 
+          // 2. Clear 'active' classes ONLY inside this specific section
+          parentSection.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+          parentSection.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
+          parentSection.querySelectorAll(".reco-tab-content").forEach(c => c.classList.remove("active"));
+
+          // 3. Activate the clicked button
           btn.classList.add("active");
           
-          const tab = btn.dataset.tab;
-          const mainContent = document.getElementById(`${tab}-tab`);
+          // 4. Activate the target content (Scope search to ID, but logic is safe now)
+          const tab = btn.dataset.tab; 
+          const mainContent = document.getElementById(`${tab}-tab`); 
           if (mainContent) mainContent.classList.add("active");
 
+          // 5. Trigger Specific Logic based on which tab was clicked
+          
+          // --- ORIGINAL SECTION (Section 3) ---
           if (tab === "active") {
             const inner = document.getElementById("tab-active-reco");
             if(inner) inner.classList.add("active");
-          } else if (tab === "revised") {
+          } 
+          else if (tab === "revised") {
             const inner = document.getElementById("tab-revised-reco");
             if(inner) inner.classList.add("active");
-            initSection3Explainer();
+            setTimeout(initSection3Explainer, 50);
+          }
+          
+          // --- DUPLICATE SECTION (Section 4) ---
+          else if (tab === "active-2") {
+            const inner = document.getElementById("tab-active-reco-2");
+            if(inner) inner.classList.add("active");
+            // Draw Active Tab Duplicate Lines
+            setTimeout(() => {
+                if (typeof drawConnectorsSection2_Duplicate === 'function') {
+                    drawConnectorsSection2_Duplicate();
+                }
+            }, 100);
+          }
+          else if (tab === "revised-2") {
+            const inner = document.getElementById("tab-revised-reco-2");
+            if(inner) inner.classList.add("active");
+            // Draw Revised Tab Duplicate Lines
+            setTimeout(() => {
+                if (typeof drawChamferedConnectorsSection3_Duplicate === 'function') {
+                    drawChamferedConnectorsSection3_Duplicate();
+                }
+            }, 100);
           }
         });
       });
@@ -758,26 +793,37 @@ function initContactForm() {
 // =====================================================
 
 function switchToRevisedTab() {
-  const revisedTabBtn = document.querySelector('.tab-btn[data-tab="revised"]');
-  const tabButtons = document.querySelectorAll(".tab-btn");
-  const tabContents = document.querySelectorAll(".tab-content");
+  // 1. Find the Original Section (We find it by looking for a unique child, like 'active-tab')
+  // This ensures we are NOT selecting the Duplicate Section (which uses 'active-2-tab')
+  const activeTabContent = document.getElementById('active-tab');
+  if (!activeTabContent) return;
+  
+  const originalSection = activeTabContent.closest('.tabbed-reco-section');
+  if (!originalSection) return;
 
+  // 2. Select Buttons & Content ONLY inside this Original Section
+  const tabButtons = originalSection.querySelectorAll(".tab-btn");
+  const tabContents = originalSection.querySelectorAll(".tab-content");
+  const innerTabContents = originalSection.querySelectorAll(".reco-tab-content");
+
+  // 3. Clear 'active' class ONLY from these specific elements
   tabButtons.forEach((btn) => btn.classList.remove("active"));
   tabContents.forEach((content) => content.classList.remove("active"));
-  document.querySelectorAll(".reco-tab-content").forEach(c => c.classList.remove("active"));
+  innerTabContents.forEach((c) => c.classList.remove("active"));
 
+  // 4. Activate the Revised Button (scoped to this section)
+  const revisedTabBtn = originalSection.querySelector('.tab-btn[data-tab="revised"]');
   if (revisedTabBtn) revisedTabBtn.classList.add("active");
 
+  // 5. Activate the Content IDs (Unique to Original Section)
   const revisedContent = document.getElementById("revised-tab");
   if (revisedContent) revisedContent.classList.add("active");
 
   const innerRevisedContent = document.getElementById("tab-revised-reco");
   if (innerRevisedContent) innerRevisedContent.classList.add("active");
 
-  const section = document.querySelector(".tabbed-reco-section");
-  if (section) {
-    section.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
+  // 6. Scroll & Redraw
+  originalSection.scrollIntoView({ behavior: "smooth", block: "start" });
 
   setTimeout(() => {
     initSection3Explainer();
@@ -805,8 +851,11 @@ function toggleTabbedHistory() {
   }
 
   setTimeout(() => {
-    if (typeof drawConnectorsSection3 === 'function') {
-      drawConnectorsSection3();
+    if (typeof drawOrthogonalConnectorsSection3 === 'function') {
+      // drawConnectorsSection3(); // <--- OLD CURVED VERSION (Commented out)
+      // drawOrthogonalConnectorsSection3(); // <--- NEW BRACKET VERSION
+      drawChamferedConnectorsSection3(); // <--- NEW ChamferedVERSION
+      // drawRoundedConnectorsSection3();      // <--- NEW rounded curve version
     }
   }, 350); 
 }
@@ -949,7 +998,7 @@ function drawConnectorsSection3() {
     if (!svg || !container) return;
 
     svg.style.overflow = 'visible';
-    svg.style.zIndex = '10';
+    // svg.style.zIndex = '10';
     svg.innerHTML = '';
     const containerRect = container.getBoundingClientRect();
 
@@ -1025,12 +1074,438 @@ function drawConnectorsSection3() {
     });
 }
 
+function drawOrthogonalConnectorsSection3() {
+    const svg = document.getElementById('connectorSvgSection3');
+    const container = document.getElementById('explainerContainerSection3');
+    const card = document.querySelector('.revision-card.active') || document.querySelector('.reco-card.active');
+    
+    if (!svg || !container || !card) return;
+
+    svg.style.overflow = 'visible';
+    svg.style.zIndex = '10'; 
+    svg.style.pointerEvents = 'none'; 
+    svg.innerHTML = '';
+    
+    const containerRect = container.getBoundingClientRect();
+    const cardRect = card.getBoundingClientRect();
+
+    const connections = {
+        's3-1': { side: 'left', color: 'orange', targets: ['s3-1a', 's3-1b', 's3-1c'] },
+        's3-2': { side: 'left', color: 'red', targets: ['s3-2a', 's3-2b', 's3-2c'] },
+        's3-3': { side: 'right', color: 'green', targets: ['s3-3a', 's3-3b'] },
+        's3-4': { side: 'right', color: 'blue', targets: ['s3-4a', 's3-4b'] },
+        's3-5': { side: 'left', color: 'purple', targets: ['s3-5'] },
+        's3-6': { side: 'right', color: 'pink', targets: ['s3-6'] }
+    };
+
+    Object.entries(connections).forEach(([annotationId, config]) => {
+        const annotation = document.querySelector(`.section3-annotations .annotation-item[data-target="${annotationId}"]`);
+        if (!annotation) return;
+
+        const annotationRect = annotation.getBoundingClientRect();
+        
+        // 1. Start Point
+        let startX, startY;
+        if (config.side === 'left') {
+            startX = annotationRect.right - containerRect.left;
+        } else {
+            startX = annotationRect.left - containerRect.left;
+        }
+        startY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
+
+        createDot(svg, startX, startY, config.color, annotationId);
+
+        // 2. Gather Targets with BREATHING SPACE
+        const validTargets = [];
+        // Define how far away from the card the arrow tip should stop
+        const spaceFromCard = 15; 
+
+        config.targets.forEach((targetNum) => {
+            const zone = document.querySelector(`.highlight-zone[data-num="${targetNum}"]`);
+            if (!zone) return;
+
+            const historyContainer = zone.closest('#tabbed-history-section');
+            if (historyContainer && !historyContainer.classList.contains('expanded')) return;
+
+            const zoneRect = zone.getBoundingClientRect();
+            if (zoneRect.width === 0 || zoneRect.height === 0) return;
+
+            let endX;
+            // Stop BEFORE the card edge
+            if (config.side === 'left') {
+                // Card Left Edge minus space
+                endX = (cardRect.left - containerRect.left) - spaceFromCard; 
+            } else {
+                // Card Right Edge plus space
+                endX = (cardRect.right - containerRect.left) + spaceFromCard;
+            }
+            
+            const endY = zoneRect.top + zoneRect.height / 2 - containerRect.top;
+            validTargets.push({ x: endX, y: endY });
+        });
+
+        if (validTargets.length === 0) return;
+
+        // 3. Bus Position
+        // Move bus further out to accommodate the new space + arrow
+        let busX;
+        const gapFromCard = 50; // Increased to 50px so lines look balanced
+
+        if (config.side === 'left') {
+            busX = (cardRect.left - containerRect.left) - gapFromCard;
+        } else {
+            busX = (cardRect.right - containerRect.left) + gapFromCard;
+        }
+
+        // 4. Draw Main Feeder
+        createLine(svg, startX, startY, busX, startY, config.color, annotationId);
+        
+        // 5. Draw Vertical Bus
+        const targetYs = validTargets.map(t => t.y);
+        const minY = Math.min(startY, ...targetYs);
+        const maxY = Math.max(startY, ...targetYs);
+
+        createLine(svg, busX, minY, busX, maxY, config.color, annotationId);
+
+        // 6. Draw Horizontal Branches
+        validTargets.forEach(target => {
+            const arrowSize = 10; // MUST MATCH createArrowHead size
+            const arrowDir = config.side === 'left' ? 'right' : 'left';
+            
+            let lineEndX;
+            if (arrowDir === 'right') {
+                 // Stop line behind the arrow head
+                 lineEndX = target.x - arrowSize + 1;
+            } else {
+                 lineEndX = target.x + arrowSize - 1;
+            }
+
+            createLine(svg, busX, target.y, lineEndX, target.y, config.color, annotationId);
+            createArrowHead(svg, target.x, target.y, arrowDir, config.color, annotationId);
+        });
+    });
+}
+
+function drawChamferedConnectorsSection3() {
+    const svg = document.getElementById('connectorSvgSection3');
+    const container = document.getElementById('explainerContainerSection3');
+    const card = document.querySelector('.revision-card.active') || document.querySelector('.reco-card.active');
+    
+    if (!svg || !container || !card) return;
+
+    svg.style.overflow = 'visible';
+    svg.style.zIndex = '10'; 
+    svg.style.pointerEvents = 'none'; 
+    svg.innerHTML = '';
+    
+    const containerRect = container.getBoundingClientRect();
+    const cardRect = card.getBoundingClientRect();
+    
+    // CONFIGURATION
+    const chamfer = 15;      // Size of the 45-degree cut
+    const spaceFromCard = 15; // Gap before arrow tip
+    const gapFromCard = 50;   // Distance of the vertical bus from the card
+
+    const connections = {
+        's3-1': { side: 'left', color: 'orange', targets: ['s3-1a', 's3-1b', 's3-1c'] },
+        's3-2': { side: 'left', color: 'red', targets: ['s3-2a', 's3-2b', 's3-2c'] },
+        's3-3': { side: 'right', color: 'green', targets: ['s3-3a', 's3-3b'] },
+        's3-4': { side: 'right', color: 'blue', targets: ['s3-4a', 's3-4b'] },
+        's3-5': { side: 'left', color: 'purple', targets: ['s3-5'] },
+        's3-6': { side: 'right', color: 'pink', targets: ['s3-6'] }
+    };
+
+    Object.entries(connections).forEach(([annotationId, config]) => {
+        const annotation = document.querySelector(`.section3-annotations .annotation-item[data-target="${annotationId}"]`);
+        if (!annotation) return;
+
+        const annotationRect = annotation.getBoundingClientRect();
+        
+        // --- 1. START POINT (Annotation) ---
+        let startX, startY;
+        if (config.side === 'left') {
+            startX = annotationRect.right - containerRect.left;
+        } else {
+            startX = annotationRect.left - containerRect.left;
+        }
+        startY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
+
+        createDot(svg, startX, startY, config.color, annotationId);
+
+        // --- 2. GATHER TARGETS ---
+        const validTargets = [];
+        config.targets.forEach((targetNum) => {
+            const zone = document.querySelector(`.highlight-zone[data-num="${targetNum}"]`);
+            if (!zone) return;
+
+            const historyContainer = zone.closest('#tabbed-history-section');
+            if (historyContainer && !historyContainer.classList.contains('expanded')) return;
+
+            const zoneRect = zone.getBoundingClientRect();
+            if (zoneRect.width === 0 || zoneRect.height === 0) return;
+
+            let endX;
+            if (config.side === 'left') {
+                endX = (cardRect.left - containerRect.left) - spaceFromCard; 
+            } else {
+                endX = (cardRect.right - containerRect.left) + spaceFromCard;
+            }
+            const endY = zoneRect.top + zoneRect.height / 2 - containerRect.top;
+            
+            validTargets.push({ x: endX, y: endY });
+        });
+
+        if (validTargets.length === 0) return;
+
+        // --- 3. BUS POSITION (Vertical Spine) ---
+        let busX;
+        if (config.side === 'left') {
+            busX = (cardRect.left - containerRect.left) - gapFromCard;
+        } else {
+            busX = (cardRect.right - containerRect.left) + gapFromCard;
+        }
+
+        // --- 4. DRAW FEEDER LINE (Annotation -> Bus) ---
+        createLine(svg, startX, startY, busX, startY, config.color, annotationId);
+
+        // --- 5. DRAW BRANCHES WITH 45-DEGREE CHAMFER ---
+        const arrowDir = config.side === 'left' ? 'right' : 'left';
+        const busDir = config.side === 'left' ? 1 : -1; 
+
+        validTargets.forEach(target => {
+            const arrowSize = 10;
+            let lineEndX = (arrowDir === 'right') ? target.x - arrowSize + 1 : target.x + arrowSize - 1;
+
+            // Draw Arrow Head at target
+            createArrowHead(svg, target.x, target.y, arrowDir, config.color, annotationId);
+
+            // CASE A: Straight Line
+            if (Math.abs(target.y - startY) < 1) {
+                createLine(svg, busX, target.y, lineEndX, target.y, config.color, annotationId);
+                return;
+            }
+
+            // CASE B: Chamfered 45-degree Corner
+            // We use a single <path> to ensure NO GAPS
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            let d = "";
+
+            // 1. Start at intersection of Feeder and Bus
+            d += `M ${busX} ${startY} `;
+
+            // 2. Vertical Line along Bus
+            if (target.y > startY) {
+                // Going DOWN: Stop 'chamfer' pixels before target Y
+                d += `L ${busX} ${target.y - chamfer} `;
+            } else {
+                // Going UP: Stop 'chamfer' pixels before target Y
+                d += `L ${busX} ${target.y + chamfer} `;
+            }
+
+            // 3. Diagonal Chamfer (The 45-degree cut)
+            // Draw line to (BusX +/- chamfer, TargetY)
+            d += `L ${busX + (busDir * chamfer)} ${target.y} `;
+
+            // 4. Horizontal Line to Target
+            d += `L ${lineEndX} ${target.y}`;
+
+            path.setAttribute('d', d);
+            path.setAttribute('class', `connector-path ${config.color}`);
+            path.setAttribute('data-num', annotationId);
+            path.style.fill = 'none'; 
+            svg.appendChild(path);
+        });
+    });
+}
+
+function drawRoundedConnectorsSection3() {
+    const svg = document.getElementById('connectorSvgSection3');
+    const container = document.getElementById('explainerContainerSection3');
+    const card = document.querySelector('.revision-card.active') || document.querySelector('.reco-card.active');
+    
+    if (!svg || !container || !card) return;
+
+    svg.style.overflow = 'visible';
+    svg.style.zIndex = '10'; 
+    svg.style.pointerEvents = 'none'; 
+    svg.innerHTML = '';
+    
+    const containerRect = container.getBoundingClientRect();
+    const cardRect = card.getBoundingClientRect();
+    
+    // CONFIG: Adjust these for tighter/looser curves
+    const cornerRadius = 15; 
+    const spaceFromCard = 15; // Gap before arrow tip
+    const gapFromCard = 50;   // Distance of the vertical bus from the card
+
+    const connections = {
+        's3-1': { side: 'left', color: 'orange', targets: ['s3-1a', 's3-1b', 's3-1c'] },
+        's3-2': { side: 'left', color: 'red', targets: ['s3-2a', 's3-2b', 's3-2c'] },
+        's3-3': { side: 'right', color: 'green', targets: ['s3-3a', 's3-3b'] },
+        's3-4': { side: 'right', color: 'blue', targets: ['s3-4a', 's3-4b'] },
+        's3-5': { side: 'left', color: 'purple', targets: ['s3-5'] },
+        's3-6': { side: 'right', color: 'pink', targets: ['s3-6'] }
+    };
+
+    Object.entries(connections).forEach(([annotationId, config]) => {
+        const annotation = document.querySelector(`.section3-annotations .annotation-item[data-target="${annotationId}"]`);
+        if (!annotation) return;
+
+        const annotationRect = annotation.getBoundingClientRect();
+        
+        // --- 1. START POINT (Annotation) ---
+        let startX, startY;
+        if (config.side === 'left') {
+            startX = annotationRect.right - containerRect.left;
+        } else {
+            startX = annotationRect.left - containerRect.left;
+        }
+        startY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
+
+        createDot(svg, startX, startY, config.color, annotationId);
+
+        // --- 2. GATHER TARGETS ---
+        const validTargets = [];
+        config.targets.forEach((targetNum) => {
+            const zone = document.querySelector(`.highlight-zone[data-num="${targetNum}"]`);
+            if (!zone) return;
+
+            // Handle hidden history logic
+            const historyContainer = zone.closest('#tabbed-history-section');
+            if (historyContainer && !historyContainer.classList.contains('expanded')) return;
+
+            const zoneRect = zone.getBoundingClientRect();
+            if (zoneRect.width === 0 || zoneRect.height === 0) return;
+
+            let endX;
+            if (config.side === 'left') {
+                endX = (cardRect.left - containerRect.left) - spaceFromCard; 
+            } else {
+                endX = (cardRect.right - containerRect.left) + spaceFromCard;
+            }
+            const endY = zoneRect.top + zoneRect.height / 2 - containerRect.top;
+            
+            validTargets.push({ x: endX, y: endY });
+        });
+
+        if (validTargets.length === 0) return;
+
+        // --- 3. BUS POSITION (Vertical Spine) ---
+        let busX;
+        if (config.side === 'left') {
+            busX = (cardRect.left - containerRect.left) - gapFromCard;
+        } else {
+            busX = (cardRect.right - containerRect.left) + gapFromCard;
+        }
+
+        // --- 4. DRAW FEEDER LINE (Annotation -> Bus) ---
+        // This is always a straight line to the vertical bus
+        createLine(svg, startX, startY, busX, startY, config.color, annotationId);
+
+        // --- 5. DRAW BRANCHES WITH ROUNDED CORNERS ---
+        const arrowDir = config.side === 'left' ? 'right' : 'left';
+        const busDir = config.side === 'left' ? 1 : -1; // 1 for rightward curve, -1 for leftward
+
+        validTargets.forEach(target => {
+            const arrowSize = 10;
+            let lineEndX = (arrowDir === 'right') ? target.x - arrowSize + 1 : target.x + arrowSize - 1;
+
+            // Draw Arrow Head at target
+            createArrowHead(svg, target.x, target.y, arrowDir, config.color, annotationId);
+
+            // CASE A: Straight Line (Target is perfectly aligned with Start)
+            // We use a small tolerance (1px)
+            if (Math.abs(target.y - startY) < 1) {
+                createLine(svg, busX, target.y, lineEndX, target.y, config.color, annotationId);
+                return;
+            }
+
+            // CASE B: Rounded Corner
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            let d = "";
+
+            // 1. Move to Bus Start (at intersection with Feeder)
+            d += `M ${busX} ${startY} `;
+
+            // 2. Vertical Line along Bus
+            // We draw vertically until we are 'cornerRadius' away from the target height
+            if (target.y > startY) {
+                // Going DOWN
+                d += `L ${busX} ${target.y - cornerRadius} `;
+                // Curve DOWN-to-HORIZONTAL
+                d += `Q ${busX} ${target.y} ${busX + (busDir * cornerRadius)} ${target.y} `;
+            } else {
+                // Going UP
+                d += `L ${busX} ${target.y + cornerRadius} `;
+                // Curve UP-to-HORIZONTAL
+                d += `Q ${busX} ${target.y} ${busX + (busDir * cornerRadius)} ${target.y} `;
+            }
+
+            // 3. Horizontal Line to Target
+            d += `L ${lineEndX} ${target.y}`;
+
+            path.setAttribute('d', d);
+            path.setAttribute('class', `connector-path ${config.color}`);
+            path.setAttribute('data-num', annotationId);
+            path.style.fill = 'none'; // Crucial for paths
+            svg.appendChild(path);
+        });
+    });
+}
+
+// Helper to create SVG Line
+function createLine(svg, x1, y1, x2, y2, color, id) {
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', `M ${x1} ${y1} L ${x2} ${y2}`);
+    path.setAttribute('class', `connector-path ${color}`);
+    path.setAttribute('data-num', id);
+    svg.appendChild(path);
+}
+
+// Helper to create SVG Dot
+function createDot(svg, cx, cy, color, id, r = 3) {
+    const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    dot.setAttribute('cx', cx);
+    dot.setAttribute('cy', cy);
+    dot.setAttribute('r', r);
+    dot.setAttribute('class', `connector-path ${color}`);
+    dot.setAttribute('data-num', id);
+    svg.appendChild(dot);
+}
+
+// Helper to create SVG Arrowhead
+function createArrowHead(svg, x, y, direction, color, id) {
+    const size = 10; 
+    let pathData;
+
+    if (direction === 'right') {
+        pathData = `M ${x} ${y} L ${x - size} ${y - size / 1.5} L ${x - size} ${y + size / 1.5} Z`;
+    } else {
+        pathData = `M ${x} ${y} L ${x + size} ${y - size / 1.5} L ${x + size} ${y + size / 1.5} Z`;
+    }
+
+    const arrow = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    arrow.setAttribute('d', pathData);
+    
+    // We add the 'arrow-head' class so we can style it in CSS
+    arrow.setAttribute('class', `connector-path arrow-head ${color}`);
+    arrow.setAttribute('data-num', id);
+    
+    // REMOVED: The lines that forced arrow.style.fill
+    // REMOVED: The themeColors object
+    
+    svg.appendChild(arrow);
+}
+
 function initSection3Explainer() {
     if (window.innerWidth > 991) {
         const revisedTab = document.getElementById('revised-tab');
         if (revisedTab && revisedTab.classList.contains('active')) {
             setTimeout(() => {
-                drawConnectorsSection3();
+                // drawConnectorsSection3(); // <--- OLD CURVED VERSION (Commented out)
+                // drawOrthogonalConnectorsSection3(); // <--- NEW BRACKET VERSION
+                drawChamferedConnectorsSection3(); // <--- NEW ChamferedVERSION
+                // drawRoundedConnectorsSection3();      // <--- NEW rounded curve version
                 setupSection3Hover();
             }, 100);
         }
@@ -1128,8 +1603,469 @@ window.addEventListener('resize', debounce(function() {
     if (window.innerWidth > 991) {
         const revisedTab = document.getElementById('revised-tab');
         if (revisedTab && revisedTab.classList.contains('active')) {
-            drawConnectorsSection3();
+            // drawConnectorsSection3(); // <--- OLD CURVED VERSION (Commented out)
+            // drawOrthogonalConnectorsSection3(); // <--- NEW BRACKET VERSION
+            drawChamferedConnectorsSection3(); // <--- NEW ChamferedVERSION
+            // drawRoundedConnectorsSection3();      // <--- NEW rounded curve version
             setupSection3Hover();
         }
     }
 }, 150));
+
+// =====================================================
+// DUPLICATE SECTION LOGIC (ALL FUNCTIONS CONSOLIDATED)
+// =====================================================
+
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. Initialize Duplicate Section (Revised Tab is default active here)
+    setTimeout(() => {
+        if(document.getElementById('connectorSvgSection3_2')) {
+            drawChamferedConnectorsSection3_Duplicate();
+            setupSection3Hover_Duplicate();
+        }
+    }, 500);
+});
+
+// 2. Window Resize Handler for Duplicate Section
+window.addEventListener('resize', debounce(function() {
+    // Redraw whichever tab is active in the duplicate section
+    const activeTab = document.querySelector('#duplicate-reco-section .tab-content.active');
+    if (activeTab && activeTab.id === 'active-2-tab') {
+        drawConnectorsSection2_Duplicate();
+    } else if (activeTab && activeTab.id === 'revised-2-tab') {
+        drawChamferedConnectorsSection3_Duplicate();
+    }
+}, 150));
+
+
+// -----------------------------------------------------
+// A. ACTIVE TAB LOGIC (Duplicate Section)
+// -----------------------------------------------------
+function drawConnectorsSection2_Duplicate() {
+    const svg = document.getElementById('connectorSvgSection2_2');
+    const container = document.getElementById('explainerContainerSection2_2');
+    if (!svg || !container) return;
+
+    svg.innerHTML = '';
+    const containerRect = container.getBoundingClientRect();
+    
+    // Mapping for Active Tab (Duplicate)
+    const connections = { 's2-1_2': ['left', 'orange'], 's2-2_2': ['right', 'blue'] };
+
+    Object.entries(connections).forEach(([num, [side, color]]) => {
+        const annotation = document.querySelector(`.section2-annotations-2 .annotation-item[data-target="${num}"]`);
+        const zone = document.querySelector(`.highlight-zone[data-num="${num}"]`);
+        if (!annotation || !zone) return;
+
+        const annotationRect = annotation.getBoundingClientRect();
+        const zoneRect = zone.getBoundingClientRect();
+        let startX, startY, endX, endY;
+
+        if (side === 'left') {
+            startX = annotationRect.right - containerRect.left;
+            startY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
+            endX = zoneRect.left - containerRect.left;
+            endY = zoneRect.top + zoneRect.height / 2 - containerRect.top;
+        } else {
+            startX = annotationRect.left - containerRect.left;
+            startY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
+            endX = zoneRect.right - containerRect.left;
+            endY = zoneRect.top + zoneRect.height / 2 - containerRect.top;
+        }
+
+        // Hanging Thread Style (Matches Original Section 2)
+        const midX = (startX + endX) / 2;
+        const distance = Math.abs(endX - startX);
+        const slack = Math.min(30, distance * 0.15);
+        const controlY = (startY + endY) / 2 + slack;
+
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', `M ${startX} ${startY} Q ${midX} ${controlY} ${endX} ${endY}`);
+        path.setAttribute('class', `connector-path ${color}`);
+        path.setAttribute('data-num', num);
+        svg.appendChild(path);
+
+        [ {x: startX, y: startY}, {x: endX, y: endY} ].forEach(pt => {
+            const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            dot.setAttribute('cx', pt.x); dot.setAttribute('cy', pt.y); dot.setAttribute('r', 3);
+            dot.setAttribute('class', `connector-path ${color}`);
+            svg.appendChild(dot);
+        });
+    });
+}
+
+
+// -----------------------------------------------------
+// B. REVISED TAB LOGIC (Duplicate Section)
+// -----------------------------------------------------
+function drawChamferedConnectorsSection3_Duplicate() {
+    const svg = document.getElementById('connectorSvgSection3_2');
+    const container = document.getElementById('explainerContainerSection3_2');
+    const card = container ? container.querySelector('.revision-card.active') : null;
+    
+    if (!svg || !container || !card) return;
+
+    svg.style.overflow = 'visible';
+    svg.style.zIndex = '10'; 
+    svg.innerHTML = '';
+    
+    const containerRect = container.getBoundingClientRect();
+    const cardRect = card.getBoundingClientRect();
+    const chamfer = 15;      
+    const spaceFromCard = 15; 
+    const gapFromCard = 50;   
+
+    // FIXED: Added all targets (a, b, c) so history lines appear
+    const connections = {
+        's3-1_2': { side: 'left', color: 'orange', targets: ['s3-1a_2', 's3-1b_2', 's3-1c_2'] },
+        's3-2_2': { side: 'left', color: 'red', targets: ['s3-2a_2', 's3-2b_2', 's3-2c_2'] },
+        's3-3_2': { side: 'right', color: 'green', targets: ['s3-3a_2', 's3-3b_2'] },
+        's3-4_2': { side: 'right', color: 'blue', targets: ['s3-4a_2', 's3-4b_2'] },
+        's3-5_2': { side: 'left', color: 'purple', targets: ['s3-5_2'] },
+        's3-6_2': { side: 'right', color: 'pink', targets: ['s3-6_2'] }
+    };
+
+    Object.entries(connections).forEach(([annotationId, config]) => {
+        const annotation = document.querySelector(`.section3-annotations-2 .annotation-item[data-target="${annotationId}"]`);
+        if (!annotation) return;
+
+        const annotationRect = annotation.getBoundingClientRect();
+        
+        let startX, startY;
+        if (config.side === 'left') {
+            startX = annotationRect.right - containerRect.left;
+        } else {
+            startX = annotationRect.left - containerRect.left;
+        }
+        startY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
+
+        // Start Dot
+        const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        dot.setAttribute('cx', startX); dot.setAttribute('cy', startY); dot.setAttribute('r', 3);
+        dot.setAttribute('class', `connector-path ${config.color}`);
+        svg.appendChild(dot);
+
+        // Gather Targets
+        const validTargets = [];
+        config.targets.forEach((targetNum) => {
+            const zone = document.querySelector(`.highlight-zone[data-num="${targetNum}"]`);
+            if (!zone) return;
+            
+            // Check if inside hidden history
+            const historyContainer = zone.closest('.revision-history-section');
+            if (historyContainer && !historyContainer.classList.contains('expanded')) return;
+            
+            const zoneRect = zone.getBoundingClientRect();
+            if (zoneRect.width === 0 || zoneRect.height === 0) return;
+
+            let endX;
+            if (config.side === 'left') endX = (cardRect.left - containerRect.left) - spaceFromCard; 
+            else endX = (cardRect.right - containerRect.left) + spaceFromCard;
+            
+            validTargets.push({ x: endX, y: zoneRect.top + zoneRect.height / 2 - containerRect.top });
+        });
+
+        if (validTargets.length === 0) return;
+
+        // Bus Position
+        let busX;
+        if (config.side === 'left') busX = (cardRect.left - containerRect.left) - gapFromCard;
+        else busX = (cardRect.right - containerRect.left) + gapFromCard;
+
+        // Draw Feeder (Annotation -> Bus)
+        const feeder = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        feeder.setAttribute('d', `M ${startX} ${startY} L ${busX} ${startY}`);
+        feeder.setAttribute('class', `connector-path ${config.color}`);
+        feeder.setAttribute('data-num', annotationId);
+        svg.appendChild(feeder);
+
+        const arrowDir = config.side === 'left' ? 'right' : 'left';
+        const busDir = config.side === 'left' ? 1 : -1; 
+
+        validTargets.forEach(target => {
+            const arrowSize = 10;
+            let lineEndX = (arrowDir === 'right') ? target.x - arrowSize + 1 : target.x + arrowSize - 1;
+
+            // Draw Arrow
+            const arrow = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            const dArrow = arrowDir === 'right' 
+                ? `M ${target.x} ${target.y} L ${target.x - 10} ${target.y - 6} L ${target.x - 10} ${target.y + 6} Z`
+                : `M ${target.x} ${target.y} L ${target.x + 10} ${target.y - 6} L ${target.x + 10} ${target.y + 6} Z`;
+            arrow.setAttribute('d', dArrow);
+            arrow.setAttribute('class', `connector-path arrow-head ${config.color}`);
+            arrow.setAttribute('data-num', annotationId);
+            svg.appendChild(arrow);
+
+            // Draw Chamfered Path (No Gap Logic)
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            let d = "";
+            
+            if (Math.abs(target.y - startY) < 1) {
+                d = `M ${busX} ${target.y} L ${lineEndX} ${target.y}`;
+            } else {
+                d += `M ${busX} ${startY} `; 
+                if (target.y > startY) { d += `L ${busX} ${target.y - chamfer} `; } 
+                else { d += `L ${busX} ${target.y + chamfer} `; }
+                
+                d += `L ${busX + (busDir * chamfer)} ${target.y} `;
+                d += `L ${lineEndX} ${target.y}`;
+            }
+            path.setAttribute('d', d);
+            path.setAttribute('class', `connector-path ${config.color}`);
+            path.setAttribute('data-num', annotationId);
+            path.style.fill = 'none'; 
+            svg.appendChild(path);
+        });
+    });
+}
+
+
+// -----------------------------------------------------
+// C. INTERACTIONS (History & Hover)
+// -----------------------------------------------------
+
+function toggleTabbedHistory_Duplicate() {
+    const section = document.getElementById("tabbed-history-section-2");
+    const text = document.getElementById("tabbed-history-text-2");
+    const icon = document.getElementById("tabbed-history-icon-2");
+    const btn = document.getElementById("tabbed-history-btn-2");
+
+    if (section.classList.contains("expanded")) {
+        section.classList.remove("expanded");
+        text.textContent = "View History";
+        icon.classList.remove("bi-chevron-up");
+        icon.classList.add("bi-chevron-down");
+        btn.classList.remove("expanded");
+    } else {
+        section.classList.add("expanded");
+        text.textContent = "Hide History";
+        icon.classList.remove("bi-chevron-down");
+        icon.classList.add("bi-chevron-up");
+        btn.classList.add("expanded");
+    }
+    // Redraw connectors after animation (so lines reach the new history items)
+    setTimeout(drawChamferedConnectorsSection3_Duplicate, 350); 
+}
+
+function switchToRevisedTab_Duplicate() {
+    // Finds the button in the duplicate section that opens the revised tab
+    const btn = document.querySelector('#duplicate-reco-section .tab-btn[data-tab="revised-2"]');
+    if(btn) btn.click();
+}
+
+function setupSection3Hover_Duplicate() {
+    // Targeted selectors for Duplicate Section
+    const annotations = document.querySelectorAll('.section3-annotations-2 .annotation-item');
+    const zones = document.querySelectorAll('.highlight-zone[data-num*="_2"]'); 
+
+    annotations.forEach(item => {
+        item.addEventListener('mouseenter', handleDuplicateHoverStart);
+        item.addEventListener('mouseleave', handleDuplicateHoverEnd);
+    });
+    zones.forEach(zone => {
+        zone.addEventListener('mouseenter', handleDuplicateHoverStart);
+        zone.addEventListener('mouseleave', handleDuplicateHoverEnd);
+    });
+    
+    // Also setup Section 2 (Active Tab) hover
+    const annotations2 = document.querySelectorAll('.section2-annotations-2 .annotation-item');
+    annotations2.forEach(item => {
+        item.addEventListener('mouseenter', handleDuplicateHoverStart);
+        item.addEventListener('mouseleave', handleDuplicateHoverEnd);
+    });
+}
+
+function handleDuplicateHoverStart(e) {
+    if (window.innerWidth <= 991) return;
+    
+    // Get the ID of the element being hovered (Annotation or Zone)
+    let id = e.currentTarget.dataset.target || e.currentTarget.dataset.num;
+    if(!id) return;
+    
+    // 1. Clean up ID if hovering a sub-zone (e.g. s3-1a_2 becomes s3-1_2)
+    // This allows reverse-highlighting (Zone -> Annotation)
+    if(id.includes('a_2') || id.includes('b_2') || id.includes('c_2')) {
+        id = id.replace(/[abc]_2/, '_2');
+    }
+
+    // 2. Define the Mapping for the Duplicate Section
+    // This tells the code exactly which boxes belong to which group
+    const connectionMap = {
+        's3-1_2': ['s3-1a_2', 's3-1b_2', 's3-1c_2'],
+        's3-2_2': ['s3-2a_2', 's3-2b_2', 's3-2c_2'],
+        's3-3_2': ['s3-3a_2', 's3-3b_2'],
+        's3-4_2': ['s3-4a_2', 's3-4b_2'],
+        's3-5_2': ['s3-5_2'],
+        's3-6_2': ['s3-6_2']
+    };
+
+    // 3. FADE EVERYTHING in the duplicate section
+    const section = document.getElementById('duplicate-reco-section');
+    section.querySelectorAll('.annotation-item, .highlight-zone, .connector-path').forEach(el => el.classList.add('faded'));
+
+    // 4. HIGHLIGHT THE ANNOTATION (Left/Right Text)
+    const annotation = section.querySelector(`.annotation-item[data-target="${id}"]`);
+    if(annotation) { 
+        annotation.classList.remove('faded'); 
+        annotation.classList.add('highlighted'); 
+    }
+
+    // 5. HIGHLIGHT THE TARGET ZONES (Using the Map)
+    const targets = connectionMap[id] || [];
+    targets.forEach(targetId => {
+        const zone = section.querySelector(`.highlight-zone[data-num="${targetId}"]`);
+        if(zone) {
+            zone.classList.remove('faded');
+            zone.classList.add('highlighted');
+        }
+    });
+
+    // 6. HIGHLIGHT THE LINES
+    section.querySelectorAll(`.connector-path[data-num="${id}"]`).forEach(path => { 
+        path.classList.remove('faded'); 
+        path.classList.add('highlighted'); 
+    });
+}
+
+function handleDuplicateHoverEnd() {
+    const section = document.getElementById('duplicate-reco-section');
+    section.querySelectorAll('.highlighted, .faded').forEach(el => {
+        el.classList.remove('highlighted', 'faded');
+    });
+}
+
+// Function for Exact Replica Cards Toggle
+function toggleExactDetails(btn) {
+    // Find the next sibling that is the details container
+    const detailsDiv = btn.nextElementSibling;
+    const icon = btn.querySelector('i');
+    
+    if (detailsDiv.classList.contains('expanded')) {
+        // Collapse
+        detailsDiv.classList.remove('expanded');
+        btn.innerHTML = 'Show More <i class="bi bi-chevron-down"></i>';
+    } else {
+        // Expand
+        detailsDiv.classList.add('expanded');
+        btn.innerHTML = 'Show Less <i class="bi bi-chevron-up"></i>';
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    initDualLinkInteraction();
+    
+    // Recalculate lines on resize
+    window.addEventListener('resize', () => {
+        // Clear lines on resize to avoid misalignment
+        const svg = document.getElementById('dualConnectorSvg');
+        if(svg) svg.innerHTML = '';
+    });
+});
+
+function initDualLinkInteraction() {
+    const section = document.getElementById('triLinkSection');
+    if (!section) return;
+
+    // 1. Select all interactive elements
+    const triggers = section.querySelectorAll('[data-hover-group]');
+
+    triggers.forEach(trigger => {
+        trigger.addEventListener('mouseenter', (e) => handleDualHover(e, true));
+        trigger.addEventListener('mouseleave', (e) => handleDualHover(e, false));
+    });
+}
+
+function handleDualHover(e, isHovering) {
+    const section = document.getElementById('triLinkSection');
+    const groupName = e.currentTarget.getAttribute('data-hover-group');
+    const svg = document.getElementById('dualConnectorSvg');
+    
+    if (!groupName || !section || !svg) return;
+
+    // 1. Manage Section State
+    if (isHovering) {
+        section.classList.add('has-interaction');
+        
+        // Hide default info card
+        const defaultCard = section.querySelector('.info-card.default-state');
+        if(defaultCard) defaultCard.classList.remove('active');
+        
+        // Show specific info card
+        const targetInfoCard = section.querySelector(`.info-card[data-info-group="${groupName}"]`);
+        if(targetInfoCard) targetInfoCard.classList.add('active');
+
+        // Highlight all matching elements on Left and Right cards
+        const matchingElements = section.querySelectorAll(`[data-hover-group="${groupName}"]`);
+        matchingElements.forEach(el => el.classList.add('highlighted'));
+
+        // Draw Lines
+        if(targetInfoCard) {
+            drawDualLines(svg, targetInfoCard, matchingElements);
+        }
+
+    } else {
+        section.classList.remove('has-interaction');
+        
+        // Reset Info Cards
+        section.querySelectorAll('.info-card').forEach(c => c.classList.remove('active'));
+        const defaultCard = section.querySelector('.info-card.default-state');
+        if(defaultCard) defaultCard.classList.add('active');
+
+        // Remove Highlights
+        section.querySelectorAll('.highlighted').forEach(el => el.classList.remove('highlighted'));
+        
+        // Clear SVG
+        svg.innerHTML = '';
+    }
+}
+
+function drawDualLines(svg, centerCard, targets) {
+    svg.innerHTML = ''; // Clear previous
+    const svgRect = svg.getBoundingClientRect();
+    const centerRect = centerCard.getBoundingClientRect();
+    
+    // Start Point (Left side of Center Card)
+    const centerLeftX = centerRect.left - svgRect.left;
+    const centerRightX = centerRect.right - svgRect.left;
+    const centerY = centerRect.top + (centerRect.height / 2) - svgRect.top;
+
+    targets.forEach(target => {
+        const targetRect = target.getBoundingClientRect();
+        
+        // Determine if target is to the Left or Right of the center card
+        const isLeftTarget = targetRect.left < centerRect.left;
+        
+        // End Point coordinates
+        const endY = targetRect.top + (targetRect.height / 2) - svgRect.top;
+        let startX, endX, controlX;
+
+        if (isLeftTarget) {
+            // Drawing to Left Card
+            startX = centerLeftX;
+            endX = targetRect.right - svgRect.left; // Connect to right edge of left card element
+            controlX = (startX + endX) / 2;
+        } else {
+            // Drawing to Right Card
+            startX = centerRightX;
+            endX = targetRect.left - svgRect.left; // Connect to left edge of right card element
+            controlX = (startX + endX) / 2;
+        }
+
+        // Create Path
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        const d = `M ${startX} ${centerY} C ${controlX} ${centerY}, ${controlX} ${endY}, ${endX} ${endY}`;
+        
+        path.setAttribute('d', d);
+        path.setAttribute('class', 'dual-connector visible');
+        
+        // Create Dots at endpoints
+        const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        dot.setAttribute('cx', endX);
+        dot.setAttribute('cy', endY);
+        dot.setAttribute('r', '4');
+        dot.setAttribute('class', 'connector-dot');
+
+        svg.appendChild(path);
+        svg.appendChild(dot);
+    });
+}

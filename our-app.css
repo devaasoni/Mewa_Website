@@ -46,7 +46,7 @@ body {
    ========================================= */
 .explainer-section,
 .tabbed-reco-section {
-    padding: 140px 0;
+    padding: 100px 0;
     position: relative;
     overflow: visible;
 }
@@ -152,20 +152,20 @@ body {
 .section2-annotations.explainer-annotations-left,
 .section3-annotations.explainer-annotations-left {
     align-items: flex-end;
-    padding-right: 40px;
+    padding-right: 80px;
 }
 
 .explainer-annotations-right,
 .section2-annotations.explainer-annotations-right,
 .section3-annotations.explainer-annotations-right {
     align-items: flex-start;
-    padding-left: 40px;
+    padding-left: 80px;
 }
 
 /* Fixed width for revised section annotations to ensure alignment */
 .section2-annotations,
 .section3-annotations {
-    flex: 0 0 280px;
+    flex: 0 0 300px;
 }
 
 .section3-annotations {
@@ -437,6 +437,25 @@ circle.connector-path.highlighted.red {
 .annotation-item.highlighted .annotation-content h4 {
     color: #ffffff;
 }
+
+/* =========================================
+   ARROW HEAD STYLES
+   ========================================= */
+
+/* 1. Default State: Faint transparent fill (Same as lines) */
+path.connector-path.arrow-head {
+    fill: rgba(255, 255, 255, 0.08); /* Faint Grey */
+    stroke: none; /* No outline */
+    transition: all 0.3s ease;
+}
+
+/* 2. Hover State: Fill with color when highlighted */
+path.connector-path.arrow-head.highlighted.orange { fill: #f59e0b; }
+path.connector-path.arrow-head.highlighted.purple { fill: #8b5cf6; }
+path.connector-path.arrow-head.highlighted.blue   { fill: #3b82f6; }
+path.connector-path.arrow-head.highlighted.pink   { fill: #ec4899; }
+path.connector-path.arrow-head.highlighted.green  { fill: #10b981; }
+path.connector-path.arrow-head.highlighted.red    { fill: #ef4444; }
 
 /* =========================================
    5. CARD DESIGN (Used in both sections)
@@ -901,10 +920,24 @@ circle.connector-path.highlighted.red {
 /* 1. TARGET THE SPECIFIC ZONE WRAPPER */
 .highlight-zone[data-num="s2-1"] {
     position: absolute;
-    top: 60.5%;
+    top: 58%;
     left: 5%;
     width: 90.1%;
-    height: 113px;
+    height: 120px;
+    transform: translateY(-50%);
+    z-index: 5;
+    margin: 0;
+    padding: 0;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.highlight-zone[data-num="s2-1_2"] {
+    position: absolute;
+    top: 58%;
+    left: 5%;
+    width: 90.1%;
+    height: 120px;
     transform: translateY(-50%);
     z-index: 5;
     margin: 0;
@@ -1309,7 +1342,8 @@ circle.connector-path.highlighted.red {
    SIMPLE APP HERO SECTION
    ========================================= */
 .app-hero-section {
-    padding: 160px 0 80px; /* Spacing for fixed navbar */
+    min-height: 80vh;
+    padding: 150px 0 70px; /* Spacing for fixed navbar */
     background: var(--bg-secondary);
     position: relative;
 }
@@ -1344,7 +1378,7 @@ circle.connector-path.highlighted.red {
 
 /* Image Styling */
 .app-hero-img {
-    max-height: 600px; /* Prevents image from getting too huge on large screens */
+    max-height: 530px; /* Prevents image from getting too huge on large screens */
     filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4));
 }
 
@@ -1364,4 +1398,449 @@ circle.connector-path.highlighted.red {
     .d-flex.gap-3 {
         justify-content: center;
     }
+}
+
+
+/* OPTION 2: THE SHAKING ALERT BELL */
+.tab-btn:not(.active) {
+    position: relative;
+    opacity: 0.7;
+}
+
+/* The Bell Icon */
+.tab-btn:not(.active)::after {
+    content: "\f18a"; /* Bootstrap Icon: 'bell-fill' */
+    font-family: "bootstrap-icons";
+    
+    position: absolute;
+    right: -25px; /* Floating to the right */
+    top: 0;
+    
+    font-size: 1.2rem;
+    color: var(--accent-buy); /* Your Orange/Gold Theme Color */
+    
+    /* The Shake Animation */
+    animation: bellShake 2s infinite;
+    transform-origin: top center;
+}
+
+/* The "Notification Dot" on the bell */
+.tab-btn:not(.active)::before {
+    content: "";
+    position: absolute;
+    right: -15px;
+    top: -1px;
+    width: 6px;
+    height: 6px;
+    background: #ef4444; /* Red alert dot */
+    border-radius: 50%;
+    z-index: 2;
+    animation: bellShake 2s infinite; /* Moves with the bell */
+}
+
+@keyframes bellShake {
+    0% { transform: rotate(0); }
+    10% { transform: rotate(15deg); }
+    20% { transform: rotate(-15deg); }
+    30% { transform: rotate(10deg); }
+    40% { transform: rotate(-10deg); }
+    50% { transform: rotate(0); } /* Pause */
+    100% { transform: rotate(0); }
+}
+
+/* =========================================================
+   EXACT REPLICA CARDS STYLING (Pixel Perfect Match)
+   ========================================================= */
+
+/* Base Card Overrides */
+.reco-card.exact-card {
+    background-color: #121212 !important; /* Dark background per image */
+    border-radius: 12px;
+    padding: 1.5rem;
+    position: relative;
+    border: 1px solid transparent; /* Prepare for theme borders */
+    box-shadow: none !important;
+}
+
+/* Remove existing gradient pseudo-elements from main CSS to get clean lines */
+.reco-card.exact-card::before,
+.reco-card.exact-card::after {
+    display: none !important; 
+}
+
+/* THEME: Loss (Red) */
+.reco-card.exact-card.loss-theme {
+    border: 1px solid #ef4444; /* Solid Red Border */
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.1) !important;
+}
+
+/* THEME: Profit (Green) */
+.reco-card.exact-card.profit-theme {
+    border: 1px solid #10b981; /* Solid Green Border */
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.1) !important;
+}
+
+/* Header Text */
+.reco-card.exact-card .stock-name {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+/* Status Box (The main box in the middle) */
+.reco-card.exact-card .status-box {
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin: 1rem 0;
+    background: transparent;
+}
+
+/* Loss Theme Status Box */
+.reco-card.exact-card.loss-theme .status-box {
+    border: 1px solid #ef4444;
+}
+.reco-card.exact-card.loss-theme .status-label,
+.reco-card.exact-card.loss-theme .status-value {
+    color: #ef4444; /* Red Text */
+}
+
+/* Profit Theme Status Box */
+.reco-card.exact-card.profit-theme .status-box {
+    border: 1px solid #10b981;
+}
+.reco-card.exact-card.profit-theme .status-label,
+.reco-card.exact-card.profit-theme .status-value {
+    color: #10b981; /* Green Text */
+}
+
+/* Status Box Typography */
+.reco-card.exact-card .status-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.25rem;
+}
+
+.reco-card.exact-card .status-value {
+    font-size: 1.75rem;
+    font-weight: 800;
+}
+
+/* Show Less/More Button */
+.reco-card.exact-card .show-more-btn {
+    color: #3b82f6 !important; /* Specific blue from image */
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+}
+
+/* Details Rows */
+.reco-card.exact-card .card-detail {
+    background: transparent !important; /* Transparent background per image */
+    padding: 0.75rem 0;
+    border-bottom: none;
+    align-items: flex-start; /* Align top for multiline dates */
+}
+
+/* Labels (Left Side) */
+.reco-card.exact-card .detail-label {
+    color: #9ca3af; /* Muted grey */
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.reco-card.exact-card .detail-label i {
+    font-size: 0.9rem;
+    margin-right: 6px;
+}
+
+/* Values (Right Side) */
+.reco-card.exact-card .detail-value {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+/* Footer Specifics */
+.reco-card.exact-card .footer-row {
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.05); /* Subtle separator */
+    align-items: center;
+}
+
+.reco-card.exact-card .research-link {
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.reco-card.exact-card .research-link:hover {
+    color: #ffffff;
+}
+.reco-card.exact-card .research-link i {
+    font-size: 0.8rem;
+    margin-left: 4px;
+}
+
+/* Collapsible Logic specific to exact card */
+.exact-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+.exact-details.expanded {
+    max-height: 1000px; /* Arbitrary large height */
+}
+
+
+/* =========================================================
+   EXACT REPLICA CARDS - WITH GLOWING EFFECT
+   ========================================================= */
+
+/* Shared Animation Keyframes (Ensure these exist in your CSS) */
+@keyframes shimmer {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* Base Exact Card Setup */
+.reco-card.exact-card {
+    background-color: #121212; 
+    border-radius: 12px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden; /* Required to keep the inner glow contained */
+    transition: all 0.3s ease;
+}
+
+/* ---------------------------------------------------------
+   1. STOP LOSS CARD (RED GLOW + PULSE)
+   --------------------------------------------------------- */
+.reco-card.exact-card.loss-theme {
+    /* Exact Red Border & Strong Glow from Source [cite: 84] */
+    border: 2px solid #f87171; 
+    box-shadow: 0 8px 32px rgba(239, 68, 68, 0.25);
+    
+    /* Subtle Red Background Gradient [cite: 83] */
+    background: linear-gradient(135deg,
+            rgba(239, 68, 68, 0.15) 0%,
+            rgba(248, 113, 113, 0.08) 50%,
+            #121212 100%);
+}
+
+/* The Pulsing Red Glow Animation [cite: 86] */
+.reco-card.exact-card.loss-theme::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle,
+            rgba(239, 68, 68, 0.08) 0%,
+            transparent 70%);
+    animation: pulse 2s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ---------------------------------------------------------
+   2. TARGET HIT CARD (GREEN GLOW + SHIMMER)
+   --------------------------------------------------------- */
+.reco-card.exact-card.profit-theme {
+    /* Exact Green Border & Strong Glow from Source [cite: 78] */
+    border: 2px solid #10b981;
+    box-shadow: 0 8px 32px rgba(16, 185, 129, 0.25);
+
+    /* Subtle Green Background Gradient [cite: 77] */
+    background: linear-gradient(135deg,
+            rgba(16, 185, 129, 0.15) 0%,
+            rgba(52, 211, 153, 0.08) 50%,
+            #121212 100%);
+}
+
+/* The Shimmering Green Sweep Animation [cite: 81] */
+.reco-card.exact-card.profit-theme::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg,
+            transparent 30%,
+            rgba(16, 185, 129, 0.1) 50%,
+            transparent 70%);
+    animation: shimmer 3s infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ---------------------------------------------------------
+   ENSURE CONTENT STAYS ABOVE GLOW
+   --------------------------------------------------------- */
+.reco-card.exact-card > div,
+.reco-card.exact-card > p {
+    position: relative;
+    z-index: 1; /* Puts text above the ::after animation */
+}
+
+/* Status Box Colors Update to Match Glow */
+.reco-card.exact-card.loss-theme .status-box {
+    border: 1px solid #f87171;
+    background: rgba(239, 68, 68, 0.05); /* Slight tint inside box */
+}
+
+.reco-card.exact-card.profit-theme .status-box {
+    border: 1px solid #10b981;
+    background: rgba(16, 185, 129, 0.05); /* Slight tint inside box */
+}
+
+/* =========================================================
+   3-COLUMN LAYOUT & INFO CARDS
+   ========================================================= */
+
+/* Center Column Stack */
+.info-card-stack {
+    position: relative;
+    perspective: 1000px;
+}
+
+/* Info Card - Default Hidden State */
+.info-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 100%;
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    border: 1px solid var(--border-color);
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 1;
+}
+
+/* Active State for Info Card */
+.info-card.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+    z-index: 10;
+}
+
+/* Default Placeholder State */
+.info-card.default-state {
+    border: 1px dashed var(--border-color);
+    background: transparent;
+    box-shadow: none;
+}
+.info-card.default-state h4 { opacity: 0.7; }
+.info-card.default-state p { opacity: 0.5; }
+
+/* Typography inside Info Card */
+.info-card h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 1rem 0 0.5rem;
+    color: var(--text-primary);
+}
+.info-card p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Icons */
+.info-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    font-size: 1.25rem;
+    color: var(--text-primary);
+}
+.info-icon.blue { color: var(--accent-primary); background: rgba(59, 130, 246, 0.1); }
+.info-icon.purple { color: #8b5cf6; background: rgba(139, 92, 246, 0.1); }
+.info-icon.orange { color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+.info-icon.pink { color: #ec4899; background: rgba(236, 72, 153, 0.1); }
+
+/* =========================================================
+   CRUCIAL: THE SPLIT BORDER (Green Left / Red Right)
+   ========================================================= */
+.info-card.split-border-card {
+    border: 3px solid transparent; /* Essential for border-image */
+    border-image: linear-gradient(to right, #10b981 50%, #ef4444 50%) 1;
+    /* Fallback for radius with border-image (clip-path or nested div approach usually needed, 
+       but for simplicity we use box-shadow to fake rounded corners or just square corners) */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 0 20px rgba(0,0,0,0.2);
+}
+
+.info-icon.split-icon {
+    background: linear-gradient(to right, rgba(16, 185, 129, 0.2) 50%, rgba(239, 68, 68, 0.2) 50%);
+    color: #ffffff;
+}
+
+/* =========================================================
+   INTERACTION STATES
+   ========================================================= */
+
+/* Dimming Effect (Focus Mode) */
+/* When section has 'has-interaction' class, fade everything that is NOT highlighted */
+.tri-col-section.has-interaction .reco-card {
+    opacity: 0.4; /* Fade the cards slightly */
+}
+
+/* But keep the specific highlighted rows visible */
+.tri-col-section.has-interaction .card-detail.highlighted,
+.tri-col-section.has-interaction .status-box.highlighted,
+.tri-col-section.has-interaction .detail-value.highlighted {
+    position: relative;
+    z-index: 20;
+    background: var(--bg-secondary); /* Ensure readability */
+    box-shadow: 0 0 0 2px var(--accent-primary); /* Highlight border */
+    border-radius: 6px;
+    transform: scale(1.02);
+    transition: all 0.2s ease;
+}
+
+/* Specific Highlight Colors */
+.tri-col-section.has-interaction .status-box[data-hover-group="profit-loss-main"].highlighted {
+    transform: scale(1.02);
+    box-shadow: 0 0 15px rgba(255,255,255,0.1); 
+}
+
+/* Connector Lines Styles */
+.dual-connector {
+    fill: none;
+    stroke: var(--accent-primary);
+    stroke-width: 2px;
+    filter: drop-shadow(0 0 3px var(--accent-primary));
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+.dual-connector.visible {
+    opacity: 1;
+}
+
+/* Dots */
+.connector-dot {
+    fill: var(--accent-primary);
 }

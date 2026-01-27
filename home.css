@@ -143,9 +143,9 @@ a.hero-badge:hover {
 .hero-title {
     font-size: clamp(2rem, 5vw, 3rem);
     line-height: 1.1;
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
     letter-spacing: -0.02em;
-    font-weight: 700;
+    /* font-weight: 700; */
     color: var(--text-primary);
     animation: fadeInUp 0.6s ease 0.1s both;
 }
@@ -174,7 +174,7 @@ a.hero-badge:hover {
     display: block;
     font-size: 2rem;
     color: #ffffff;
-    font-weight: 600;
+    /* font-weight: 600; */
     margin-top: 0.5rem;
 }
 
@@ -604,13 +604,13 @@ a.hero-badge:hover {
     display: flex;
     gap: 5rem;
     width: max-content;
-    animation: marquee 100s linear infinite;
+    animation: marquee 65s linear infinite;
 }
 
 .trust-item {
     font-family: Open Sans, sans-serif;
     font-weight: 700;
-    font-size: 100px;
+    font-size: 4.5rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     color: transparent;
@@ -618,7 +618,7 @@ a.hero-badge:hover {
     white-space: nowrap;
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 40px;
 }
 
 .trust-item .separator {
@@ -1173,7 +1173,7 @@ a.hero-badge:hover {
 }
 
 .benefits-section {
-    padding: 120px 0;
+    padding: 100px 0;
     background: var(--bg-secondary);
 }
 
@@ -1417,7 +1417,7 @@ a.hero-badge:hover {
    SECTION 5: HOW IT WORKS (GET STARTED)
 ===================================================== */
 .how-section {
-    padding: 120px 0;
+    padding: 100px 0;
     background: #f3f3f5;
 }
 
@@ -1527,7 +1527,7 @@ a.hero-badge:hover {
    SECTION 6: COMPARISON SECTION
 ===================================================== */
 .comparison-section {
-    padding: 120px 0;
+    padding: 100px 0;
     background: var(--bg-secondary);
 }
 

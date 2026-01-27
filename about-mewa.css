@@ -173,7 +173,7 @@
    SECTION 3: HOW WE WORK
 ===================================================== */
 .how-we-work-section {
-    padding: 120px 0;
+    padding: 100px 0;
     background: var(--bg-secondary);
     position: relative;
     overflow: hidden;
@@ -376,7 +376,7 @@
 }
 
 .what-we-provide-section {
-    padding: 120px 0;
+    padding: 100px 0;
     position: relative;
     overflow: hidden;
     background: #f3f3f5;
@@ -786,7 +786,7 @@
    SECTION 5: TESTIMONIALS
 ===================================================== */
 .testimonials-section {
-    padding: 120px 0;
+    padding: 100px 0;
     background: var(--bg-secondary);
     position: relative;
     overflow: hidden;
@@ -929,7 +929,7 @@
    SECTION 6: FAQ
 ===================================================== */
 .faq-section {
-    padding: 120px 0;
+    padding: 100px 0;
     background: #f3f3f5;
     text-align: center;
 }
