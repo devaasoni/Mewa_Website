@@ -80,6 +80,20 @@ body {
   font-family: "Inter", sans-serif;
 }
 
+@font-face {
+    font-family: 'JustSansOutline';
+    src: url('fonts/JUST Sans Outline ExBold.otf') format('opentype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'JustSansOutline';
+    src: url('fonts/JUST Sans Outline Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
 /* =====================================================
    SECTION 1: HERO SECTION
 ===================================================== */
@@ -608,13 +622,25 @@ a.hero-badge:hover {
 }
 
 .trust-item {
-    font-family: Open Sans, sans-serif;
-    font-weight: 700;
+    font-family: 'JustSansOutline', sans-serif;
+    font-weight: 800; /* Uses the ExBold file */
     font-size: 4.5rem;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: transparent;
-    -webkit-text-stroke: 2px #cccccc;
+    color: #cccccc; /* This controls the outline color now */
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.trust-item {
+    font-family: 'JustSansOutline', sans-serif;
+    font-weight: 800; /* Uses the ExBold file */
+    font-size: 4.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #cccccc; /* This controls the outline color now */
     white-space: nowrap;
     display: flex;
     align-items: center;
@@ -646,23 +672,13 @@ a.hero-badge:hover {
     }
 
     .trust-item {
-        font-size: 48px;
-
-        /* Use a font you have actually imported */
-        font-family: 'Oswald', sans-serif; 
-        font-weight: 700;
-        
-        /* Thinner stroke for mobile to keep it clean */
-        -webkit-text-stroke: 0.5px rgba(204, 204, 204, 0.5); 
-        color: transparent;
-        
+        font-size: 32px; /* Adjusted for mobile scale */
         letter-spacing: 1px;
         gap: 20px;
     }
 
     .trust-item .separator {
-        /* Reset the top offset so it stays vertically centered with the text */
-        top: 0; 
+        top: 0; /* Resetting the star alignment for the new font */
         font-size: 24px;
     }
 }
