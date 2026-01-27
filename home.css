@@ -611,7 +611,7 @@ a.hero-badge:hover {
     overflow: hidden;
     width: 100%;
     position: relative;
-    padding: 1rem 0;
+    padding: 3rem 0 0;
 }
 
 .marquee-content {
@@ -649,7 +649,9 @@ a.hero-badge:hover {
 
 .trust-item .separator {
     position: relative;
+    font-size: 5.5rem;
     top: 20px;
+    color: var(--text-secondary);
 }
 
 @keyframes marquee {
@@ -672,14 +674,15 @@ a.hero-badge:hover {
     }
 
     .trust-item {
-        font-size: 40px; /* Adjusted for mobile scale */
+        font-size: 3.5rem; /* Adjusted for mobile scale */
         letter-spacing: 1px;
         gap: 20px;
     }
 
     .trust-item .separator {
-        top: 0; /* Resetting the star alignment for the new font */
-        font-size: 24px;
+        top: 15px; /* Resetting the star alignment for the new font */
+        font-size: 90px;
+        color: var(--text-secondary);
     }
 }
 
