@@ -647,7 +647,23 @@ a.hero-badge:hover {
 
     .trust-item {
         font-size: 48px;
-        -webkit-text-stroke: 1px #cccccc;
+
+        /* Use a font you have actually imported */
+        font-family: 'Oswald', sans-serif; 
+        font-weight: 700;
+        
+        /* Thinner stroke for mobile to keep it clean */
+        -webkit-text-stroke: 0.5px rgba(204, 204, 204, 0.5); 
+        color: transparent;
+        
+        letter-spacing: 1px;
+        gap: 20px;
+    }
+
+    .trust-item .separator {
+        /* Reset the top offset so it stays vertically centered with the text */
+        top: 0; 
+        font-size: 24px;
     }
 }
 
