@@ -672,7 +672,7 @@ a.hero-badge:hover {
     }
 
     .trust-item {
-        font-size: 32px; /* Adjusted for mobile scale */
+        font-size: 40px; /* Adjusted for mobile scale */
         letter-spacing: 1px;
         gap: 20px;
     }
