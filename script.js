@@ -1951,121 +1951,181 @@ function toggleExactDetails(btn) {
     }
 }
 
+// =====================================================
+// FINAL OUTCOMES: PERSISTENT LINES & 3-WAY SYNC
+// =====================================================
+
 document.addEventListener("DOMContentLoaded", () => {
-    initDualLinkInteraction();
-    
-    // Recalculate lines on resize
-    window.addEventListener('resize', () => {
-        // Clear lines on resize to avoid misalignment
-        const svg = document.getElementById('dualConnectorSvg');
-        if(svg) svg.innerHTML = '';
-    });
+    initFinalOutcomes();
 });
 
-function initDualLinkInteraction() {
+// Re-draw lines on resize to keep positions accurate
+window.addEventListener('resize', () => {
+    setTimeout(updateAllConnectors, 100);
+});
+
+function initFinalOutcomes() {
     const section = document.getElementById('triLinkSection');
     if (!section) return;
 
-    // 1. Select all interactive elements
-    const triggers = section.querySelectorAll('[data-hover-group]');
+    // 1. Initial Draw of Faint Lines
+    setTimeout(updateAllConnectors, 500); // Small delay to ensure layout is settled
 
+    // 2. Attach Listeners
+    const triggers = section.querySelectorAll('.highlight-zone, .highlight-zone-inline, .annotation-item');
     triggers.forEach(trigger => {
-        trigger.addEventListener('mouseenter', (e) => handleDualHover(e, true));
-        trigger.addEventListener('mouseleave', (e) => handleDualHover(e, false));
+        trigger.addEventListener('mouseenter', handleFinalHover);
+        trigger.addEventListener('mouseleave', handleFinalLeave);
     });
 }
 
-function handleDualHover(e, isHovering) {
-    const section = document.getElementById('triLinkSection');
-    const groupName = e.currentTarget.getAttribute('data-hover-group');
-    const svg = document.getElementById('dualConnectorSvg');
+function toggleMirroredDetails(btn) {
+    const allDetailDivs = document.querySelectorAll('.exact-details');
+    const allButtons = document.querySelectorAll('.show-more-btn');
+    const centerWrapper = document.getElementById('centerCollapsible');
     
-    if (!groupName || !section || !svg) return;
+    const isExpanding = !allDetailDivs[0].classList.contains('expanded');
 
-    // 1. Manage Section State
-    if (isHovering) {
-        section.classList.add('has-interaction');
-        
-        // Hide default info card
-        const defaultCard = section.querySelector('.info-card.default-state');
-        if(defaultCard) defaultCard.classList.remove('active');
-        
-        // Show specific info card
-        const targetInfoCard = section.querySelector(`.info-card[data-info-group="${groupName}"]`);
-        if(targetInfoCard) targetInfoCard.classList.add('active');
+    allDetailDivs.forEach(div => isExpanding ? div.classList.add('expanded') : div.classList.remove('expanded'));
+    
+    if(centerWrapper) {
+        isExpanding ? centerWrapper.classList.add('expanded') : centerWrapper.classList.remove('expanded');
+    }
 
-        // Highlight all matching elements on Left and Right cards
-        const matchingElements = section.querySelectorAll(`[data-hover-group="${groupName}"]`);
-        matchingElements.forEach(el => el.classList.add('highlighted'));
+    allButtons.forEach(b => b.innerHTML = isExpanding ? 'Show Less <i class="bi bi-chevron-up"></i>' : 'Show More <i class="bi bi-chevron-down"></i>');
+    
+    // REDRAW ALL LINES after the animation finishes
+    setTimeout(updateAllConnectors, 400); 
+}
 
-        // Draw Lines
-        if(targetInfoCard) {
-            drawDualLines(svg, targetInfoCard, matchingElements);
-        }
+// --- NEW LOGIC: Just Toggle Classes, Don't Redraw ---
+function handleFinalHover(e) {
+    const section = document.getElementById('triLinkSection');
+    const id = e.currentTarget.getAttribute('data-num') || e.currentTarget.getAttribute('data-target');
+    
+    if (!id || !section) return;
 
-    } else {
+    section.classList.add('has-interaction');
+
+    // 1. Fade UI Elements
+    const allElements = section.querySelectorAll('.highlight-zone, .highlight-zone-inline, .annotation-item');
+    allElements.forEach(el => el.classList.add('faded'));
+
+    // 2. Highlight Matching UI Elements
+    const matches = section.querySelectorAll(`[data-num="${id}"], [data-target="${id}"]`);
+    matches.forEach(el => {
+        el.classList.remove('faded');
+        el.classList.add('highlighted');
+    });
+
+    // 3. Highlight Matching SVG Lines (Find by data-num)
+    const svgLines = document.querySelectorAll(`#dualConnectorSvg .dual-connector[data-num="${id}"], #dualConnectorSvg .arrow-head[data-num="${id}"]`);
+    svgLines.forEach(line => line.classList.add('highlighted'));
+}
+
+function handleFinalLeave() {
+    const section = document.getElementById('triLinkSection');
+    if (section) {
         section.classList.remove('has-interaction');
         
-        // Reset Info Cards
-        section.querySelectorAll('.info-card').forEach(c => c.classList.remove('active'));
-        const defaultCard = section.querySelector('.info-card.default-state');
-        if(defaultCard) defaultCard.classList.add('active');
+        // Reset UI Elements
+        section.querySelectorAll('.faded, .highlighted').forEach(el => {
+            el.classList.remove('faded', 'highlighted');
+        });
 
-        // Remove Highlights
-        section.querySelectorAll('.highlighted').forEach(el => el.classList.remove('highlighted'));
-        
-        // Clear SVG
-        svg.innerHTML = '';
+        // Reset SVG Lines (Remove highlight class)
+        const svgLines = document.querySelectorAll('#dualConnectorSvg .highlighted');
+        svgLines.forEach(line => line.classList.remove('highlighted'));
     }
 }
 
-function drawDualLines(svg, centerCard, targets) {
-    svg.innerHTML = ''; // Clear previous
+// --- CORE FUNCTION: Draws ALL Visible Lines at Once ---
+function updateAllConnectors() {
+    const svg = document.getElementById('dualConnectorSvg');
+    const section = document.getElementById('triLinkSection');
+    if (!svg || !section) return;
+
+    svg.innerHTML = ''; // Clear canvas
     const svgRect = svg.getBoundingClientRect();
-    const centerRect = centerCard.getBoundingClientRect();
-    
-    // Start Point (Left side of Center Card)
-    const centerLeftX = centerRect.left - svgRect.left;
-    const centerRightX = centerRect.right - svgRect.left;
-    const centerY = centerRect.top + (centerRect.height / 2) - svgRect.top;
 
-    targets.forEach(target => {
-        const targetRect = target.getBoundingClientRect();
-        
-        // Determine if target is to the Left or Right of the center card
-        const isLeftTarget = targetRect.left < centerRect.left;
-        
-        // End Point coordinates
-        const endY = targetRect.top + (targetRect.height / 2) - svgRect.top;
-        let startX, endX, controlX;
+    // Loop through EVERY center annotation card
+    const centerItems = section.querySelectorAll('.annotation-item[data-target]');
 
-        if (isLeftTarget) {
-            // Drawing to Left Card
-            startX = centerLeftX;
-            endX = targetRect.right - svgRect.left; // Connect to right edge of left card element
-            controlX = (startX + endX) / 2;
-        } else {
-            // Drawing to Right Card
-            startX = centerRightX;
-            endX = targetRect.left - svgRect.left; // Connect to left edge of right card element
-            controlX = (startX + endX) / 2;
-        }
-
-        // Create Path
-        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        const d = `M ${startX} ${centerY} C ${controlX} ${centerY}, ${controlX} ${endY}, ${endX} ${endY}`;
+    centerItems.forEach(targetAnno => {
+        const id = targetAnno.getAttribute('data-target');
         
-        path.setAttribute('d', d);
-        path.setAttribute('class', 'dual-connector visible');
-        
-        // Create Dots at endpoints
-        const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        dot.setAttribute('cx', endX);
-        dot.setAttribute('cy', endY);
-        dot.setAttribute('r', '4');
-        dot.setAttribute('class', 'connector-dot');
+        // 1. COLLAPSIBLE CHECK: Skip if this card is hidden
+        const centerWrapper = targetAnno.closest('.center-collapsible-wrapper');
+        if (centerWrapper && !centerWrapper.classList.contains('expanded')) return;
 
-        svg.appendChild(path);
-        svg.appendChild(dot);
+        const annoRect = targetAnno.getBoundingClientRect();
+        const centerY = (annoRect.top + annoRect.height / 2) - svgRect.top;
+
+        // 2. Find matching zones in Side Cards
+        const activeZones = section.querySelectorAll(`[data-num="${id}"].highlight-zone, [data-num="${id}"].highlight-zone-inline`);
+
+        activeZones.forEach(zone => {
+            // Check if Side Card row is visible
+            const detailsWrapper = zone.closest('.exact-details');
+            if (detailsWrapper && !detailsWrapper.classList.contains('expanded')) return;
+
+            const zoneRect = zone.getBoundingClientRect();
+            const startY = (zoneRect.top + zoneRect.height / 2) - svgRect.top;
+            let startX, endX, busX, lineColor, arrowDir, busDir;
+
+            if (zoneRect.left < annoRect.left) {
+                // PROFIT (Left)
+                startX = zoneRect.right - svgRect.left;
+                endX = annoRect.left - svgRect.left;
+                busX = startX + 25; 
+                lineColor = 'line-profit';
+                arrowDir = 'right';
+                busDir = 1; 
+            } else {
+                // LOSS (Right)
+                startX = zoneRect.left - svgRect.left;
+                endX = annoRect.right - svgRect.left;
+                busX = startX - 25;
+                lineColor = 'line-loss';
+                arrowDir = 'left'; 
+                busDir = -1;
+            }
+
+            // Draw Arrow
+            const arrowTipX = endX;
+            const arrowPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            const dArrow = (arrowDir === 'right') 
+                ? `M ${arrowTipX} ${centerY} L ${arrowTipX - 10} ${centerY - 6} L ${arrowTipX - 10} ${centerY + 6} Z`
+                : `M ${arrowTipX} ${centerY} L ${arrowTipX + 10} ${centerY - 6} L ${arrowTipX + 10} ${centerY + 6} Z`;
+            
+            arrowPath.setAttribute('d', dArrow);
+            arrowPath.setAttribute('class', `arrow-head ${lineColor}`); // No 'connector-path' class needed for arrow
+            arrowPath.setAttribute('data-num', id); // Important for highlighting
+            svg.appendChild(arrowPath);
+
+            // Draw Chamfered Line
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            let d = "";
+            const chamfer = 15;
+            const lineEndX = (arrowDir === 'right') ? arrowTipX - 10 : arrowTipX + 10;
+
+            d += `M ${startX} ${startY} `;
+            d += `L ${busX} ${startY} `;
+
+            if (Math.abs(centerY - startY) > chamfer) {
+                if (centerY > startY) d += `L ${busX} ${centerY - chamfer} `;
+                else d += `L ${busX} ${centerY + chamfer} `;
+                d += `L ${busX + (busDir * chamfer)} ${centerY} `;
+            } else {
+                d += `L ${busX} ${centerY} `;
+            }
+
+            d += `L ${lineEndX} ${centerY}`;
+
+            path.setAttribute('d', d);
+            path.setAttribute('class', `dual-connector ${lineColor}`);
+            path.setAttribute('data-num', id); // Important for highlighting
+            svg.appendChild(path);
+        });
     });
 }

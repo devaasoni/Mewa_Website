@@ -100,6 +100,17 @@ body {
     animation: gradientMove 5s ease infinite;
 }
 
+/* Green Gradient for the Passive Income Total */
+.total-value.gradient-green {
+    background: linear-gradient(135deg, #10b981, #34d399, #059669);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.3)); /* Adds a soft green glow */
+    font-weight: 800;
+}
+
 .hero-subtitle {
     font-size: 1.1rem;
     color: var(--text-secondary);

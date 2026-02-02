@@ -157,7 +157,7 @@ a.hero-badge:hover {
 .hero-title {
     font-size: clamp(2rem, 5vw, 3rem);
     line-height: 1.1;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
     letter-spacing: -0.02em;
     /* font-weight: 700; */
     color: var(--text-primary);
@@ -618,7 +618,7 @@ a.hero-badge:hover {
     display: flex;
     gap: 5rem;
     width: max-content;
-    animation: marquee 65s linear infinite;
+    animation: marquee 85s linear infinite;
 }
 
 .trust-item {

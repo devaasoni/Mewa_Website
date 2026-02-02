@@ -145,7 +145,7 @@
     </section>
 
     <!-- New Recommendation Card Explainer Section -->
-    <section class="explainer-section">
+    <section class="explainer-section bg-light-section">
         <div class="explainer-bg"></div>
         <div class="container">
             <div class="section-header">
@@ -1125,210 +1125,226 @@
     </section>
 
     <!-- Target Hit & StopLoss Hit Cards -->
-    <section class="exact-replica-section tri-col-section" id="triLinkSection"
-        style="padding: 60px 0; background-color: var(--bg-primary); position: relative;">
+    <section class="exact-replica-section tri-col-section bg-light-section" id="triLinkSection" style="padding: 60px 0; position: relative;">
+    
+    <div class="section-header">
+        <div class="section-badge"><i class="bi bi-layers"></i> Final Outcomes</div>
+        <h2 class="section-title">Results of a <span class="gradient-text">Recommendation</span></h2>
+        <p class="section-subtitle">See exactly how our alerts performed across different scenarios.</p>
+    </div>
 
-        <div class="section-header">
-            <div class="section-badge"><i class="bi bi-layers"></i> Final Outcomes</div>
-            <h2 class="section-title">Results of a <span class="gradient-text">Recommendation</span></h2>
-            <p class="section-subtitle">See exactly how our alerts performed, whether they hit the target or the stop loss.</p>
-        </div>
-    
-        <svg class="connector-svg" id="dualConnectorSvg"
-            style="position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index: 10; overflow: visible;"></svg>
-    
-        <div class="container" style="position: relative; z-index: 20;">
-            <div class="row g-0 align-items-center">
-    
-                <div class="col-lg-4 col-md-12 mb-4 mb-lg-0 pe-lg-4">
-                    <div class="reco-card exact-card profit-theme">
-    
-                        <div class="card-header-custom">
-                            <div class="script-info">
-                                <span class="stock-name">NATIONALUM-EQ</span>
-                            </div>
-                            <div class="action-badge buy">BUY</div>
-                        </div>
-    
-                        <div class="status-box" data-hover-group="profit-loss-main">
+    <svg class="connector-svg" id="dualConnectorSvg"></svg>
+
+    <div class="container" style="position: relative; z-index: 20;">
+        <div class="row g-0 align-items-start">
+            
+            <div class="col-lg-4 col-md-12 mb-4 mb-lg-0 pe-lg-4">
+                <div class="reco-card exact-card profit-theme">
+                    <div class="card-header-custom">
+                        <div class="script-info"><span class="stock-name">NATIONALUM-EQ</span></div>
+                        <div class="action-badge buy">BUY</div>
+                    </div>
+
+                    <div class="highlight-zone" data-num="outcome-group">
+                        <div class="status-box" data-hover-group="outcome-group">
                             <div class="status-label">TARGET HIT</div>
                             <div class="status-value">Profit : 0.28%</div>
                         </div>
-    
-                        <p class="show-more-btn text-center" onclick="toggleExactDetails(this)">
-                            Show Less <i class="bi bi-chevron-up"></i>
-                        </p>
-    
-                        <div class="exact-details expanded">
-                            <div class="card-body-custom">
-    
-                                <div class="card-detail" data-hover-group="buying-zone">
-                                    <span class="detail-label"><i class="bi bi-wallet"></i> BUYING ZONE</span>
-                                    <span class="detail-value">₹356.00 - ₹358.00</span>
+                    </div>
+
+                    <p class="show-more-btn text-center" onclick="toggleMirroredDetails(this)">
+                        Show Less <i class="bi bi-chevron-up"></i>
+                    </p>
+
+                    <div class="exact-details expanded">
+                        <div class="highlight-zone" data-num="buying-zone">
+                            <div class="card-detail" data-hover-group="buying-zone">
+                                <span class="detail-label"><i class="bi bi-wallet"></i> BUYING ZONE</span>
+                                <span class="detail-value">₹356.00 - ₹358.00</span>
+                            </div>
+                        </div>
+
+                        <div class="highlight-zone" data-num="exit-price">
+                            <div class="card-detail" data-hover-group="exit-price">
+                                <span class="detail-label"><i class="bi bi-currency-rupee"></i> EXIT PRICE</span>
+                                <span class="detail-value">₹359.00</span>
+                            </div>
+                        </div>
+
+                        <div class="highlight-zone" data-num="outcome-group">
+                            <div class="card-detail" data-hover-group="outcome-group">
+                                <span class="detail-label"><i class="bi bi-cash-stack"></i> PROFIT</span>
+                                <span class="detail-value">0.28%</span>
+                            </div>
+                        </div>
+
+                        <div class="highlight-zone" data-num="reco-on">
+                            <div class="card-detail" data-hover-group="reco-on">
+                                <span class="detail-label"><i class="bi bi-calendar-check"></i> RECOMMENDED ON</span>
+                                <span class="detail-value text-end">11:54 AM<br>Jan 13, 2026</span>
+                            </div>
+                        </div>
+
+                        <div class="highlight-zone" data-num="exit-date">
+                            <div class="card-detail" data-hover-group="exit-date">
+                                <span class="detail-label"><i class="bi bi-calendar-check"></i> EXIT DATE</span>
+                                <span class="detail-value text-end">10:32 AM<br>Jan 22, 2026</span>
+                            </div>
+                        </div>
+
+                        <div class="highlight-zone" data-num="duration">
+                            <div class="card-detail" data-hover-group="duration">
+                                <span class="detail-label"><i class="bi bi-hourglass-split"></i> DURATION</span>
+                                <span class="detail-value">9 days</span>
+                            </div>
+                        </div>
+
+                        <div class="card-detail footer-row">
+                            <span class="detail-label research-link">RESEARCH REPORT <i class="bi bi-download"></i></span>
+                            <div class="highlight-zone-inline" data-num="outcome-group">
+                                <div class="detail-value d-flex align-items-center gap-2" data-hover-group="outcome-group">
+                                    <span>0.28%</span>
+                                    <i class="bi bi-arrow-up-circle text-success" style="font-size: 1.4rem;"></i>
                                 </div>
-    
-                                <div class="card-detail" data-hover-group="exit-price">
-                                    <span class="detail-label"><i class="bi bi-currency-rupee"></i> EXIT PRICE</span>
-                                    <span class="detail-value">₹359.00</span>
-                                </div>
-    
-                                <div class="card-detail" data-hover-group="profit-loss-main">
-                                    <span class="detail-label"><i class="bi bi-cash-stack"></i> PROFIT</span>
-                                    <span class="detail-value">0.28%</span>
-                                </div>
-    
-                                <div class="card-detail" data-hover-group="reco-on">
-                                    <span class="detail-label"><i class="bi bi-calendar-check"></i> RECOMMENDED ON</span>
-                                    <span class="detail-value text-end">11:54 AM<br>Jan 13, 2026</span>
-                                </div>
-    
-                                <div class="card-detail" data-hover-group="exit-date">
-                                    <span class="detail-label"><i class="bi bi-calendar-check"></i> EXIT DATE</span>
-                                    <span class="detail-value text-end">10:32 AM<br>Jan 22, 2026</span>
-                                </div>
-    
-                                <div class="card-detail" data-hover-group="duration">
-                                    <span class="detail-label"><i class="bi bi-hourglass-split"></i> DURATION</span>
-                                    <span class="detail-value">9 days</span>
-                                </div>
-    
-                                <div class="card-detail footer-row">
-                                    <span class="detail-label research-link" onclick="openReport('null', 'pdf file')">
-                                        RESEARCH REPORT <i class="bi bi-download download-icon"></i>
-                                    </span>
-                                    <div class="detail-value d-flex align-items-center gap-2"
-                                        data-hover-group="profit-loss-main">
-                                        <span>0.28%</span>
-                                        <i class="bi bi-arrow-up-circle text-success" style="font-size: 1.4rem;"></i>
-                                    </div>
-                                </div>
-    
                             </div>
                         </div>
                     </div>
                 </div>
-    
-                <div class="col-lg-4 d-none d-lg-flex justify-content-center position-relative">
-                    <div class="info-card-stack"
-                        style="width: 100%; max-width: 320px; min-height: 200px; display: flex; align-items: center; justify-content: center;">
-    
-                        <div class="info-card default-state active">
-                            <div class="info-icon"><i class="bi bi-mouse"></i></div>
-                            <h4>Hover to Explore</h4>
-                            <p>Hover over any term to compare the logic between Profit & Loss scenarios.</p>
+            </div>
+
+            <div class="col-lg-4 d-none d-lg-flex justify-content-center">
+                <div class="explainer-annotations-center top-aligned" id="finalOutcomesAnnotations">
+                    
+                    <div class="annotation-item center-mode" data-target="outcome-group">
+                        <div class="annotation-number green-red-split"><i class="bi bi-flag-fill"></i></div>
+                        <div class="annotation-content">
+                            <h4>Trade Outcome</h4>
+                            <p>Terminal status and final percentage gain or loss.</p>
                         </div>
-    
-                        <div class="info-card" data-info-group="buying-zone">
-                            <div class="info-icon blue"><i class="bi bi-wallet"></i></div>
-                            <h4>Buying Zone</h4>
-                            <p>The suggested price range for entry. It remains consistent regardless of the outcome.</p>
-                        </div>
-    
-                        <div class="info-card" data-info-group="exit-price">
-                            <div class="info-icon purple"><i class="bi bi-currency-rupee"></i></div>
-                            <h4>Exit Price</h4>
-                            <p>The price at which the position was closed, either hitting the target or the stop-loss.</p>
-                        </div>
-    
-                        <div class="info-card split-border-card" data-info-group="profit-loss-main">
-                            <div class="info-icon split-icon"><i class="bi bi-graph-up-arrow"></i></div>
-                            <h4>Outcome: Profit vs Loss</h4>
-                            <p>Visualizes the result of the trade. Green indicates the target was achieved, while Red
-                                indicates the Stop Loss was triggered to limit risk.</p>
-                        </div>
-    
-                        <div class="info-card" data-info-group="reco-on">
-                            <div class="info-icon orange"><i class="bi bi-calendar-check"></i></div>
-                            <h4>Recommended On</h4>
-                            <p>The exact timestamp when the recommendation was issued to subscribers.</p>
-                        </div>
-    
-                        <div class="info-card" data-info-group="exit-date">
-                            <div class="info-icon orange"><i class="bi bi-calendar-x"></i></div>
-                            <h4>Exit Date</h4>
-                            <p>The timestamp when the trade was closed.</p>
-                        </div>
-    
-                        <div class="info-card" data-info-group="duration">
-                            <div class="info-icon pink"><i class="bi bi-hourglass-split"></i></div>
-                            <h4>Duration</h4>
-                            <p>The total holding period of the stock from entry to exit.</p>
-                        </div>
-    
                     </div>
-                </div>
-    
-                <div class="col-lg-4 col-md-12 mt-4 mt-lg-0 ps-lg-4">
-                    <div class="reco-card exact-card loss-theme">
-    
-                        <div class="card-header-custom">
-                            <div class="script-info">
-                                <span class="stock-name">RELIANCE-EQ</span>
+
+                    <div id="centerCollapsible" class="center-collapsible-wrapper expanded">
+                        
+                        <div class="annotation-item center-mode" data-target="buying-zone">
+                            <div class="annotation-number blue"><i class="bi bi-wallet"></i></div>
+                            <div class="annotation-content">
+                                <h4>Buying Zone</h4>
+                                <p>The consistent suggested entry range.</p>
                             </div>
-                            <div class="action-badge buy">BUY</div>
                         </div>
-    
-                        <div class="status-box" data-hover-group="profit-loss-main">
+
+                        <div class="annotation-item center-mode" data-target="exit-price">
+                            <div class="annotation-number purple"><i class="bi bi-currency-rupee"></i></div>
+                            <div class="annotation-content">
+                                <h4>Exit Price</h4>
+                                <p>The price where the position was closed.</p>
+                            </div>
+                        </div>
+
+                        <div class="annotation-item center-mode" data-target="reco-on">
+                            <div class="annotation-number orange"><i class="bi bi-calendar-check"></i></div>
+                            <div class="annotation-content">
+                                <h4>Recommended On</h4>
+                                <p>Timestamp when the signal was issued.</p>
+                            </div>
+                        </div>
+
+                        <div class="annotation-item center-mode" data-target="exit-date">
+                            <div class="annotation-number orange"><i class="bi bi-calendar-x"></i></div>
+                            <div class="annotation-content">
+                                <h4>Exit Date</h4>
+                                <p>The exact timestamp when the trade was closed.</p>
+                            </div>
+                        </div>
+
+                        <div class="annotation-item center-mode" data-target="duration">
+                            <div class="annotation-number pink"><i class="bi bi-hourglass-split"></i></div>
+                            <div class="annotation-content">
+                                <h4>Duration</h4>
+                                <p>Total holding period from entry to exit.</p>
+                            </div>
+                        </div>
+
+                    </div> </div>
+            </div>
+
+            <div class="col-lg-4 col-md-12 mt-4 mt-lg-0 ps-lg-4">
+                <div class="reco-card exact-card loss-theme">
+                    <div class="card-header-custom">
+                        <div class="script-info"><span class="stock-name">RELIANCE-EQ</span></div>
+                        <div class="action-badge buy">BUY</div>
+                    </div>
+
+                    <div class="highlight-zone" data-num="outcome-group">
+                        <div class="status-box" data-hover-group="outcome-group">
                             <div class="status-label">STOP LOSS HIT</div>
                             <div class="status-value">Loss : 6.67%</div>
                         </div>
-    
-                        <p class="show-more-btn text-center" onclick="toggleExactDetails(this)">
-                            Show Less <i class="bi bi-chevron-up"></i>
-                        </p>
-    
-                        <div class="exact-details expanded">
-                            <div class="card-body-custom">
-    
-                                <div class="card-detail" data-hover-group="buying-zone">
-                                    <span class="detail-label"><i class="bi bi-wallet"></i> BUYING ZONE</span>
-                                    <span class="detail-value">₹1,450.00 - ₹1,500.00</span>
+                    </div>
+
+                    <p class="show-more-btn text-center" onclick="toggleMirroredDetails(this)">
+                        Show Less <i class="bi bi-chevron-up"></i>
+                    </p>
+
+                    <div class="exact-details expanded">
+                        <div class="highlight-zone" data-num="buying-zone">
+                            <div class="card-detail" data-hover-group="buying-zone">
+                                <span class="detail-label"><i class="bi bi-wallet"></i> BUYING ZONE</span>
+                                <span class="detail-value">₹1,450.00 - ₹1,500.00</span>
+                            </div>
+                        </div>
+
+                        <div class="highlight-zone" data-num="exit-price">
+                            <div class="card-detail" data-hover-group="exit-price">
+                                <span class="detail-label"><i class="bi bi-currency-rupee"></i> EXIT PRICE</span>
+                                <span class="detail-value">₹1,400.00</span>
+                            </div>
+                        </div>
+
+                        <div class="highlight-zone" data-num="outcome-group">
+                            <div class="card-detail" data-hover-group="outcome-group">
+                                <span class="detail-label"><i class="bi bi-cash-stack"></i> LOSS</span>
+                                <span class="detail-value">6.67%</span>
+                            </div>
+                        </div>
+
+                        <div class="highlight-zone" data-num="reco-on">
+                            <div class="card-detail" data-hover-group="reco-on">
+                                <span class="detail-label"><i class="bi bi-calendar-check"></i> RECOMMENDED ON</span>
+                                <span class="detail-value text-end">01:12 AM<br>Jan 14, 2026</span>
+                            </div>
+                        </div>
+
+                        <div class="highlight-zone" data-num="exit-date">
+                            <div class="card-detail" data-hover-group="exit-date">
+                                <span class="detail-label"><i class="bi bi-calendar-check"></i> EXIT DATE</span>
+                                <span class="detail-value text-end">10:59 AM<br>Jan 22, 2026</span>
+                            </div>
+                        </div>
+
+                        <div class="highlight-zone" data-num="duration">
+                            <div class="card-detail" data-hover-group="duration">
+                                <span class="detail-label"><i class="bi bi-hourglass-split"></i> DURATION</span>
+                                <span class="detail-value">9 days</span>
+                            </div>
+                        </div>
+
+                        <div class="card-detail footer-row">
+                            <span class="detail-label research-link">RESEARCH REPORT <i class="bi bi-download"></i></span>
+                            <div class="highlight-zone-inline" data-num="outcome-group">
+                                <div class="detail-value d-flex align-items-center gap-2" data-hover-group="outcome-group">
+                                    <span>6.67%</span>
+                                    <i class="bi bi-arrow-down-circle text-danger" style="font-size: 1.4rem;"></i>
                                 </div>
-    
-                                <div class="card-detail" data-hover-group="exit-price">
-                                    <span class="detail-label"><i class="bi bi-currency-rupee"></i> EXIT PRICE</span>
-                                    <span class="detail-value">₹1,400.00</span>
-                                </div>
-    
-                                <div class="card-detail" data-hover-group="profit-loss-main">
-                                    <span class="detail-label"><i class="bi bi-cash-stack"></i> LOSS</span>
-                                    <span class="detail-value">6.67%</span>
-                                </div>
-    
-                                <div class="card-detail" data-hover-group="reco-on">
-                                    <span class="detail-label"><i class="bi bi-calendar-check"></i> RECOMMENDED ON</span>
-                                    <span class="detail-value text-end">01:12 AM<br>Jan 14, 2026</span>
-                                </div>
-    
-                                <div class="card-detail" data-hover-group="exit-date">
-                                    <span class="detail-label"><i class="bi bi-calendar-check"></i> EXIT DATE</span>
-                                    <span class="detail-value text-end">10:59 AM<br>Jan 22, 2026</span>
-                                </div>
-    
-                                <div class="card-detail" data-hover-group="duration">
-                                    <span class="detail-label"><i class="bi bi-hourglass-split"></i> DURATION</span>
-                                    <span class="detail-value">9 days</span>
-                                </div>
-    
-                                <div class="card-detail footer-row">
-                                    <span class="detail-label research-link" onclick="openReport('null', 'pdf file')">
-                                        RESEARCH REPORT <i class="bi bi-download download-icon"></i>
-                                    </span>
-                                    <div class="detail-value d-flex align-items-center gap-2"
-                                        data-hover-group="profit-loss-main">
-                                        <span>6.67%</span>
-                                        <i class="bi bi-arrow-down-circle text-danger" style="font-size: 1.4rem;"></i>
-                                    </div>
-                                </div>
-    
                             </div>
                         </div>
                     </div>
                 </div>
-    
             </div>
+
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Footer -->
     <footer class="footer-market">
@@ -1347,7 +1363,7 @@
                     <!-- SEBI Badge -->
                     <div class="sebi-credential-card">
                         <div class="credential-label">SEBI Registration No.</div>
-                        <div class="credential-value">INH0000XXXXX</div>
+                        <div class="credential-value">INH000024781</div>
                     </div>
     
                     <div class="social-links-footer">
