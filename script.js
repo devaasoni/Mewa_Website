@@ -27,11 +27,11 @@ document.addEventListener("DOMContentLoaded", () => {
   initSection2Explainer();
   
   // Revised stamp click listener
-  const revisedStamp = document.querySelector('.status-stamp.revised-stamp');
-  if (revisedStamp) {
-    revisedStamp.style.cursor = 'pointer';
-    revisedStamp.addEventListener('click', switchToRevisedTab);
-  }
+//   const revisedStamp = document.querySelector('.status-stamp.revised-stamp');
+//   if (revisedStamp) {
+//     revisedStamp.style.cursor = 'pointer';
+//     revisedStamp.addEventListener('click', switchToRevisedTab);
+//   }
 });
 
 
@@ -412,7 +412,8 @@ function initServiceTabs() {
   }
   
   // 2. Recommendation Tabs (FULLY SCOPED FIX)
-  const recoTabButtons = document.querySelectorAll(".tab-btn");
+  // Select only tab buttons that are NOT scroll links
+const recoTabButtons = document.querySelectorAll(".tab-btn:not([data-scroll-id])");
   if (recoTabButtons.length > 0) {
       recoTabButtons.forEach(btn => {
         btn.addEventListener("click", () => {
@@ -592,7 +593,7 @@ function initContactForm() {
     //   });
     // }
 
-    // ==================== REVISED: SECTION 2 (CHAMFERED STYLE) ====================
+    // ================= REVISED: SECTION 2 (CHAMFERED STYLE) =================
     function drawConnectors() {
         const svg = document.getElementById('connectorSvg');
         const container = document.getElementById('explainerContainer');
@@ -627,10 +628,16 @@ function initContactForm() {
             const annotationRect = annotation.getBoundingClientRect();
             const zoneRect = zone.getBoundingClientRect();
 
-            // 1. Start Point (Annotation)
+            // 1. Start Point (Annotation) - Added 'textBuffer' to fix overlap
+            const textBuffer = 32; // Gap between text and line start
             let startX, startY;
-            if (side === 'left') startX = annotationRect.right - containerRect.left;
-            else startX = annotationRect.left - containerRect.left;
+            
+            if (side === 'left') {
+                startX = annotationRect.right - containerRect.left + textBuffer;
+            } else {
+                startX = annotationRect.left - containerRect.left - textBuffer;
+            }
+            
             startY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
 
             // Draw Start Dot
@@ -1832,7 +1839,7 @@ function drawChamferedConnectorsSection3_Duplicate() {
     const spaceFromCard = 15; 
     const gapFromCard = 50;   
 
-    // FIXED: Added all targets (a, b, c) so history lines appear
+    // 1. CONFIGURATION
     const connections = {
         's3-1_2': { side: 'left', color: 'orange', targets: ['s3-1a_2', 's3-1b_2', 's3-1c_2'] },
         's3-2_2': { side: 'left', color: 'red', targets: ['s3-2a_2', 's3-2b_2', 's3-2c_2'] },
@@ -1842,12 +1849,14 @@ function drawChamferedConnectorsSection3_Duplicate() {
         's3-6_2': { side: 'right', color: 'pink', targets: ['s3-6_2'] }
     };
 
+    // 2. DRAWING LOOP
     Object.entries(connections).forEach(([annotationId, config]) => {
         const annotation = document.querySelector(`.section3-annotations-2 .annotation-item[data-target="${annotationId}"]`);
         if (!annotation) return;
 
         const annotationRect = annotation.getBoundingClientRect();
         
+        // A. Calculate Start Point
         let startX, startY;
         if (config.side === 'left') {
             startX = annotationRect.right - containerRect.left;
@@ -1856,13 +1865,15 @@ function drawChamferedConnectorsSection3_Duplicate() {
         }
         startY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
 
-        // Start Dot
+        // B. Draw Start Dot
         const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
         dot.setAttribute('cx', startX); dot.setAttribute('cy', startY); dot.setAttribute('r', 3);
         dot.setAttribute('class', `connector-path ${config.color}`);
+        // IMPORTANT: Add data-num to dot so it highlights too
+        dot.setAttribute('data-num', annotationId);
         svg.appendChild(dot);
 
-        // Gather Targets
+        // C. Find Valid Targets
         const validTargets = [];
         config.targets.forEach((targetNum) => {
             const zone = document.querySelector(`.highlight-zone[data-num="${targetNum}"]`);
@@ -1884,12 +1895,12 @@ function drawChamferedConnectorsSection3_Duplicate() {
 
         if (validTargets.length === 0) return;
 
-        // Bus Position
+        // D. Calculate Bus Position
         let busX;
         if (config.side === 'left') busX = (cardRect.left - containerRect.left) - gapFromCard;
         else busX = (cardRect.right - containerRect.left) + gapFromCard;
 
-        // Draw Feeder (Annotation -> Bus)
+        // E. Draw Feeder (Annotation -> Bus)
         const feeder = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         feeder.setAttribute('d', `M ${startX} ${startY} L ${busX} ${startY}`);
         feeder.setAttribute('class', `connector-path ${config.color}`);
@@ -1899,11 +1910,12 @@ function drawChamferedConnectorsSection3_Duplicate() {
         const arrowDir = config.side === 'left' ? 'right' : 'left';
         const busDir = config.side === 'left' ? 1 : -1; 
 
+        // F. Draw Target Connections
         validTargets.forEach(target => {
             const arrowSize = 10;
             let lineEndX = (arrowDir === 'right') ? target.x - arrowSize + 1 : target.x + arrowSize - 1;
 
-            // Draw Arrow
+            // Arrow
             const arrow = document.createElementNS('http://www.w3.org/2000/svg', 'path');
             const dArrow = arrowDir === 'right' 
                 ? `M ${target.x} ${target.y} L ${target.x - 10} ${target.y - 6} L ${target.x - 10} ${target.y + 6} Z`
@@ -1913,7 +1925,7 @@ function drawChamferedConnectorsSection3_Duplicate() {
             arrow.setAttribute('data-num', annotationId);
             svg.appendChild(arrow);
 
-            // Draw Chamfered Path (No Gap Logic)
+            // Path
             const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
             let d = "";
             
@@ -1932,6 +1944,56 @@ function drawChamferedConnectorsSection3_Duplicate() {
             path.setAttribute('data-num', annotationId);
             path.style.fill = 'none'; 
             svg.appendChild(path);
+        });
+    });
+
+    // ============================================================
+    // 3. HOVER LOGIC (Map-Based Approach)
+    // ============================================================
+    
+    // Create a Reverse Map: Target ID -> Annotation ID
+    // Example: 's3-1a_2' -> 's3-1_2'
+    const targetToAnnotationMap = {};
+    Object.entries(connections).forEach(([annotationId, config]) => {
+        config.targets.forEach(targetId => {
+            targetToAnnotationMap[targetId] = annotationId;
+        });
+    });
+
+    const highlightZones = container.querySelectorAll('.highlight-zone');
+    
+    highlightZones.forEach(zone => {
+        // Remove old listeners (clone node trick) to prevent duplicates on resize
+        const newZone = zone.cloneNode(true);
+        zone.parentNode.replaceChild(newZone, zone);
+
+        newZone.addEventListener('mouseenter', () => {
+            const num = newZone.getAttribute('data-num');
+            if (!num) return;
+
+            // Lookup the correct Annotation ID from our map
+            const annotationId = targetToAnnotationMap[num];
+            if (!annotationId) return;
+
+            // 1. Highlight Connector Lines & Arrows
+            const paths = svg.querySelectorAll(`.connector-path[data-num="${annotationId}"]`);
+            paths.forEach(p => {
+                p.classList.add('highlighted');
+                svg.appendChild(p); // Bring to front
+            });
+
+            // 2. Highlight The Annotation Circle Text
+            const annotation = container.querySelector(`.annotation-item[data-target="${annotationId}"]`);
+            if (annotation) annotation.classList.add('highlighted');
+        });
+
+        newZone.addEventListener('mouseleave', () => {
+            // Remove 'highlighted' class from everything
+            const allHighlighted = container.querySelectorAll('.highlighted');
+            allHighlighted.forEach(el => el.classList.remove('highlighted'));
+            
+            const svgHighlighted = svg.querySelectorAll('.highlighted');
+            svgHighlighted.forEach(el => el.classList.remove('highlighted'));
         });
     });
 }
@@ -2257,5 +2319,23 @@ function updateAllConnectors() {
             path.setAttribute('data-num', id);
             svg.appendChild(path);
         });
+    });
+}
+
+// =====================================================
+// CROSS-SECTION NAVIGATION (Active <-> Revised)
+// =====================================================
+
+function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (!section) return;
+
+    // Calculate offset for fixed navbar
+    const navHeight = document.querySelector('.navbar-custom').offsetHeight || 80;
+    const targetPosition = section.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+
+    window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
     });
 }
