@@ -609,7 +609,7 @@ function initContactForm() {
         const cardRect = card.getBoundingClientRect();
 
         // Configuration to match Revised Card
-        const chamfer = 15;
+        const chamfer = 15;       // Length of the chamfered corner
         const spaceFromCard = 15; // Gap before arrow tip
         const gapFromCard = 50;   // Distance of the vertical bus from the card
 
@@ -629,7 +629,7 @@ function initContactForm() {
             const zoneRect = zone.getBoundingClientRect();
 
             // 1. Start Point (Annotation) - Added 'textBuffer' to fix overlap
-            const textBuffer = 32; // Gap between text and line start
+            const textBuffer = 42; // Gap between text and line start
             let startX, startY;
             
             if (side === 'left') {
@@ -912,9 +912,102 @@ function toggleTabbedHistory() {
 // =====================================================
 
 // ==================== REVISED: SECTION 3 ACTIVE TAB ====================
+// function drawConnectorsSection2() {
+//     const svg = document.getElementById('connectorSvgSection2');
+//     const container = document.getElementById('explainerContainerSection2');
+//     const card = container ? container.querySelector('.reco-card') : null;
+
+//     if (!svg || !container || !card) return;
+
+//     svg.innerHTML = '';
+//     svg.style.overflow = 'visible';
+    
+//     const containerRect = container.getBoundingClientRect();
+//     const cardRect = card.getBoundingClientRect();
+
+//     const chamfer = 15;
+//     const gapFromCard = 50;
+//     const spaceFromCard = 15;
+
+//     const connections = { 's2-1': ['left', 'orange'], 's2-2': ['right', 'blue'] };
+
+//     Object.entries(connections).forEach(([num, [side, color]]) => {
+//         const annotation = document.querySelector(`.section2-annotations .annotation-item[data-target="${num}"]`);
+//         const zone = document.querySelector(`.highlight-zone[data-num="${num}"]`);
+//         if (!annotation || !zone) return;
+
+//         const annotationRect = annotation.getBoundingClientRect();
+//         const zoneRect = zone.getBoundingClientRect();
+
+//         let startX, startY;
+//         if (side === 'left') startX = annotationRect.right - containerRect.left;
+//         else startX = annotationRect.left - containerRect.left;
+//         startY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
+
+//         // Dot
+//         const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+//         dot.setAttribute('cx', startX); dot.setAttribute('cy', startY); dot.setAttribute('r', 3);
+//         dot.setAttribute('class', `connector-path ${color}`);
+//         dot.setAttribute('data-num', num);
+//         svg.appendChild(dot);
+
+//         // End X
+//         let endX;
+//         if (side === 'left') endX = (cardRect.left - containerRect.left) - spaceFromCard;
+//         else endX = (cardRect.right - containerRect.left) + spaceFromCard;
+//         const endY = zoneRect.top + zoneRect.height / 2 - containerRect.top;
+
+//         // Bus X
+//         let busX;
+//         if (side === 'left') busX = (cardRect.left - containerRect.left) - gapFromCard;
+//         else busX = (cardRect.right - containerRect.left) + gapFromCard;
+
+//         // Feeder
+//         const feeder = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+//         feeder.setAttribute('d', `M ${startX} ${startY} L ${busX} ${startY}`);
+//         feeder.setAttribute('class', `connector-path ${color}`);
+//         feeder.setAttribute('data-num', num);
+//         svg.appendChild(feeder);
+
+//         // Arrow
+//         const arrowDir = side === 'left' ? 'right' : 'left';
+//         const arrow = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+//         const dArrow = arrowDir === 'right' 
+//             ? `M ${endX} ${endY} L ${endX - 10} ${endY - 6} L ${endX - 10} ${endY + 6} Z`
+//             : `M ${endX} ${endY} L ${endX + 10} ${endY - 6} L ${endX + 10} ${endY + 6} Z`;
+//         arrow.setAttribute('d', dArrow);
+//         arrow.setAttribute('class', `connector-path arrow-head ${color}`);
+//         arrow.setAttribute('data-num', num);
+//         svg.appendChild(arrow);
+
+//         // Path
+//         const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+//         let d = "";
+//         let lineEndX = (arrowDir === 'right') ? endX - 10 : endX + 10;
+//         const busDir = side === 'left' ? 1 : -1; 
+
+//         if (Math.abs(endY - startY) < 1) {
+//             d = `M ${busX} ${endY} L ${lineEndX} ${endY}`;
+//         } else {
+//             d += `M ${busX} ${startY} `; 
+//             if (endY > startY) d += `L ${busX} ${endY - chamfer} `;
+//             else d += `L ${busX} ${endY + chamfer} `;
+//             d += `L ${busX + (busDir * chamfer)} ${endY} `;
+//             d += `L ${lineEndX} ${endY}`;
+//         }
+        
+//         path.setAttribute('d', d);
+//         path.setAttribute('class', `connector-path ${color}`);
+//         path.setAttribute('data-num', num);
+//         path.style.fill = 'none'; 
+//         svg.appendChild(path);
+//     });
+// }
+
 function drawConnectorsSection2() {
     const svg = document.getElementById('connectorSvgSection2');
     const container = document.getElementById('explainerContainerSection2');
+    // Ensure we target the card within this container
     const card = container ? container.querySelector('.reco-card') : null;
 
     if (!svg || !container || !card) return;
@@ -929,6 +1022,7 @@ function drawConnectorsSection2() {
     const gapFromCard = 50;
     const spaceFromCard = 15;
 
+    // These IDs (s2-1, s2-2) match your Active Recommendation Tab
     const connections = { 's2-1': ['left', 'orange'], 's2-2': ['right', 'blue'] };
 
     Object.entries(connections).forEach(([num, [side, color]]) => {
@@ -939,37 +1033,45 @@ function drawConnectorsSection2() {
         const annotationRect = annotation.getBoundingClientRect();
         const zoneRect = zone.getBoundingClientRect();
 
+        // --- ADDED TEXT BUFFER HERE ---
+        const textBuffer = 10; // Buffer to push line start away from text (in pixels)
+
         let startX, startY;
-        if (side === 'left') startX = annotationRect.right - containerRect.left;
-        else startX = annotationRect.left - containerRect.left;
+        if (side === 'left') {
+            // Push start point 15px to the right (away from text)
+            startX = annotationRect.right - containerRect.left + textBuffer;
+        } else {
+            // Push start point 15px to the left (away from text)
+            startX = annotationRect.left - containerRect.left - textBuffer;
+        }
         startY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
 
-        // Dot
+        // Draw Start Dot
         const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
         dot.setAttribute('cx', startX); dot.setAttribute('cy', startY); dot.setAttribute('r', 3);
         dot.setAttribute('class', `connector-path ${color}`);
         dot.setAttribute('data-num', num);
         svg.appendChild(dot);
 
-        // End X
+        // Calculate End Point
         let endX;
         if (side === 'left') endX = (cardRect.left - containerRect.left) - spaceFromCard;
         else endX = (cardRect.right - containerRect.left) + spaceFromCard;
         const endY = zoneRect.top + zoneRect.height / 2 - containerRect.top;
 
-        // Bus X
+        // Calculate Bus Position
         let busX;
         if (side === 'left') busX = (cardRect.left - containerRect.left) - gapFromCard;
         else busX = (cardRect.right - containerRect.left) + gapFromCard;
 
-        // Feeder
+        // Draw Feeder (Annotation -> Bus)
         const feeder = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         feeder.setAttribute('d', `M ${startX} ${startY} L ${busX} ${startY}`);
         feeder.setAttribute('class', `connector-path ${color}`);
         feeder.setAttribute('data-num', num);
         svg.appendChild(feeder);
 
-        // Arrow
+        // Draw Arrow
         const arrowDir = side === 'left' ? 'right' : 'left';
         const arrow = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         const dArrow = arrowDir === 'right' 
@@ -980,7 +1082,7 @@ function drawConnectorsSection2() {
         arrow.setAttribute('data-num', num);
         svg.appendChild(arrow);
 
-        // Path
+        // Draw Chamfered Path
         const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         let d = "";
         let lineEndX = (arrowDir === 'right') ? endX - 10 : endX + 10;
@@ -1822,6 +1924,182 @@ function drawConnectorsSection2_Duplicate() {
 // -----------------------------------------------------
 // B. REVISED TAB LOGIC (Duplicate Section)
 // -----------------------------------------------------
+// function drawChamferedConnectorsSection3_Duplicate() {
+//     const svg = document.getElementById('connec1torSvgSection3_2');
+//     const container = document.getElementById('explainerContainerSection3_2');
+//     const card = container ? container.querySelector('.revision-card.active') : null;
+    
+//     if (!svg || !container || !card) return;
+
+//     svg.style.overflow = 'visible';
+//     svg.style.zIndex = '10'; 
+//     svg.innerHTML = '';
+    
+//     const containerRect = container.getBoundingClientRect();
+//     const cardRect = card.getBoundingClientRect();
+//     const chamfer = 15;      
+//     const spaceFromCard = 15; 
+//     const gapFromCard = 50;   
+
+//     // 1. CONFIGURATION
+//     const connections = {
+//         's3-1_2': { side: 'left', color: 'orange', targets: ['s3-1a_2', 's3-1b_2', 's3-1c_2'] },
+//         's3-2_2': { side: 'left', color: 'red', targets: ['s3-2a_2', 's3-2b_2', 's3-2c_2'] },
+//         's3-3_2': { side: 'right', color: 'green', targets: ['s3-3a_2', 's3-3b_2'] },
+//         's3-4_2': { side: 'right', color: 'blue', targets: ['s3-4a_2', 's3-4b_2'] },
+//         's3-5_2': { side: 'left', color: 'purple', targets: ['s3-5_2'] },
+//         's3-6_2': { side: 'right', color: 'pink', targets: ['s3-6_2'] }
+//     };
+
+//     // 2. DRAWING LOOP
+//     Object.entries(connections).forEach(([annotationId, config]) => {
+//         const annotation = document.querySelector(`.section3-annotations-2 .annotation-item[data-target="${annotationId}"]`);
+//         if (!annotation) return;
+
+//         const annotationRect = annotation.getBoundingClientRect();
+        
+//         // A. Calculate Start Point
+//         let startX, startY;
+//         if (config.side === 'left') {
+//             startX = annotationRect.right - containerRect.left;
+//         } else {
+//             startX = annotationRect.left - containerRect.left;
+//         }
+//         startY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
+
+//         // B. Draw Start Dot
+//         const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+//         dot.setAttribute('cx', startX); dot.setAttribute('cy', startY); dot.setAttribute('r', 3);
+//         dot.setAttribute('class', `connector-path ${config.color}`);
+//         // IMPORTANT: Add data-num to dot so it highlights too
+//         dot.setAttribute('data-num', annotationId);
+//         svg.appendChild(dot);
+
+//         // C. Find Valid Targets
+//         const validTargets = [];
+//         config.targets.forEach((targetNum) => {
+//             const zone = document.querySelector(`.highlight-zone[data-num="${targetNum}"]`);
+//             if (!zone) return;
+            
+//             // Check if inside hidden history
+//             const historyContainer = zone.closest('.revision-history-section');
+//             if (historyContainer && !historyContainer.classList.contains('expanded')) return;
+            
+//             const zoneRect = zone.getBoundingClientRect();
+//             if (zoneRect.width === 0 || zoneRect.height === 0) return;
+
+//             let endX;
+//             if (config.side === 'left') endX = (cardRect.left - containerRect.left) - spaceFromCard; 
+//             else endX = (cardRect.right - containerRect.left) + spaceFromCard;
+            
+//             validTargets.push({ x: endX, y: zoneRect.top + zoneRect.height / 2 - containerRect.top });
+//         });
+
+//         if (validTargets.length === 0) return;
+
+//         // D. Calculate Bus Position
+//         let busX;
+//         if (config.side === 'left') busX = (cardRect.left - containerRect.left) - gapFromCard;
+//         else busX = (cardRect.right - containerRect.left) + gapFromCard;
+
+//         // E. Draw Feeder (Annotation -> Bus)
+//         const feeder = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+//         feeder.setAttribute('d', `M ${startX} ${startY} L ${busX} ${startY}`);
+//         feeder.setAttribute('class', `connector-path ${config.color}`);
+//         feeder.setAttribute('data-num', annotationId);
+//         svg.appendChild(feeder);
+
+//         const arrowDir = config.side === 'left' ? 'right' : 'left';
+//         const busDir = config.side === 'left' ? 1 : -1; 
+
+//         // F. Draw Target Connections
+//         validTargets.forEach(target => {
+//             const arrowSize = 10;
+//             let lineEndX = (arrowDir === 'right') ? target.x - arrowSize + 1 : target.x + arrowSize - 1;
+
+//             // Arrow
+//             const arrow = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+//             const dArrow = arrowDir === 'right' 
+//                 ? `M ${target.x} ${target.y} L ${target.x - 10} ${target.y - 6} L ${target.x - 10} ${target.y + 6} Z`
+//                 : `M ${target.x} ${target.y} L ${target.x + 10} ${target.y - 6} L ${target.x + 10} ${target.y + 6} Z`;
+//             arrow.setAttribute('d', dArrow);
+//             arrow.setAttribute('class', `connector-path arrow-head ${config.color}`);
+//             arrow.setAttribute('data-num', annotationId);
+//             svg.appendChild(arrow);
+
+//             // Path
+//             const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+//             let d = "";
+            
+//             if (Math.abs(target.y - startY) < 1) {
+//                 d = `M ${busX} ${target.y} L ${lineEndX} ${target.y}`;
+//             } else {
+//                 d += `M ${busX} ${startY} `; 
+//                 if (target.y > startY) { d += `L ${busX} ${target.y - chamfer} `; } 
+//                 else { d += `L ${busX} ${target.y + chamfer} `; }
+                
+//                 d += `L ${busX + (busDir * chamfer)} ${target.y} `;
+//                 d += `L ${lineEndX} ${target.y}`;
+//             }
+//             path.setAttribute('d', d);
+//             path.setAttribute('class', `connector-path ${config.color}`);
+//             path.setAttribute('data-num', annotationId);
+//             path.style.fill = 'none'; 
+//             svg.appendChild(path);
+//         });
+//     });
+
+//     // ============================================================
+//     // 3. HOVER LOGIC (Map-Based Approach)
+//     // ============================================================
+    
+//     // Create a Reverse Map: Target ID -> Annotation ID
+//     // Example: 's3-1a_2' -> 's3-1_2'
+//     const targetToAnnotationMap = {};
+//     Object.entries(connections).forEach(([annotationId, config]) => {
+//         config.targets.forEach(targetId => {
+//             targetToAnnotationMap[targetId] = annotationId;
+//         });
+//     });
+
+//     const highlightZones = container.querySelectorAll('.highlight-zone');
+    
+//     highlightZones.forEach(zone => {
+//         // Remove old listeners (clone node trick) to prevent duplicates on resize
+//         const newZone = zone.cloneNode(true);
+//         zone.parentNode.replaceChild(newZone, zone);
+
+//         newZone.addEventListener('mouseenter', () => {
+//             const num = newZone.getAttribute('data-num');
+//             if (!num) return;
+
+//             // Lookup the correct Annotation ID from our map
+//             const annotationId = targetToAnnotationMap[num];
+//             if (!annotationId) return;
+
+//             // 1. Highlight Connector Lines & Arrows
+//             const paths = svg.querySelectorAll(`.connector-path[data-num="${annotationId}"]`);
+//             paths.forEach(p => {
+//                 p.classList.add('highlighted');
+//                 svg.appendChild(p); // Bring to front
+//             });
+
+//             // 2. Highlight The Annotation Circle Text
+//             const annotation = container.querySelector(`.annotation-item[data-target="${annotationId}"]`);
+//             if (annotation) annotation.classList.add('highlighted');
+//         });
+
+//         newZone.addEventListener('mouseleave', () => {
+//             // Remove 'highlighted' class from everything
+//             const allHighlighted = container.querySelectorAll('.highlighted');
+//             allHighlighted.forEach(el => el.classList.remove('highlighted'));
+            
+//             const svgHighlighted = svg.querySelectorAll('.highlighted');
+//             svgHighlighted.forEach(el => el.classList.remove('highlighted'));
+//         });
+//     });
+// }
+
 function drawChamferedConnectorsSection3_Duplicate() {
     const svg = document.getElementById('connectorSvgSection3_2');
     const container = document.getElementById('explainerContainerSection3_2');
@@ -1835,9 +2113,9 @@ function drawChamferedConnectorsSection3_Duplicate() {
     
     const containerRect = container.getBoundingClientRect();
     const cardRect = card.getBoundingClientRect();
-    const chamfer = 15;      
-    const spaceFromCard = 15; 
-    const gapFromCard = 50;   
+    const chamfer = 15;
+    const spaceFromCard = 15;
+    const gapFromCard = 50;
 
     // 1. CONFIGURATION
     const connections = {
@@ -1856,12 +2134,17 @@ function drawChamferedConnectorsSection3_Duplicate() {
 
         const annotationRect = annotation.getBoundingClientRect();
         
+        // --- ADDED TEXT BUFFER HERE ---
+        const textBuffer = 10;
+
         // A. Calculate Start Point
         let startX, startY;
         if (config.side === 'left') {
-            startX = annotationRect.right - containerRect.left;
+            // Push start point 15px to the right (away from text)
+            startX = annotationRect.right - containerRect.left + textBuffer;
         } else {
-            startX = annotationRect.left - containerRect.left;
+            // Push start point 15px to the left (away from text)
+            startX = annotationRect.left - containerRect.left - textBuffer;
         }
         startY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
 
@@ -2162,6 +2445,7 @@ function toggleMirroredDetails(btn) {
     const allDetailDivs = document.querySelectorAll('.exact-details');
     const allButtons = document.querySelectorAll('.show-more-btn');
     const centerWrapper = document.getElementById('centerCollapsible');
+    const showMoreCard = document.getElementById('showMoreInfoCard'); // <--- Select the new card
     
     const isExpanding = !allDetailDivs[0].classList.contains('expanded');
 
@@ -2169,6 +2453,15 @@ function toggleMirroredDetails(btn) {
     
     if(centerWrapper) {
         isExpanding ? centerWrapper.classList.add('expanded') : centerWrapper.classList.remove('expanded');
+    }
+
+    // <--- NEW LOGIC: Hide "Show More" Info Card when expanded --->
+    if(showMoreCard) {
+        if(isExpanding) {
+            showMoreCard.style.display = 'none'; // Hide immediately
+        } else {
+            showMoreCard.style.display = 'flex'; // Show when collapsed
+        }
     }
 
     allButtons.forEach(b => b.innerHTML = isExpanding ? 'Show Less <i class="bi bi-chevron-up"></i>' : 'Show More <i class="bi bi-chevron-down"></i>');
@@ -2187,7 +2480,7 @@ function handleFinalHover(e) {
     section.classList.add('has-interaction');
 
     // 1. Fade UI Elements
-    const allElements = section.querySelectorAll('.highlight-zone, .highlight-zone-inline, .annotation-item');
+    const allElements = section.querySelectorAll('.highlight-zone, .highlight-zone-inline, .annotation-item, .research-link');
     allElements.forEach(el => el.classList.add('faded'));
 
     // 2. Highlight Matching UI Elements
@@ -2234,6 +2527,9 @@ function updateAllConnectors() {
     const centerItems = section.querySelectorAll('.annotation-item[data-target]');
 
     centerItems.forEach(targetAnno => {
+        // <--- NEW CHECK: Skip if the card is hidden (display: none) --->
+        if (getComputedStyle(targetAnno).display === 'none') return;
+
         const id = targetAnno.getAttribute('data-target');
         const centerWrapper = targetAnno.closest('.center-collapsible-wrapper');
         if (centerWrapper && !centerWrapper.classList.contains('expanded')) return;

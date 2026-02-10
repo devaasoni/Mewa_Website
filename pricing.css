@@ -236,7 +236,7 @@
 
 .pricing-daily-badge {
     background: var(--bg-tertiary);
-    border: 1px solid var(--border-color);
+    border: 2px solid var(--border-color);
     padding: 0.4rem 1rem;
     border-radius: 50px;
     font-size: 0.75rem;
@@ -246,6 +246,52 @@
 .pricing-daily-badge span {
     color: var(--text-primary);
     font-weight: 700;
+}
+
+/* =========================================
+   ANIMATED BORDER FOR DAILY BADGE (HOVER)
+   ========================================= */
+
+/* 1. Define the animation for the moving gradient */
+@keyframes gradientBorderFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* 2. Apply the effect when hovering the Pricing Card */
+.pricing-card:hover .pricing-daily-badge {
+    /* Make the original border transparent so the gradient shows through */
+    border-color: transparent;
+
+    /* Layer 1 (Top): Solid dark color matching the card (clipped to padding-box) 
+       Layer 2 (Bottom): The Brand Gradient (clipped to border-box)
+    */
+    background-image: 
+        linear-gradient(var(--bg-card), var(--bg-card)), 
+        linear-gradient(90deg, var(--gradient-1), var(--gradient-2), var(--gradient-3), var(--gradient-4));
+    
+    /* Ensure the backgrounds start from the border edge */
+    background-origin: border-box;
+    
+    /* Clip them so one sits inside, and the other fills the border area */
+    background-clip: padding-box, border-box;
+    
+    /* Make the gradient wide enough to slide (300%) */
+    background-size: 100% 100%, 300% 100%;
+    
+    /* Run the animation */
+    animation: gradientBorderFlow 3s ease infinite;
+
+    /* Optional: Add a subtle glow to match */
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+    transform: translateY(-2px); /* Slight lift for better feel */
 }
 
 /* Info Text */

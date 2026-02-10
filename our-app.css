@@ -149,21 +149,38 @@ body {
 }
 
 .explainer-annotations-left,
-.section2-annotations.explainer-annotations-left,
 .section3-annotations.explainer-annotations-left {
     align-items: flex-end;
     padding-right: 80px;
 }
 
+.section2-annotations.explainer-annotations-left {
+    align-items: flex-end;
+    padding-right: 20px;
+}
+
 .explainer-annotations-right,
-.section2-annotations.explainer-annotations-right,
 .section3-annotations.explainer-annotations-right {
     align-items: flex-start;
     padding-left: 80px;
 }
 
-/* Fixed width for revised section annotations to ensure alignment */
-.section2-annotations,
+.section2-annotations.explainer-annotations-right {
+    align-items: flex-start;
+    padding-left: 20px;
+}
+
+/* UPDATED: Broader container for Active Tab (Section 2) to fit text in fewer lines */
+.section2-annotations {
+    flex: 0 0 400px; /* Increased from 300px */
+}
+
+/* Widen the specific annotation boxes in the Active Tab */
+.section2-annotations .annotation-item {
+    max-width: 80%; /* Let it fill the new 450px container */
+}
+
+/* Keep Section 3 (Revised Tab) as is */
 .section3-annotations {
     flex: 0 0 300px;
 }
@@ -1424,34 +1441,34 @@ path.connector-path.arrow-head.highlighted.red    { fill: #ef4444; }
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 3px; /* Thickness of the line */
-
-    /* Gradient: Transparent ends create a smooth "comet" look */
-    background: linear-gradient(90deg, transparent, var(--accent-sell), transparent);
+    height: 3px; 
+    background: linear-gradient(90deg, transparent, var(--gradient-1), transparent);
     
-    /* Animation Properties */
-    transform: translateX(-100%); /* Start completely off-screen left */
-    animation: lineSlideRight 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    transform: translateX(-100%);
+    
+    /* CHANGE: Reduced to 2s for a faster animation cycle */
+    animation: lineSlideRight 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 /* 4. The Animation Keyframes */
 @keyframes lineSlideRight {
     0% {
-        transform: translateX(-100%); /* Starts left */
+        transform: translateX(-100%);
         opacity: 0;
     }
     10% {
-        opacity: 1; /* Fades in quickly */
+        opacity: 1; 
     }
-    50% {
-        transform: translateX(100%); /* Slides all the way to right */
+    /* CHANGE: 80% of 2s = 1.6s travel time */
+    80% {
+        transform: translateX(100%);
         opacity: 1;
     }
-    51% {
-        opacity: 0; /* Hides immediately after crossing */
+    81% {
+        opacity: 0; /* Hides immediately */
     }
     100% {
-        transform: translateX(100%); /* Stay hidden for the pause */
+        transform: translateX(100%);
         opacity: 0;
     }
 }
@@ -1551,6 +1568,23 @@ path.connector-path.arrow-head.highlighted.red    { fill: #ef4444; }
     cursor: pointer;
     margin-bottom: 1rem;
     margin-top: 0.5rem;
+}
+
+/* Styling for the Show More toggle when it acts as a zone */
+.show-more-btn.highlight-zone-inline {
+    display: block;          /* changed from inline-block */
+    width: fit-content;      /* Shrinks to fit text size */
+    padding: 6px 12px;
+    border-radius: 20px;
+    margin: 1rem auto;       /* 'auto' left/right centers it now */
+    transition: all 0.3s ease;
+}
+
+/* Ensure lines connect cleanly to the button text area */
+.show-more-btn.highlight-zone-inline.highlighted {
+    background: rgba(59, 130, 246, 0.1); /* Subtle blue background */
+    box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.3);
+    color: #ffffff !important;
 }
 
 /* Details Rows */
@@ -1938,9 +1972,10 @@ path.connector-path.arrow-head.highlighted.red    { fill: #ef4444; }
 /* --- SUBTLE DIMMING (Matches Section 2 & 3) --- */
 .tri-col-section.has-interaction .highlight-zone.faded,
 .tri-col-section.has-interaction .highlight-zone-inline.faded,
-.tri-col-section.has-interaction .annotation-item.faded {
-    opacity: 0.1 !important; /* Matches your existing reference */
-    filter: none; /* No blur as requested */
+.tri-col-section.has-interaction .annotation-item.faded,
+.tri-col-section.has-interaction .research-link.faded {   /* <--- Added this line */
+    opacity: 0.1 !important; 
+    filter: none; 
     transition: all 0.3s ease;
 }
 

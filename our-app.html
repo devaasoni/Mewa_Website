@@ -58,10 +58,6 @@
                 </div>
     
                 <div class="navbar-actions d-flex align-items-center gap-3">
-                    <button class="theme-toggle" id="themeToggle" style="display: none;">
-                        <i class="bi bi-sun-fill"></i>
-                    </button>
-    
                     <a href="#login" class="btn-gradient btn-login d-none d-sm-inline-block">Login</a>
     
                     <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation">
@@ -84,7 +80,7 @@
                                 <i class="bi bi-chevron-down"></i>
                             </button>
                         </div>
-                        
+
                         <div class="mobile-dropdown-menu">
                             <a href="about-mewa.html#who-we-are" class="mobile-dropdown-item">Who We Are</a>
                             <a href="about-mewa.html#how-we-work" class="mobile-dropdown-item">How We Work</a>
@@ -372,8 +368,8 @@
                                             style="font-size: 80%;"></i></div>
                                     <div class="annotation-content">
                                         <h4>REVISED Stamp</h4>
-                                        <p>This indicates that the original Target and Stop Loss have been updated due to
-                                            changes in market conditions.</p>
+                                        <!-- <p>This indicates that the original Target and Stop Loss have been updated due to changes in market conditions.</p> -->
+                                        <p>Targets updated due to market changes.</p>
                                     </div>
                                 </div>
                             </div>
@@ -408,8 +404,9 @@
                                             REVISED
                                         </div>
                                         <div class="mobile-explanation">
-                                            <p>This indicates that the original Target and Stop Loss have been updated due to changes in market conditions.
-                                            </p>
+                                            <!-- <p>This indicates that the original Target and Stop Loss have been updated due to changes in market conditions.
+                                            </p> -->
+                                            <p>Targets updated due to market changes.</p>   
                                         </div>
                                     </div>
     
@@ -447,7 +444,8 @@
                                             <i class="bi bi-arrow-right"></i>
                                         </button>
                                         <div class="mobile-explanation">
-                                            <p>Click here to view the updated recommendation along with the history of past recommendations.</p>
+                                            <!-- <p>Click here to view the updated recommendation along with the history of past recommendations.</p> -->
+                                            <p>See updated targets & full history.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -460,8 +458,9 @@
                                             style="font-size: 80%;"></i></div>
                                     <div class="annotation-content">
                                         <h4>View Revised Recommendation</h4>
-                                        <p>Click here to view the updated recommendation along with the history of past
-                                            recommendations.</p>
+                                        <!-- <p>Click here to view the updated recommendation along with the history of past
+                                            recommendations.</p> -->
+                                        <p>See updated targets & full history.</p>
                                     </div>
                                 </div>
                             </div>
@@ -1155,7 +1154,8 @@
                             </div>
                         </div>
     
-                        <p class="show-more-btn text-center" onclick="toggleMirroredDetails(this)">
+                        <p class="show-more-btn text-center highlight-zone-inline" data-num="show-more-toggle"
+                            onclick="toggleMirroredDetails(this)">
                             Show More <i class="bi bi-chevron-down"></i>
                         </p>
     
@@ -1225,7 +1225,15 @@
                             <div class="annotation-number green-red-split"><i class="bi bi-flag-fill"></i></div>
                             <div class="annotation-content">
                                 <h4>Recommendations Outcome</h4>
-                                <p>The final result of our recommendations (Profit or Loss).</p>
+                                <p>The final result of our recommendations (Target Hit or StopLoss Hit).</p>
+                            </div>
+                        </div>
+
+                        <div class="annotation-item center-mode" data-target="show-more-toggle" id="showMoreInfoCard">
+                            <div class="annotation-number blue"><i class="bi bi-chevron-bar-expand"></i></div>
+                            <div class="annotation-content">
+                                <h4>Expand Details</h4>
+                                <p>Click to view the full trade timeline, including entry, exit, and duration.</p>
                             </div>
                         </div>
                 
@@ -1259,7 +1267,7 @@
                                 <div class="annotation-number orange"><i class="bi bi-calendar-x"></i></div>
                                 <div class="annotation-content">
                                     <h4>Exit Date</h4>
-                                    <p>The exact time when the Target or Stop Loss was reached.</p>
+                                    <p>The time when the Target or Stop Loss was reached.</p>
                                 </div>
                             </div>
                 
@@ -1290,7 +1298,8 @@
                             </div>
                         </div>
     
-                        <p class="show-more-btn text-center" onclick="toggleMirroredDetails(this)">
+                        <p class="show-more-btn text-center highlight-zone-inline" data-num="show-more-toggle"
+                            onclick="toggleMirroredDetails(this)">
                             Show More <i class="bi bi-chevron-down"></i>
                         </p>
     
@@ -1365,7 +1374,7 @@
                 <!-- Brand Column -->
                 <div class="footer-column brand-column">
                     <div class="footer-logo">
-                        <img src="images/WhiteLogo.png" alt="The Mewa Logo" class="footer-brand-logo">
+                        <img src="images/brand-logo.png" alt="The Mewa Logo" class="footer-brand-logo">
                         <span class="footer-brand-name">The Mewa</span>
                     </div>
                     <p class="footer-tagline">SEBI Registered Research Analyst providing market recommendations.</p>
