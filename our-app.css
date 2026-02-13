@@ -485,7 +485,7 @@ path.connector-path.arrow-head.highlighted.red    { fill: #ef4444; }
 }
 
 .reco-card-demo-container {
-    max-width: 450px;
+    max-width: 400px;
     margin: 0 auto;
     width: 100%;
 }

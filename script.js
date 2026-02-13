@@ -2132,37 +2132,43 @@ function drawChamferedConnectorsSection3_Duplicate() {
         const annotation = document.querySelector(`.section3-annotations-2 .annotation-item[data-target="${annotationId}"]`);
         if (!annotation) return;
 
-        const annotationRect = annotation.getBoundingClientRect();
-        
-        // --- ADDED TEXT BUFFER HERE ---
-        const textBuffer = 10;
+        const contentEl = annotation.querySelector('.annotation-content');
+        const targetRect = contentEl ? contentEl.getBoundingClientRect() : annotation.getBoundingClientRect();
+        const textBuffer = 12;
+        const isPastPerformance = (annotationId === 's3-6_2');
 
-        // A. Calculate Start Point
+        // A. Calculate Start Point (Dot)
         let startX, startY;
         if (config.side === 'left') {
-            // Push start point 15px to the right (away from text)
-            startX = annotationRect.right - containerRect.left + textBuffer;
+            startX = targetRect.right - containerRect.left + textBuffer;
         } else {
-            // Push start point 15px to the left (away from text)
-            startX = annotationRect.left - containerRect.left - textBuffer;
+            // Right side
+            startX = targetRect.left - containerRect.left - textBuffer;
+            
+            // --- FIX START: Push start point to the right for Past Performance ---
+            if (isPastPerformance) {
+                // Adjust this value (60) if you need it closer/further
+                startX += 60; 
+            }
+            // --- FIX END ---
         }
-        startY = annotationRect.top + annotationRect.height / 2 - containerRect.top;
+        startY = targetRect.top + targetRect.height / 2 - containerRect.top;
 
-        // B. Draw Start Dot
+        // Draw Start Dot
         const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
         dot.setAttribute('cx', startX); dot.setAttribute('cy', startY); dot.setAttribute('r', 3);
         dot.setAttribute('class', `connector-path ${config.color}`);
-        // IMPORTANT: Add data-num to dot so it highlights too
         dot.setAttribute('data-num', annotationId);
         svg.appendChild(dot);
 
-        // C. Find Valid Targets
+        let customBusReferenceX = null;
+
+        // B. Find Valid Targets and Calculate End Points
         const validTargets = [];
         config.targets.forEach((targetNum) => {
             const zone = document.querySelector(`.highlight-zone[data-num="${targetNum}"]`);
             if (!zone) return;
             
-            // Check if inside hidden history
             const historyContainer = zone.closest('.revision-history-section');
             if (historyContainer && !historyContainer.classList.contains('expanded')) return;
             
@@ -2170,20 +2176,33 @@ function drawChamferedConnectorsSection3_Duplicate() {
             if (zoneRect.width === 0 || zoneRect.height === 0) return;
 
             let endX;
-            if (config.side === 'left') endX = (cardRect.left - containerRect.left) - spaceFromCard; 
-            else endX = (cardRect.right - containerRect.left) + spaceFromCard;
+            if (isPastPerformance) {
+                // Align relative to the BUTTON (Zone), not the Card
+                if (config.side === 'left') endX = (zoneRect.left - containerRect.left) - 20; 
+                else endX = (zoneRect.right - containerRect.left) + 20; 
+                
+                customBusReferenceX = endX;
+            } else {
+                if (config.side === 'left') endX = (cardRect.left - containerRect.left) - spaceFromCard; 
+                else endX = (cardRect.right - containerRect.left) + spaceFromCard;
+            }
             
             validTargets.push({ x: endX, y: zoneRect.top + zoneRect.height / 2 - containerRect.top });
         });
 
         if (validTargets.length === 0) return;
 
-        // D. Calculate Bus Position
+        // C. Calculate Bus Position (Vertical Line)
         let busX;
-        if (config.side === 'left') busX = (cardRect.left - containerRect.left) - gapFromCard;
-        else busX = (cardRect.right - containerRect.left) + gapFromCard;
+        if (isPastPerformance && customBusReferenceX !== null) {
+             if (config.side === 'left') busX = customBusReferenceX - 40;
+             else busX = customBusReferenceX + 40;
+        } else {
+             if (config.side === 'left') busX = (cardRect.left - containerRect.left) - gapFromCard;
+             else busX = (cardRect.right - containerRect.left) + gapFromCard;
+        }
 
-        // E. Draw Feeder (Annotation -> Bus)
+        // D. Draw Feeder (Annotation -> Bus)
         const feeder = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         feeder.setAttribute('d', `M ${startX} ${startY} L ${busX} ${startY}`);
         feeder.setAttribute('class', `connector-path ${config.color}`);
@@ -2193,12 +2212,11 @@ function drawChamferedConnectorsSection3_Duplicate() {
         const arrowDir = config.side === 'left' ? 'right' : 'left';
         const busDir = config.side === 'left' ? 1 : -1; 
 
-        // F. Draw Target Connections
+        // E. Draw Target Connections
         validTargets.forEach(target => {
             const arrowSize = 10;
             let lineEndX = (arrowDir === 'right') ? target.x - arrowSize + 1 : target.x + arrowSize - 1;
 
-            // Arrow
             const arrow = document.createElementNS('http://www.w3.org/2000/svg', 'path');
             const dArrow = arrowDir === 'right' 
                 ? `M ${target.x} ${target.y} L ${target.x - 10} ${target.y - 6} L ${target.x - 10} ${target.y + 6} Z`
@@ -2208,7 +2226,6 @@ function drawChamferedConnectorsSection3_Duplicate() {
             arrow.setAttribute('data-num', annotationId);
             svg.appendChild(arrow);
 
-            // Path
             const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
             let d = "";
             
@@ -2227,56 +2244,6 @@ function drawChamferedConnectorsSection3_Duplicate() {
             path.setAttribute('data-num', annotationId);
             path.style.fill = 'none'; 
             svg.appendChild(path);
-        });
-    });
-
-    // ============================================================
-    // 3. HOVER LOGIC (Map-Based Approach)
-    // ============================================================
-    
-    // Create a Reverse Map: Target ID -> Annotation ID
-    // Example: 's3-1a_2' -> 's3-1_2'
-    const targetToAnnotationMap = {};
-    Object.entries(connections).forEach(([annotationId, config]) => {
-        config.targets.forEach(targetId => {
-            targetToAnnotationMap[targetId] = annotationId;
-        });
-    });
-
-    const highlightZones = container.querySelectorAll('.highlight-zone');
-    
-    highlightZones.forEach(zone => {
-        // Remove old listeners (clone node trick) to prevent duplicates on resize
-        const newZone = zone.cloneNode(true);
-        zone.parentNode.replaceChild(newZone, zone);
-
-        newZone.addEventListener('mouseenter', () => {
-            const num = newZone.getAttribute('data-num');
-            if (!num) return;
-
-            // Lookup the correct Annotation ID from our map
-            const annotationId = targetToAnnotationMap[num];
-            if (!annotationId) return;
-
-            // 1. Highlight Connector Lines & Arrows
-            const paths = svg.querySelectorAll(`.connector-path[data-num="${annotationId}"]`);
-            paths.forEach(p => {
-                p.classList.add('highlighted');
-                svg.appendChild(p); // Bring to front
-            });
-
-            // 2. Highlight The Annotation Circle Text
-            const annotation = container.querySelector(`.annotation-item[data-target="${annotationId}"]`);
-            if (annotation) annotation.classList.add('highlighted');
-        });
-
-        newZone.addEventListener('mouseleave', () => {
-            // Remove 'highlighted' class from everything
-            const allHighlighted = container.querySelectorAll('.highlighted');
-            allHighlighted.forEach(el => el.classList.remove('highlighted'));
-            
-            const svgHighlighted = svg.querySelectorAll('.highlighted');
-            svgHighlighted.forEach(el => el.classList.remove('highlighted'));
         });
     });
 }
